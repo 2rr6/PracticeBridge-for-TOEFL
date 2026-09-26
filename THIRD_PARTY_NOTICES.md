@@ -6,7 +6,7 @@ PracticeBridge application code is MIT licensed. The Windows runtime includes th
 | --- | --- | --- | --- |
 | Electron | 44.3.0 | MIT | Desktop runtime; includes Chromium and Node components with their own notices |
 | @zip.js/zip.js | 2.14.0 | BSD-3-Clause | Bounded asynchronous ZIP reading and writing |
-| Ajv | 8.17.1 | MIT | Strict package and material schema validation |
+| Ajv | 8.20.0 | MIT | Strict package and material schema validation |
 | mammoth | 1.12.2 | BSD-2-Clause | DOCX text extraction |
 | pdfjs-dist | 6.3.289 | Apache-2.0 | PDF text extraction and rendering |
 | @napi-rs/canvas and its Windows x64 native package | 1.0.9 | MIT | Local PDF/page rasterization |

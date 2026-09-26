@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@zip.js/zip.js": "2.14.0",
-    "ajv": "8.17.1",
+    "ajv": "8.20.0",
     "mammoth": "1.12.2",
     "pdfjs-dist": "6.3.289",
     "tesseract.js": "7.0.0",

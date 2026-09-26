@@ -13,10 +13,10 @@
     "sourceFiles": [
       {
         "path": "assets/ocr-launch-lock.json",
-        "bytes": 342062,
-        "sha256": "000ae1eb44557d9e9543b976509c1aa7ee95ebea263e50b28658e20707e9aca8",
+        "bytes": 342063,
+        "sha256": "7321bf67a9e2e287d4bb360d4a3e573a20b2740f7fd76cc7e5b3e2b0c552e837",
         "text": true,
-        "canonicalLfSha256": "000ae1eb44557d9e9543b976509c1aa7ee95ebea263e50b28658e20707e9aca8"
+        "canonicalLfSha256": "7321bf67a9e2e287d4bb360d4a3e573a20b2740f7fd76cc7e5b3e2b0c552e837"
       },
       {
         "path": "desktop/secret-store.cjs",
@@ -27,17 +27,17 @@
       },
       {
         "path": "docs/development/release-policy.json",
-        "bytes": 121142,
-        "sha256": "11af1cef08cb3bc2450aaeb69768ac15cd127168636c4a52f22e204d059fa344",
+        "bytes": 121163,
+        "sha256": "0a56c21b2f2fa4bd6d6eb742256eec29dc2b01805891cc2e70e7deba3dd8e451",
         "text": true,
-        "canonicalLfSha256": "54186f5e7cd36cecdfc135d2b68e413b5999015a7d99d9149128628d62dd6c4b"
+        "canonicalLfSha256": "7f9703b6a1086f8e7e4172b87adb9672bd708ec715350c560b70099a8a8ccd6c"
       },
       {
         "path": "docs/development/runtime-dependencies.json",
-        "bytes": 460313,
-        "sha256": "af4a748017fd01b0a8680838bf0d43f24f5975d55faa1d0af5c6e545714ab165",
+        "bytes": 460314,
+        "sha256": "6a73e9db4cd331452f89018f938bb70cfacf7e2ec5e2ab14a250625676a64167",
         "text": true,
-        "canonicalLfSha256": "af4a748017fd01b0a8680838bf0d43f24f5975d55faa1d0af5c6e545714ab165"
+        "canonicalLfSha256": "6a73e9db4cd331452f89018f938bb70cfacf7e2ec5e2ab14a250625676a64167"
       },
       {
         "path": "docs/RELEASING.md",
@@ -48,31 +48,31 @@
       },
       {
         "path": "docs/verification-summary.json",
-        "bytes": 29062,
-        "sha256": "53118207c76516440965aba1bc2166bfff721318d6257ec432f4cafb5e240194",
+        "bytes": 29064,
+        "sha256": "c7553e9087ac8bf0d6b3bf1e07dfec3e79327edfa4270d5657224476915ed0a6",
         "text": true,
-        "canonicalLfSha256": "53118207c76516440965aba1bc2166bfff721318d6257ec432f4cafb5e240194"
+        "canonicalLfSha256": "c7553e9087ac8bf0d6b3bf1e07dfec3e79327edfa4270d5657224476915ed0a6"
       },
       {
         "path": "LICENSE",
-        "bytes": 1105,
-        "sha256": "305a66ab770e86573f352d959bc50ce67e6ace21affe3769ba8f5753c531e65a",
+        "bytes": 1061,
+        "sha256": "3e1cfa556ffbf16fc0d34046df7df0351c427685831eaf883ff25669962940f7",
         "text": true,
-        "canonicalLfSha256": "26d1271329de2d974010b31c168562c1e4ce83253c9f7e8b54ae6662d6500a96"
+        "canonicalLfSha256": "3e1cfa556ffbf16fc0d34046df7df0351c427685831eaf883ff25669962940f7"
       },
       {
         "path": "package-lock.json",
-        "bytes": 51361,
-        "sha256": "4fa7e96cfdb13158f8e98dcf8b835b71a5ab339852b7609f6c95536178ad8e69",
+        "bytes": 51309,
+        "sha256": "77d2921113f9ad365c4e44c19b17f36e6ab652c2dc279faf583a5d94a1952be6",
         "text": true,
-        "canonicalLfSha256": "4fa7e96cfdb13158f8e98dcf8b835b71a5ab339852b7609f6c95536178ad8e69"
+        "canonicalLfSha256": "77d2921113f9ad365c4e44c19b17f36e6ab652c2dc279faf583a5d94a1952be6"
       },
       {
         "path": "package.json",
         "bytes": 916,
-        "sha256": "05414fdfd2c7ae2d5733f778107dccb830944dd4835dead867a66a91347cae98",
+        "sha256": "abf23c6233f6e73a75234fba3b18080e3cedd1f7762872e1c7a4ca7ff07fb1d3",
         "text": true,
-        "canonicalLfSha256": "05414fdfd2c7ae2d5733f778107dccb830944dd4835dead867a66a91347cae98"
+        "canonicalLfSha256": "abf23c6233f6e73a75234fba3b18080e3cedd1f7762872e1c7a4ca7ff07fb1d3"
       },
       {
         "path": "public/app.mjs",
@@ -125,10 +125,10 @@
       },
       {
         "path": "README.md",
-        "bytes": 7857,
-        "sha256": "f45ae7d56d09be97532f93d4fbc4b134e44532649146d76ba2df6823fea6c0c6",
+        "bytes": 7987,
+        "sha256": "5def224aaf8b2a6cf0811d1b985973914552d661f13707c738441892f72f772b",
         "text": true,
-        "canonicalLfSha256": "f45ae7d56d09be97532f93d4fbc4b134e44532649146d76ba2df6823fea6c0c6"
+        "canonicalLfSha256": "aa064b4895683ca587d05fddf57f4334351c4278417b1b6fc1d10a8dec25e107"
       },
       {
         "path": "scripts/audit-release.mjs",
@@ -146,10 +146,10 @@
       },
       {
         "path": "scripts/package.mjs",
-        "bytes": 5337,
-        "sha256": "82db8368c62d5d509451f3d49ad12c74b18e2c6d13799b8a5208071b4cfd11e9",
+        "bytes": 5284,
+        "sha256": "09ef31ee530ef8935d81106d18ff420c0f23b937249b72f724a74dd0f2a7f919",
         "text": true,
-        "canonicalLfSha256": "d374a8e25f9eae86005cce722460e2f383a8f2775d6e818a6d54a03c62f7e881"
+        "canonicalLfSha256": "09ef31ee530ef8935d81106d18ff420c0f23b937249b72f724a74dd0f2a7f919"
       },
       {
         "path": "scripts/release-source.mjs",
@@ -328,10 +328,10 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "bytes": 4146,
-        "sha256": "2a0ba57b000f13dd31873b5340e66bd36b44a3e842e84a0386248cb789282bfe",
+        "bytes": 4128,
+        "sha256": "2ee5c19f016bbe4a732bf99d738ebf61309c6bc3153cac5b9f40e27ff8f8f538",
         "text": true,
-        "canonicalLfSha256": "3593d2f4182d5dfdb53ca58c02df0068b7ff1b79eb89fc52f89b0fd25352ae76"
+        "canonicalLfSha256": "2ee5c19f016bbe4a732bf99d738ebf61309c6bc3153cac5b9f40e27ff8f8f538"
       },
       {
         "path": "tools/asr-worker/models.json",

@@ -9,6 +9,8 @@ import {createOcrLaunchSpec,verifyOcrLaunchSpec,validateOcrLaunchSpec,ocrExecuti
 import {ocrEnvironment,runOcrProcess} from '../src/workers/ocr.mjs';
 import {hash} from '../src/ocr-policy.mjs';
 import {ocrRuntimePackageBytes} from '../scripts/lock-ocr-launch.mjs';
+// Windows CI temp dirs can be 8.3 short paths; the OCR link check compares real paths.
+const tmpRoot=await fs.realpath(os.tmpdir());
 
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const local=(dir,name)=>path.join(dir,name);
@@ -23,15 +25,15 @@ test('one frozen launch binds physical root, exact entries, job directory and cl
   const spec=await createOcrLaunchSpec();assert.ok(Object.isFrozen(spec));assert.equal(spec.profile,'development');assert.equal(spec.executionRoot,root);
   assert.equal(ocrExecutionRoot(path.join(root,'resources','app.asar')),path.join(root,'resources','app.asar.unpacked'));
   for(const change of [{cwd:path.dirname(root)},{entryPath:path.join(root,'other.mjs')},{runtimeRoot:path.join(root,'other_modules')},{workerPath:path.join(root,'worker.mjs')},{executable:path.join(root,'node.exe')},{specHash:'0'.repeat(64)}])assert.throws(()=>validateOcrLaunchSpec({...spec,...change}),rejected('OCR_LAUNCH_INVALID'));
-  const bound=ocrLaunchForJob(spec,path.join(os.tmpdir(),'pb-ocr-job-a'));assert.equal(bound.writableJobDir,path.join(os.tmpdir(),'pb-ocr-job-a'));assert.ok(Object.isFrozen(bound));
-  assert.throws(()=>ocrLaunchForJob(bound,path.join(os.tmpdir(),'pb-ocr-job-b')),rejected('OCR_LAUNCH_INVALID'));
+  const bound=ocrLaunchForJob(spec,path.join(tmpRoot,'pb-ocr-job-a'));assert.equal(bound.writableJobDir,path.join(tmpRoot,'pb-ocr-job-a'));assert.ok(Object.isFrozen(bound));
+  assert.throws(()=>ocrLaunchForJob(bound,path.join(tmpRoot,'pb-ocr-job-b')),rejected('OCR_LAUNCH_INVALID'));
   const environment={SystemRoot:'C:\\Windows',TEMP:'C:\\Temp',LANG:'en_US.UTF-8',PATH:'must not inherit',NODE_PATH:'must not inherit',NODE_OPTIONS:'--require must-not-execute.cjs',ELECTRON_RUN_AS_NODE:'inherited forbidden',PRACTICEBRIDGE_OCR_RUNTIME:'untrusted'};
   assert.deepEqual(ocrLaunchEnvironment(environment),{SystemRoot:'C:\\Windows',TEMP:'C:\\Temp',LANG:'en_US.UTF-8'});assert.deepEqual(ocrEnvironment(environment),ocrLaunchEnvironment(environment));
   let spawned=false;await assert.rejects(runOcrProcess({config:{budget:{}},spawnProcess:()=>{spawned=true;}}),rejected('OCR_LAUNCH_INVALID'));assert.equal(spawned,false);
 });
 
 test('fixed original-path physical closure rejects missing leaves, ancestor resolution and mixed profiles before execution',{skip:process.platform!=='win32'||process.arch!=='x64'},async t=>{
-  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'pb-ocr-launch-')),applicationRoot=path.join(dir,'app.asar'),executionRoot=ocrExecutionRoot(applicationRoot),lockBytes=await fs.readFile(path.join(root,OCR_LAUNCH_LOCK)),lock=JSON.parse(lockBytes);
+  const dir=await fs.mkdtemp(path.join(tmpRoot,'pb-ocr-launch-')),applicationRoot=path.join(dir,'app.asar'),executionRoot=ocrExecutionRoot(applicationRoot),lockBytes=await fs.readFile(path.join(root,OCR_LAUNCH_LOCK)),lock=JSON.parse(lockBytes);
   const devPackage=await fs.readFile(path.join(root,'package.json'));
   try{
     await fs.mkdir(path.join(applicationRoot,'assets'),{recursive:true});await fs.writeFile(path.join(applicationRoot,OCR_LAUNCH_LOCK),lockBytes);
@@ -94,5 +96,5 @@ test('fixed original-path physical closure rejects missing leaves, ancestor reso
       try{await assert.rejects(verifyOcrLaunchSpec(development),rejected('OCR_RUNTIME_CHANGED'));await fs.writeFile(packagePath,devPackage);await verifyOcrLaunchSpec(development);}finally{await fs.writeFile(packagePath,runtimePackage);await fs.unlink(copiedLock);}
     });
     await verifyOcrLaunchSpec(spec);
-  }finally{const target=path.resolve(dir);assert.equal(path.dirname(target),path.resolve(os.tmpdir()));assert.ok(path.basename(target).startsWith('pb-ocr-launch-'));await fs.rm(target,{recursive:true,force:true});}
+  }finally{const target=path.resolve(dir);assert.equal(path.dirname(target),path.resolve(tmpRoot));assert.ok(path.basename(target).startsWith('pb-ocr-launch-'));await fs.rm(target,{recursive:true,force:true});}
 });

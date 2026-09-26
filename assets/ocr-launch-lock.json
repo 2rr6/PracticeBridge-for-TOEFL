@@ -2,13 +2,13 @@
   "version": 1,
   "profile": "windows-x64-ocr-physical-v1",
   "platform": "win32-x64",
-  "packageLockCanonicalHash": "8021e042928234cc28e7e5932756691daffda0921153f06c9cfddd9344acae96",
-  "sourceInventoryHash": "af4a748017fd01b0a8680838bf0d43f24f5975d55faa1d0af5c6e545714ab165",
+  "packageLockCanonicalHash": "747b519f95b017524c5a1f56d035499485077f11d5e49c3cfc83e1253354663e",
+  "sourceInventoryHash": "6a73e9db4cd331452f89018f938bb70cfacf7e2ec5e2ab14a250625676a64167",
   "packageTransform": "@electron/packager.defaultSanitizePackageJson; JSON.stringify(value,null,2)+LF",
   "developmentPackageJson": {
     "path": "package.json",
     "bytes": 916,
-    "sha256": "05414fdfd2c7ae2d5733f778107dccb830944dd4835dead867a66a91347cae98"
+    "sha256": "abf23c6233f6e73a75234fba3b18080e3cedd1f7762872e1c7a4ca7ff07fb1d3"
   },
   "physicalCompanions": [
     {
@@ -101,9 +101,9 @@
     },
     {
       "name": "ajv",
-      "version": "8.17.1",
-      "integrity": "sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==",
-      "url": "https://registry.npmjs.org/ajv/-/ajv-8.17.1.tgz"
+      "version": "8.20.0",
+      "integrity": "sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==",
+      "url": "https://registry.npmjs.org/ajv/-/ajv-8.20.0.tgz"
     },
     {
       "name": "argparse",
@@ -1112,8 +1112,8 @@
     },
     {
       "path": "node_modules/ajv/dist/compile/jtd/serialize.js",
-      "bytes": 8962,
-      "sha256": "d4fdfc18734d62f31780b53b5bcc437f07d172b806e35fd12833b4d4871bf803"
+      "bytes": 9391,
+      "sha256": "1f8b1873fbd899240cd625144d3cd10630b3cf1b0c69c640566f6e25c80765c0"
     },
     {
       "path": "node_modules/ajv/dist/compile/jtd/types.js",
@@ -1182,8 +1182,8 @@
     },
     {
       "path": "node_modules/ajv/dist/core.js",
-      "bytes": 25185,
-      "sha256": "7fdd03e949ecb3d020e560f669da71ce69a70f4bca28e5aff2ebc34d15bc2134"
+      "bytes": 25202,
+      "sha256": "51be29c7ed7288622f755c0f1bebd3da4a9907d77aa2c33b0f2a0a5b6b339603"
     },
     {
       "path": "node_modules/ajv/dist/jtd.js",
@@ -1677,8 +1677,8 @@
     },
     {
       "path": "node_modules/ajv/dist/vocabularies/validation/pattern.js",
-      "bytes": 905,
-      "sha256": "592f7966bb9dea6256dc8c0242ab9e05cdfef2b1d6dd27ef478c7a20c9a0471b"
+      "bytes": 1323,
+      "sha256": "86e84206bfc6a66ef18bf1fe43fbc56ebe7f7f4d57841197b6d044c529e0c195"
     },
     {
       "path": "node_modules/ajv/dist/vocabularies/validation/required.js",
@@ -1792,13 +1792,13 @@
     },
     {
       "path": "node_modules/ajv/package.json",
-      "bytes": 4457,
-      "sha256": "ce1539e6f4e0f345ed402c47137d2679497b2035d4a4f420ee11acdde03dea92"
+      "bytes": 4405,
+      "sha256": "1f9033ee5a6515e7d76938b7072941862d1ed228a6879cc7fe10cdeb75107989"
     },
     {
       "path": "node_modules/ajv/README.md",
       "bytes": 13781,
-      "sha256": "57d9f5c9d12d019ee1c42fcd7be6a1c5b2944608b011714146ecdd20972374ed"
+      "sha256": "38d924524762b917dd9dd341ac28837df51a474bf198ac4c26ba69d8f59a27c3"
     },
     {
       "path": "node_modules/argparse/CHANGELOG.md",
@@ -9382,13 +9382,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 51361,
-      "sha256": "4fa7e96cfdb13158f8e98dcf8b835b71a5ab339852b7609f6c95536178ad8e69"
+      "bytes": 51309,
+      "sha256": "77d2921113f9ad365c4e44c19b17f36e6ab652c2dc279faf583a5d94a1952be6"
     },
     {
       "path": "package.json",
       "bytes": 448,
-      "sha256": "1d48b817450489371d406d4d3c02b954abbbf605f0647efb09dcafff3bda33dd"
+      "sha256": "9e7fd1bbd27090f20bfc98ff4a510ab06d376e3876ad06eef305eceaed589a0e"
     },
     {
       "path": "src/archive/zip-adapter.mjs",

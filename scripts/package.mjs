@@ -23,7 +23,7 @@ if(!archive)throw new Error('Verified Electron archive missing. Set PRACTICEBRID
 const stage=await mkdtemp(resolve(out,'runtime-stage-'));
 const inventory=await stageRelease({root,stage,kind:'runtime'});
 await auditDirectory(stage,inventory);
-const output=await packager({dir:stage,out,tmpdir:resolve(out,'packager-temporary'),name:'PracticeBridge',platform:'win32',arch:'x64',icon:resolve(stage,'desktop/icon.ico'),electronVersion,electronZipDir:resolve(archive.path,'..'),overwrite:false,asar:{unpack:asarUnpackPattern(inventory,out)},...stagedCopyOptions,win32metadata:{CompanyName:'PracticeBridge contributors',FileDescription:'PracticeBridge local practice workspace',ProductName:'PracticeBridge',InternalName:'PracticeBridge'}});
+const output=await packager({dir:stage,out,tmpdir:resolve(out,'packager-temporary'),name:'PracticeBridge',platform:'win32',arch:'x64',icon:resolve(stage,'desktop/icon.ico'),electronVersion,electronZipDir:resolve(archive.path,'..'),overwrite:false,asar:{unpack:asarUnpackPattern(inventory,out)},...stagedCopyOptions,win32metadata:{CompanyName:'2rr6',FileDescription:'PracticeBridge for TOEFL local practice workspace',ProductName:'PracticeBridge',InternalName:'PracticeBridge'}});
 if(output.length!==1)throw new Error('Expected one Windows application');
 const app=output[0],asarResult=await auditAsar(resolve(app,'resources/app.asar'),inventory);
 // Check every distribution file against the pinned Electron archive. Only the

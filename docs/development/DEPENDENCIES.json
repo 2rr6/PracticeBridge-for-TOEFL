@@ -1,9 +1,9 @@
 {
   "formatVersion": 1,
-  "lockfileCanonicalSha256": "8021e042928234cc28e7e5932756691daffda0921153f06c9cfddd9344acae96",
+  "lockfileCanonicalSha256": "747b519f95b017524c5a1f56d035499485077f11d5e49c3cfc83e1253354663e",
   "runtime": {
     "@zip.js/zip.js": "2.14.0",
-    "ajv": "8.17.1",
+    "ajv": "8.20.0",
     "mammoth": "1.12.2",
     "pdfjs-dist": "6.3.289",
     "tesseract.js": "7.0.0",
@@ -235,11 +235,11 @@
     {
       "installPath": "node_modules/ajv",
       "name": "ajv",
-      "version": "8.17.1",
+      "version": "8.20.0",
       "development": false,
       "optional": false,
       "license": "MIT",
-      "integrity": "sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g=="
+      "integrity": "sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA=="
     },
     {
       "installPath": "node_modules/argparse",

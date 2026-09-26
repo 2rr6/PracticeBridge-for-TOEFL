@@ -6,16 +6,18 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {installCoreRecorder} from '../src/workers/ocr-thread.cjs';
 import {assertOcrCoreSelection,hash} from '../src/ocr-policy.mjs';
+// Windows CI temp dirs can be 8.3 short paths; the OCR link check compares real paths.
+const tmpRoot=await fs.realpath(os.tmpdir());
 
 const require=createRequire(import.meta.url);
 async function fixture(body){
-  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'pb-ocr-core-record-')),runtime=path.join(dir,'node_modules'),coreRoot=path.join(runtime,'tesseract.js-core');
+  const dir=await fs.mkdtemp(path.join(tmpRoot,'pb-ocr-core-record-')),runtime=path.join(dir,'node_modules'),coreRoot=path.join(runtime,'tesseract.js-core');
   await fs.mkdir(coreRoot,{recursive:true});
   const entry=path.join(coreRoot,'tesseract-core-relaxedsimd-lstm.js'),wasm=path.join(coreRoot,'tesseract-core-relaxedsimd-lstm.wasm'),receipt=path.join(dir,'receipt.json');
   await fs.writeFile(entry,body);await fs.writeFile(wasm,'authored recorder protocol bytes; not a WASM engine');
   return {dir,runtime,entry,wasm,receipt};
 }
-async function cleanup(f){delete require.cache[f.entry];const target=path.resolve(f.dir);assert.equal(path.dirname(target),path.resolve(os.tmpdir()));assert.ok(path.basename(target).startsWith('pb-ocr-core-record-'));await fs.rm(target,{recursive:true,force:true});}
+async function cleanup(f){delete require.cache[f.entry];const target=path.resolve(f.dir);assert.equal(path.dirname(target),path.resolve(tmpRoot));assert.ok(path.basename(target).startsWith('pb-ocr-core-record-'));await fs.rm(target,{recursive:true,force:true});}
 async function recorderOptions(f){return {...f,expectedFiles:[{name:'tesseract.js-core/tesseract-core-relaxedsimd-lstm.js',sha256:hash(await fs.readFile(f.entry))},{name:'tesseract.js-core/tesseract-core-relaxedsimd-lstm.wasm',sha256:hash(await fs.readFile(f.wasm))}]};}
 
 test('core recorder observes external WASM bytes and retains the first actual module load across require cache hits',async()=>{
