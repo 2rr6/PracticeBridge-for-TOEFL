@@ -14,11 +14,11 @@ export function compareOcrEvidence(textLayer,ocrText){
   return {textLayer,ocrText,preferred:null,issues};
 }
 export function projectOcrEvidence({data,source,engine,textLayer=''}={}){
-  const text=String(data?.text||'');const words=[];
-  for(const b of data?.blocks||[])for(const p of b.paragraphs||[])for(const l of p.lines||[])for(const w of l.words||[]){
+  const text=String(data?.text||'');const words=[];let line=-1;
+  for(const b of data?.blocks||[])for(const p of b.paragraphs||[])for(const l of p.lines||[]){line++;for(const w of l.words||[]){
     const bb=w.bbox;if(!bb||!['x0','y0','x1','y1'].every(k=>Number.isFinite(bb[k]))||bb.x0<0||bb.y0<0||bb.x1>source.width+1||bb.y1>source.height+1||bb.x1<bb.x0||bb.y1<bb.y0)continue;
-    words.push({text:String(w.text||''),confidence:Number.isFinite(w.confidence)?w.confidence:null,bbox:{x0:bb.x0,y0:bb.y0,x1:bb.x1,y1:bb.y1}});
-  }
+    words.push({text:String(w.text||''),confidence:Number.isFinite(w.confidence)?w.confidence:null,bbox:{x0:bb.x0,y0:bb.y0,x1:bb.x1,y1:bb.y1},line});
+  }}
   const comparison=compareOcrEvidence(textLayer,text);const issues=[...comparison.issues];
   if(!text.trim())issues.push({code:'ocr_empty',reason:'识别正常结束但没有读到文字，未恢复题目。'});
   else if(!words.length)issues.push({code:'ocr_word_boxes_missing',reason:'没有可靠词框，需核对完整题界。'});

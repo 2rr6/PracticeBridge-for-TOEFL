@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "version": "0.5.1",
-  "commit": "f241216e14252cc45a0b464450272783a00bbbe5",
+  "version": "0.5.2",
+  "commit": "b9e74d2e2fb46374ea315231c93ff88c241cfbc2",
   "dirtyAtStart": false,
   "dirtyAtEnd": false,
   "profile": "full",
-  "startedAt": "2026-09-26T00:42:41.201Z",
-  "finishedAt": "2026-09-26T00:50:27.108Z",
+  "startedAt": "2026-09-26T07:11:48.930Z",
+  "finishedAt": "2026-09-26T07:19:55.137Z",
   "ok": true,
   "phases": {
     "total": 40,
@@ -15,7 +15,7 @@
     "skipped": 4
   },
   "checks": {
-    "passed": 780,
+    "passed": 798,
     "failed": 0,
     "skipped": 6
   },
@@ -41,14 +41,14 @@
       "name": "syntax",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:42:41.414Z",
-      "finishedAt": "2026-09-26T00:42:47.976Z",
-      "durationMs": 6562,
+      "startedAt": "2026-09-26T07:11:49.181Z",
+      "finishedAt": "2026-09-26T07:11:57.048Z",
+      "durationMs": 7867,
       "command": [
         "node",
         "scripts/check.mjs"
       ],
-      "log": "test-results/verification-1790383361338/syntax.txt",
+      "log": "test-results/verification-1790406709083/syntax.txt",
       "logSha256": "3a511ddca0ad254766d6c3b6beaba6270d2bd81a961b75cd84e8f3c0152d926b",
       "artifactDirectories": [],
       "executedCommandSha256": "c4b377034307855b868175fee3c2faf166c971a955d192982324c5d818893dc9",
@@ -58,15 +58,15 @@
       "name": "readme-facts",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:42:47.977Z",
-      "finishedAt": "2026-09-26T00:42:48.144Z",
-      "durationMs": 167,
+      "startedAt": "2026-09-26T07:11:57.048Z",
+      "finishedAt": "2026-09-26T07:11:57.216Z",
+      "durationMs": 168,
       "command": [
         "node",
         "scripts/verify-readme.mjs"
       ],
-      "log": "test-results/verification-1790383361338/readme-facts.txt",
-      "logSha256": "d24354b9c9b8d224e6faf73bd3393b890e00b3715debefb85ea2e65b4e680e60",
+      "log": "test-results/verification-1790406709083/readme-facts.txt",
+      "logSha256": "03ad0d1936431819a8e88483a15afdabe5d53ef5ccbd85aa7d559c22d12ba1b0",
       "artifactDirectories": [],
       "executedCommandSha256": "fc8e20f011e3ba59450db77707fb2f36f8ee3eed27b18b757db849f637e18264",
       "commandDisplayOnly": true
@@ -75,9 +75,9 @@
       "name": "unit",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:42:48.145Z",
-      "finishedAt": "2026-09-26T00:43:35.273Z",
-      "durationMs": 47128,
+      "startedAt": "2026-09-26T07:11:57.216Z",
+      "finishedAt": "2026-09-26T07:12:53.850Z",
+      "durationMs": 56634,
       "command": [
         "node",
         "--test",
@@ -144,6 +144,8 @@
         "tests/readme-contract.test.mjs",
         "tests/release-boundary.test.mjs",
         "tests/runtime-ocr-inventory.test.mjs",
+        "tests/scan-ocr.test.mjs",
+        "tests/scan-proofread.test.mjs",
         "tests/secret-store.test.mjs",
         "tests/sentence-frame.test.mjs",
         "tests/task-grammar.test.mjs",
@@ -154,27 +156,27 @@
         "tests/workspace-epoch-http.test.mjs",
         "tests/workspace-epoch.test.mjs"
       ],
-      "log": "test-results/verification-1790383361338/unit.txt",
-      "logSha256": "fb0684a08dbc1d9899352aa8e835be45cdc02b0e12602678558dace8ed4509b1",
+      "log": "test-results/verification-1790406709083/unit.txt",
+      "logSha256": "22a4021993d70b47cfcf5caece4063125bfdde175ec8614625d074de080ef65a",
       "artifactDirectories": [],
-      "executedCommandSha256": "77d83e7de9d2339b0d18ed75915e7112bc4a24815cefa221dc31dce28c6720e0",
+      "executedCommandSha256": "114127505962d875acdd3baeb95666abcbc645df4633f4d33b8d62f6dff813bb",
       "commandDisplayOnly": true
     },
     {
       "name": "asr-python-unit",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:43:35.274Z",
-      "finishedAt": "2026-09-26T00:43:35.545Z",
-      "durationMs": 271,
+      "startedAt": "2026-09-26T07:12:53.850Z",
+      "finishedAt": "2026-09-26T07:12:54.233Z",
+      "durationMs": 383,
       "command": [
         "python",
         "-I",
         "-B",
         "tests/asr-model-preflight.py"
       ],
-      "log": "test-results/verification-1790383361338/asr-python-unit.txt",
-      "logSha256": "9b3b796ba45e3f01d22dba37b091d378c8958dbe58e1a291e74398fbd0346f8b",
+      "log": "test-results/verification-1790406709083/asr-python-unit.txt",
+      "logSha256": "e8935c2834f8296956d2620ad1a5aa8aa455fe8c60c58a1707a5f42c0d199ef8",
       "artifactDirectories": [],
       "executedCommandSha256": "d635092fde71df665d5e1c01b11456d4914bfe02abbb6d593ae608f9e8ac207b",
       "commandDisplayOnly": true
@@ -183,17 +185,17 @@
       "name": "exam-workflow",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:43:35.545Z",
-      "finishedAt": "2026-09-26T00:43:55.516Z",
-      "durationMs": 19971,
+      "startedAt": "2026-09-26T07:12:54.234Z",
+      "finishedAt": "2026-09-26T07:13:15.094Z",
+      "durationMs": 20860,
       "command": [
         "node",
         "tests/exam-workflow-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-workflow.txt",
-      "logSha256": "5dc91019e8eab58cff7a5281e31aaed8e94da8acfe43b89c68a785be630e2d6b",
+      "log": "test-results/verification-1790406709083/exam-workflow.txt",
+      "logSha256": "d74f1aa909512989a23ea98a90654958d00795d55cde941995ffa775e42b57be",
       "artifactDirectories": [
-        "test-results/exam-workflow-ui-9wrv0s"
+        "test-results/exam-workflow-ui-LQqOje"
       ],
       "executedCommandSha256": "635781ecb976cfae7fb871f90abb2d2b17e50ea5405f3ad05990459f5815ae96",
       "commandDisplayOnly": true
@@ -202,15 +204,15 @@
       "name": "exam-interactions",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:43:55.516Z",
-      "finishedAt": "2026-09-26T00:44:07.336Z",
-      "durationMs": 11820,
+      "startedAt": "2026-09-26T07:13:15.094Z",
+      "finishedAt": "2026-09-26T07:13:27.352Z",
+      "durationMs": 12258,
       "command": [
         "node",
         "tests/exam-interactions-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-interactions.txt",
-      "logSha256": "a482e6edbfcd49160830b170a715270be8d90a9994b989aecfa487ad01543809",
+      "log": "test-results/verification-1790406709083/exam-interactions.txt",
+      "logSha256": "885bd473f8f36d6efe4657dd7b069469ad969a1a111b9293a171989fd1569833",
       "artifactDirectories": [],
       "executedCommandSha256": "546a24aab5ce46505af721e011d1f56f443b06922c450a8c53093f9852da4a31",
       "commandDisplayOnly": true
@@ -219,17 +221,17 @@
       "name": "exam-resume",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:07.336Z",
-      "finishedAt": "2026-09-26T00:44:11.363Z",
-      "durationMs": 4027,
+      "startedAt": "2026-09-26T07:13:27.352Z",
+      "finishedAt": "2026-09-26T07:13:31.259Z",
+      "durationMs": 3907,
       "command": [
         "node",
         "tests/exam-resume-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-resume.txt",
-      "logSha256": "501cef4428b1777995a7b9788a9decef53776e1937c1083337c8d5bbb5f5a995",
+      "log": "test-results/verification-1790406709083/exam-resume.txt",
+      "logSha256": "3b5fbd8a2428e580f2af975bf59b63341c27b786487f2a8cd38c2761985b6519",
       "artifactDirectories": [
-        "test-results/exam-resume-ui-RZvFxZ"
+        "test-results/exam-resume-ui-KW7PmP"
       ],
       "executedCommandSha256": "e185887e3aaa7b162e91e5ad256176cd618e1882f2ea13b4d80131c60221ce29",
       "commandDisplayOnly": true
@@ -238,17 +240,17 @@
       "name": "exam-followup",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:11.363Z",
-      "finishedAt": "2026-09-26T00:44:17.589Z",
-      "durationMs": 6226,
+      "startedAt": "2026-09-26T07:13:31.259Z",
+      "finishedAt": "2026-09-26T07:13:36.537Z",
+      "durationMs": 5278,
       "command": [
         "node",
         "tests/exam-followup-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-followup.txt",
-      "logSha256": "1c8cbe4667fe6d76ed0fa12779ec9943f996f6cd876991479bc489abbfebcf63",
+      "log": "test-results/verification-1790406709083/exam-followup.txt",
+      "logSha256": "ebde6287e8d54d8f451794279eadfcdd2f650c3eb674e964aeef7d97fda86039",
       "artifactDirectories": [
-        "test-results/exam-followup-ui-AXkIgi"
+        "test-results/exam-followup-ui-TJ8CyQ"
       ],
       "executedCommandSha256": "7bab3983f169e327603bf19f0b04417038e258f23cdb7ea679b70576e22d70b5",
       "commandDisplayOnly": true
@@ -257,17 +259,17 @@
       "name": "exam-mode-flow",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:17.589Z",
-      "finishedAt": "2026-09-26T00:44:39.521Z",
-      "durationMs": 21932,
+      "startedAt": "2026-09-26T07:13:36.537Z",
+      "finishedAt": "2026-09-26T07:13:58.332Z",
+      "durationMs": 21795,
       "command": [
         "node",
         "tests/exam-mode-flow-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-mode-flow.txt",
-      "logSha256": "33e562a7064212e0f7f532388d97230ac6d03780d32ac60a075a8bf4a698d4f5",
+      "log": "test-results/verification-1790406709083/exam-mode-flow.txt",
+      "logSha256": "8555c1cedf534b95e080a104f2dbe7d6cc4e8c84596745e55d27075d0aa89e8c",
       "artifactDirectories": [
-        "test-results/exam-mode-flow-qMIUfK"
+        "test-results/exam-mode-flow-IiUZdz"
       ],
       "executedCommandSha256": "6f9ddaffe49caa70940a2d3786add899ddd3b1e6e79bad60d428a2cd91ec2454",
       "commandDisplayOnly": true
@@ -276,17 +278,17 @@
       "name": "exam-full-test",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:39.521Z",
-      "finishedAt": "2026-09-26T00:44:42.705Z",
-      "durationMs": 3184,
+      "startedAt": "2026-09-26T07:13:58.332Z",
+      "finishedAt": "2026-09-26T07:14:02.276Z",
+      "durationMs": 3944,
       "command": [
         "node",
         "tests/exam-full-test-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-full-test.txt",
-      "logSha256": "1ffb0ff342259e5cbf8e6002d38d84881b6f36a7094458c033de424a7597309c",
+      "log": "test-results/verification-1790406709083/exam-full-test.txt",
+      "logSha256": "c6bc0816028a71537bc0663d9bbdd5823e93e41e51448152fa57d54abf8571f6",
       "artifactDirectories": [
-        "test-results/exam-full-test-ui-hwdwLL"
+        "test-results/exam-full-test-ui-YBpMIf"
       ],
       "executedCommandSha256": "c289b755b6b5aada724460b1199b86aff5cd0d1fc6a90c9de2e4130f7e255601",
       "commandDisplayOnly": true
@@ -295,17 +297,17 @@
       "name": "exam-repeat-scope",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:42.705Z",
-      "finishedAt": "2026-09-26T00:44:53.949Z",
-      "durationMs": 11244,
+      "startedAt": "2026-09-26T07:14:02.277Z",
+      "finishedAt": "2026-09-26T07:14:14.173Z",
+      "durationMs": 11896,
       "command": [
         "node",
         "tests/exam-repeat-scope-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-repeat-scope.txt",
-      "logSha256": "36b8f736af8e4dc7a09707664f5be49435c8d75d1a6a2fa4c4ca51e37b1e973e",
+      "log": "test-results/verification-1790406709083/exam-repeat-scope.txt",
+      "logSha256": "cdb69ca57d56c1094ea596ae00339f07552bbc6baa6b69fff21f142f3c30976d",
       "artifactDirectories": [
-        "test-results/exam-repeat-scope-4WctSH"
+        "test-results/exam-repeat-scope-tIuNgB"
       ],
       "executedCommandSha256": "04e4fd225d165878098faad6b69af41520e43c2ec5fc954534cb1632d7078ec9",
       "commandDisplayOnly": true
@@ -314,17 +316,17 @@
       "name": "exam-timing-interruption",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:53.949Z",
-      "finishedAt": "2026-09-26T00:44:57.055Z",
-      "durationMs": 3106,
+      "startedAt": "2026-09-26T07:14:14.173Z",
+      "finishedAt": "2026-09-26T07:14:16.814Z",
+      "durationMs": 2641,
       "command": [
         "node",
         "tests/exam-timing-interruption-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-timing-interruption.txt",
-      "logSha256": "06d2388817013efa7be11b44acd9c97b92f60d5a2c501e224ab48fcc99e19103",
+      "log": "test-results/verification-1790406709083/exam-timing-interruption.txt",
+      "logSha256": "f50f2cdb1743eb27336f49eff6614eaf1fcc6e2e2bdb3f512045d6bd5fd617dd",
       "artifactDirectories": [
-        "test-results/exam-timing-interruption-3DtVjy"
+        "test-results/exam-timing-interruption-roRevB"
       ],
       "executedCommandSha256": "64be3e183386ac412268110b0ab285a41b9f5414fbc93addaafa15baef170536",
       "commandDisplayOnly": true
@@ -333,15 +335,15 @@
       "name": "exam-recording",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:44:57.055Z",
-      "finishedAt": "2026-09-26T00:45:07.973Z",
-      "durationMs": 10918,
+      "startedAt": "2026-09-26T07:14:16.814Z",
+      "finishedAt": "2026-09-26T07:14:27.429Z",
+      "durationMs": 10615,
       "command": [
         "node",
         "tests/exam-recording-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-recording.txt",
-      "logSha256": "c387f69a63fbd38e2256b28916e80392b4f54e50ae0b6af9af67d2ec8398e2c8",
+      "log": "test-results/verification-1790406709083/exam-recording.txt",
+      "logSha256": "cae19f11804b657dc372f49aec33f21ae454272167d45acc374d82828cf8c5f6",
       "artifactDirectories": [
         "test-results/exam-recording-ui"
       ],
@@ -352,17 +354,17 @@
       "name": "exam-audio-deadline",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:45:07.973Z",
-      "finishedAt": "2026-09-26T00:46:46.632Z",
-      "durationMs": 98659,
+      "startedAt": "2026-09-26T07:14:27.429Z",
+      "finishedAt": "2026-09-26T07:16:07.577Z",
+      "durationMs": 100148,
       "command": [
         "node",
         "tests/exam-audio-deadline-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-audio-deadline.txt",
-      "logSha256": "d2f2d5d8283d690cdd7899c5fd6de43ed489c6d9ceeac1fb728fd664bd260c9f",
+      "log": "test-results/verification-1790406709083/exam-audio-deadline.txt",
+      "logSha256": "12060a5aa0a1394c89c87c4acea308460958ac22bdd368b41b6ec80b877a3dcb",
       "artifactDirectories": [
-        "test-results/exam-audio-deadline-browser-xAfEZU"
+        "test-results/exam-audio-deadline-browser-RbQdgZ"
       ],
       "executedCommandSha256": "0cd6d542316a61d1bd258833b30ef09dc4f951a3832e41d7825ca6658c548cf2",
       "commandDisplayOnly": true
@@ -371,17 +373,17 @@
       "name": "exam-readiness",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:46:46.632Z",
-      "finishedAt": "2026-09-26T00:46:54.682Z",
-      "durationMs": 8050,
+      "startedAt": "2026-09-26T07:16:07.577Z",
+      "finishedAt": "2026-09-26T07:16:15.897Z",
+      "durationMs": 8320,
       "command": [
         "node",
         "tests/exam-readiness-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-readiness.txt",
-      "logSha256": "1cc987378022535ca68e88352c3109cd73491f3179929ec33ebd359eee8ce95e",
+      "log": "test-results/verification-1790406709083/exam-readiness.txt",
+      "logSha256": "722bf574ab9e85bc664aad677b8e6868c2c26fa80a0d028a5d19301f12247c07",
       "artifactDirectories": [
-        "test-results/exam-readiness-ui-1xidil"
+        "test-results/exam-readiness-ui-1miNrN"
       ],
       "executedCommandSha256": "eaa1ac83bdb7ea1ff0cd05f9e543629f24e8095896b15b13a655859892a8aea3",
       "commandDisplayOnly": true
@@ -390,17 +392,17 @@
       "name": "exam-writing",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:46:54.683Z",
-      "finishedAt": "2026-09-26T00:46:57.475Z",
-      "durationMs": 2792,
+      "startedAt": "2026-09-26T07:16:15.897Z",
+      "finishedAt": "2026-09-26T07:16:19.995Z",
+      "durationMs": 4098,
       "command": [
         "node",
         "tests/exam-writing-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/exam-writing.txt",
-      "logSha256": "d6da005b03d3aba78f4d9909f00ac8e566267b27325927b1ff51776036e3925c",
+      "log": "test-results/verification-1790406709083/exam-writing.txt",
+      "logSha256": "e79d1e61bc77cbec567512fa84af381167fbc8d1cd9c1c0ecd9059335393b636",
       "artifactDirectories": [
-        "test-results/exam-writing-ui-gzkHMd"
+        "test-results/exam-writing-ui-VnV1pa"
       ],
       "executedCommandSha256": "881e3d99e3de619f2a082b8cc180b351f384be9d7fcad406da2134e06402c2db",
       "commandDisplayOnly": true
@@ -409,17 +411,17 @@
       "name": "ordinary-document",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:46:57.475Z",
-      "finishedAt": "2026-09-26T00:47:02.198Z",
-      "durationMs": 4723,
+      "startedAt": "2026-09-26T07:16:19.995Z",
+      "finishedAt": "2026-09-26T07:16:24.710Z",
+      "durationMs": 4715,
       "command": [
         "node",
         "tests/worksheet-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/ordinary-document.txt",
-      "logSha256": "00208c9c46e7692a1deb997514963f7bbefc8d3c6d56763b308f8f364eb8208e",
+      "log": "test-results/verification-1790406709083/ordinary-document.txt",
+      "logSha256": "372093338e48558a410ae62696651f903259909d6c8c73c314bbe08c51295384",
       "artifactDirectories": [
-        "test-results/worksheet-1790383618282"
+        "test-results/worksheet-1790406981017"
       ],
       "executedCommandSha256": "0fb21ac2e9548dbd02d0236f5ea90a528aa32425285da75d0a5f9320d10ac98f",
       "commandDisplayOnly": true
@@ -428,17 +430,17 @@
       "name": "view-lifecycle",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:02.198Z",
-      "finishedAt": "2026-09-26T00:47:05.397Z",
-      "durationMs": 3200,
+      "startedAt": "2026-09-26T07:16:24.710Z",
+      "finishedAt": "2026-09-26T07:16:28.310Z",
+      "durationMs": 3600,
       "command": [
         "node",
         "tests/ui-view-lifecycle.mjs"
       ],
-      "log": "test-results/verification-1790383361338/view-lifecycle.txt",
-      "logSha256": "699d28e09b715699fd3888c73cc7fd47eeccb98c1c60faae4c048be216ce14f3",
+      "log": "test-results/verification-1790406709083/view-lifecycle.txt",
+      "logSha256": "48b3bcd4d4174e5ff09bcff6e2a883f5386d2e5d0e74680f180bfcaa74997fe1",
       "artifactDirectories": [
-        "test-results/views-Cc0SyU"
+        "test-results/views-d34xLw"
       ],
       "executedCommandSha256": "b2705d25757337c4eb7a39592c7a5a1bcf4a4711efdcda2c0292aad240dfba15",
       "commandDisplayOnly": true
@@ -447,17 +449,17 @@
       "name": "material-workflow",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:05.398Z",
-      "finishedAt": "2026-09-26T00:47:09.920Z",
-      "durationMs": 4522,
+      "startedAt": "2026-09-26T07:16:28.310Z",
+      "finishedAt": "2026-09-26T07:16:32.368Z",
+      "durationMs": 4058,
       "command": [
         "node",
         "tests/material-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/material-workflow.txt",
-      "logSha256": "678b7ad13ee1bd6a1760c919b46731aa4d16db63dcfaa630d280078bc5d56248",
+      "log": "test-results/verification-1790406709083/material-workflow.txt",
+      "logSha256": "04f1a11d5bad3a41fbafeab2de096773d365be2af271b5124d3edab410de309c",
       "artifactDirectories": [
-        "test-results/materials-ui-1790383626234"
+        "test-results/materials-ui-1790406989305"
       ],
       "executedCommandSha256": "17bf3d669b2d5c6e0b90edf6e095722a62e4161a4a84cf026fcbe173bfa5da09",
       "commandDisplayOnly": true
@@ -466,17 +468,17 @@
       "name": "material-layout",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:09.920Z",
-      "finishedAt": "2026-09-26T00:47:11.961Z",
-      "durationMs": 2041,
+      "startedAt": "2026-09-26T07:16:32.368Z",
+      "finishedAt": "2026-09-26T07:16:34.789Z",
+      "durationMs": 2421,
       "command": [
         "node",
         "tests/ui-material-layout.mjs"
       ],
-      "log": "test-results/verification-1790383361338/material-layout.txt",
-      "logSha256": "871737ce3f4f492a9376b7c2bccd57a5cb028011e13c6fd256c5e3663cf12671",
+      "log": "test-results/verification-1790406709083/material-layout.txt",
+      "logSha256": "558fa4fed0264032b6b123a57c8823f843ed148229eb9da158433cd15a92f418",
       "artifactDirectories": [
-        "test-results/material-layout-CNOJ3f"
+        "test-results/material-layout-0OIf8a"
       ],
       "executedCommandSha256": "6f1bfdac150193315335e2ac8f587f3e6526f90f919ea61937f5305a57ecc56b",
       "commandDisplayOnly": true
@@ -485,14 +487,14 @@
       "name": "material-media",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:11.961Z",
-      "finishedAt": "2026-09-26T00:47:13.401Z",
-      "durationMs": 1440,
+      "startedAt": "2026-09-26T07:16:34.789Z",
+      "finishedAt": "2026-09-26T07:16:36.247Z",
+      "durationMs": 1458,
       "command": [
         "node",
         "tests/material-media-v05-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/material-media.txt",
+      "log": "test-results/verification-1790406709083/material-media.txt",
       "logSha256": "e1662f1e8749c260e660bb30a363fb834ee283d12a07b4ac7960357119f74c2d",
       "artifactDirectories": [],
       "executedCommandSha256": "62ca282430e1d2ec6d6f6518f6e42776796818ce3a7fd4c45706e95f177764bb",
@@ -502,17 +504,17 @@
       "name": "native-task-matrix",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:13.401Z",
-      "finishedAt": "2026-09-26T00:47:32.245Z",
-      "durationMs": 18844,
+      "startedAt": "2026-09-26T07:16:36.247Z",
+      "finishedAt": "2026-09-26T07:16:55.348Z",
+      "durationMs": 19101,
       "command": [
         "node",
         "tests/native-matrix-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/native-task-matrix.txt",
-      "logSha256": "c0f1fd8feeb36e344e5045da10a8ad4e07c4468733f369559b6f4edf3f939bb1",
+      "log": "test-results/verification-1790406709083/native-task-matrix.txt",
+      "logSha256": "23ff19f779139dc678b580c35821199d411fee7516b843c2d17b19d62660d1b9",
       "artifactDirectories": [
-        "test-results/native-matrix-ui/run-m2WjLS"
+        "test-results/native-matrix-ui/run-P2cGhT"
       ],
       "executedCommandSha256": "fc5e207b699e372b9494ba9452253a3ce1bfe0f0a08a5c756633bf43659d5531",
       "commandDisplayOnly": true
@@ -521,15 +523,15 @@
       "name": "material-jobs-and-local-evidence",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:32.245Z",
-      "finishedAt": "2026-09-26T00:47:44.363Z",
-      "durationMs": 12118,
+      "startedAt": "2026-09-26T07:16:55.348Z",
+      "finishedAt": "2026-09-26T07:17:07.945Z",
+      "durationMs": 12597,
       "command": [
         "node",
         "tests/material-jobs-v05-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/material-jobs-and-local-evidence.txt",
-      "logSha256": "ee1e3bbb2fb87e7de0df8dfe4d88ec63269d6653a1bda743d1361c7043f1602b",
+      "log": "test-results/verification-1790406709083/material-jobs-and-local-evidence.txt",
+      "logSha256": "ff0d6fb381f1a4e8d80afbf03c836f231e9714aa09782914366512ae76291255",
       "artifactDirectories": [],
       "executedCommandSha256": "ff0342644d6cbd96820463600e6aad2a4429dbb71ebeade9e03c1c4e2e3be633",
       "commandDisplayOnly": true
@@ -538,15 +540,15 @@
       "name": "candidate-review",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:44.363Z",
-      "finishedAt": "2026-09-26T00:47:48.125Z",
-      "durationMs": 3762,
+      "startedAt": "2026-09-26T07:17:07.945Z",
+      "finishedAt": "2026-09-26T07:17:11.530Z",
+      "durationMs": 3585,
       "command": [
         "node",
         "tests/material-candidates-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/candidate-review.txt",
-      "logSha256": "b4febdc8f9fe4c482bd08f0c289e37866fb8d747de5b33243b6a9ddbd286e5a4",
+      "log": "test-results/verification-1790406709083/candidate-review.txt",
+      "logSha256": "e0487c898252c6e8e71a024fe5d7e2f638a82be9d4882241900b1e2797873511",
       "artifactDirectories": [],
       "executedCommandSha256": "47fd24392d9ee88439d8168ed6f771247053b35b4675776a8dd8816c500cec0f",
       "commandDisplayOnly": true
@@ -555,15 +557,15 @@
       "name": "candidate-draft-conflicts",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:48.125Z",
-      "finishedAt": "2026-09-26T00:47:52.606Z",
-      "durationMs": 4481,
+      "startedAt": "2026-09-26T07:17:11.530Z",
+      "finishedAt": "2026-09-26T07:17:15.538Z",
+      "durationMs": 4008,
       "command": [
         "node",
         "tests/material-candidate-drafts-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/candidate-draft-conflicts.txt",
-      "logSha256": "080b3fdbf82eea7f43a7e3c032739dfcd0431bab6630b40eb2770cb06e7a5231",
+      "log": "test-results/verification-1790406709083/candidate-draft-conflicts.txt",
+      "logSha256": "c58d7f2d63e923ca7af94c8beacb78852d5a394912b630c9a66015cbc60d3ed9",
       "artifactDirectories": [],
       "executedCommandSha256": "858533e8bd884ac9a1ab74141074f976c01e2fd404a5b59f38bade882dfc2ae6",
       "commandDisplayOnly": true
@@ -572,14 +574,14 @@
       "name": "source-review-component",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:52.606Z",
-      "finishedAt": "2026-09-26T00:47:54.266Z",
-      "durationMs": 1660,
+      "startedAt": "2026-09-26T07:17:15.539Z",
+      "finishedAt": "2026-09-26T07:17:17.322Z",
+      "durationMs": 1783,
       "command": [
         "node",
         "tests/document-source-review-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/source-review-component.txt",
+      "log": "test-results/verification-1790406709083/source-review-component.txt",
       "logSha256": "85317742278b5e25f9fc0092d5aee630a249830ceb1e6fcaa1dafb3c7332a54e",
       "artifactDirectories": [],
       "executedCommandSha256": "7e4d8d7b11894122ef3a7d017b30c67e4c847a92b1154e9590595a667b8be5c1",
@@ -589,17 +591,17 @@
       "name": "credentials-settings",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:54.267Z",
-      "finishedAt": "2026-09-26T00:47:58.238Z",
-      "durationMs": 3971,
+      "startedAt": "2026-09-26T07:17:17.322Z",
+      "finishedAt": "2026-09-26T07:17:20.187Z",
+      "durationMs": 2865,
       "command": [
         "node",
         "tests/credentials-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/credentials-settings.txt",
-      "logSha256": "568a482742cfcc1652997c0ed73632e4a12293306d01a78b909f1753e97f32cf",
+      "log": "test-results/verification-1790406709083/credentials-settings.txt",
+      "logSha256": "078e81eec6dbeefac6cc2900a6fb6b5a56361adb8d95a4926a2e5df43281218c",
       "artifactDirectories": [
-        "test-results/credentials-ui-VwteRH"
+        "test-results/credentials-ui-TQIRWn"
       ],
       "executedCommandSha256": "f1809a362e0983eae8810c8ce23c3207272a4db27f0fbccb84904750a76cd81a",
       "commandDisplayOnly": true
@@ -608,17 +610,17 @@
       "name": "asr-settings-and-comparison",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:47:58.238Z",
-      "finishedAt": "2026-09-26T00:48:01.628Z",
-      "durationMs": 3390,
+      "startedAt": "2026-09-26T07:17:20.187Z",
+      "finishedAt": "2026-09-26T07:17:23.777Z",
+      "durationMs": 3590,
       "command": [
         "node",
         "tests/asr-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/asr-settings-and-comparison.txt",
-      "logSha256": "d8983d22a43854ed724c4ca4527f69fc35266f13a4c55c47d25980d865b8bc6f",
+      "log": "test-results/verification-1790406709083/asr-settings-and-comparison.txt",
+      "logSha256": "8b119c1f855553bd00644e88f95944944b04873a629c83c4ab5ed25781aca2bc",
       "artifactDirectories": [
-        "test-results/asr/ui/5bfc82bf-8be9-420e-93a8-654dcf90b3db"
+        "test-results/asr/ui/ec287cdf-37bd-4968-86ea-b5153e6b64a0"
       ],
       "executedCommandSha256": "f34af0dcb1024f802f997d897fe75b5185183d4f34571474ff885095d58ad648",
       "commandDisplayOnly": true
@@ -627,17 +629,17 @@
       "name": "asr-unsaved-settings",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:01.628Z",
-      "finishedAt": "2026-09-26T00:48:04.318Z",
-      "durationMs": 2690,
+      "startedAt": "2026-09-26T07:17:23.777Z",
+      "finishedAt": "2026-09-26T07:17:26.405Z",
+      "durationMs": 2628,
       "command": [
         "node",
         "tests/asr-settings-dirty-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/asr-unsaved-settings.txt",
-      "logSha256": "134c64d4221f2b28617b89f6a56ba87b762362091916b1aa1db09febda163ff9",
+      "log": "test-results/verification-1790406709083/asr-unsaved-settings.txt",
+      "logSha256": "4145b4c8bc1cb8246d8fcca4bfb46f1d9c75bf7118d4f2554d4a7d1ee959ce64",
       "artifactDirectories": [
-        "test-results/asr/fix1-ui/3b7161f2-11c2-4cd8-82c8-746d9b55e59d"
+        "test-results/asr/fix1-ui/4fd7cad8-b65d-4c0f-acbf-b5b879bc4879"
       ],
       "executedCommandSha256": "f85ec094d9af8007ddbe75f4d8b18ec87471eda772c82b9304d2fc6287206a07",
       "commandDisplayOnly": true
@@ -646,17 +648,17 @@
       "name": "ocr-settings",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:04.318Z",
-      "finishedAt": "2026-09-26T00:48:06.585Z",
-      "durationMs": 2267,
+      "startedAt": "2026-09-26T07:17:26.405Z",
+      "finishedAt": "2026-09-26T07:17:29.055Z",
+      "durationMs": 2650,
       "command": [
         "node",
         "tests/ocr-settings-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/ocr-settings.txt",
-      "logSha256": "d94d6691138d5dfd95f7c29ed7929f6f78b172238420b8a77b0a7cf2ec53a7d6",
+      "log": "test-results/verification-1790406709083/ocr-settings.txt",
+      "logSha256": "09d4c5250a6338afe1e3661e0c00154ccd90f5f1ac06e33c56c14fc8da164c23",
       "artifactDirectories": [
-        "test-results/ocr-ui/0922cda8-a949-4965-b0c0-d524e119f39c"
+        "test-results/ocr-ui/d0c4c3da-fbb0-457c-ba2c-6e2be9bd9a3f"
       ],
       "executedCommandSha256": "a48ab3d93ca82972fe161c6fc82d5f28f53be9c6632068c319a26fae278d5dbf",
       "commandDisplayOnly": true
@@ -665,17 +667,17 @@
       "name": "ocr-author-component",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:06.585Z",
-      "finishedAt": "2026-09-26T00:48:10.249Z",
-      "durationMs": 3664,
+      "startedAt": "2026-09-26T07:17:29.055Z",
+      "finishedAt": "2026-09-26T07:17:32.274Z",
+      "durationMs": 3219,
       "command": [
         "node",
         "tests/material-ocr-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/ocr-author-component.txt",
-      "logSha256": "67075835bdf69ecd6371e7252d658119ff10605c8e0e5e7950258b665e8f8022",
+      "log": "test-results/verification-1790406709083/ocr-author-component.txt",
+      "logSha256": "fa12663ec93ca0c5afb185ebe8ed223e879cc9f3a7966ab1b08da0b8fd2decf7",
       "artifactDirectories": [
-        "test-results/material-ocr-ui/da51d8f3-c37b-4aa7-9b13-3aca62790730"
+        "test-results/material-ocr-ui/c1442741-a02b-4354-bbff-e9d1f5b09011"
       ],
       "executedCommandSha256": "0ca3c788f6f699549219dea745f6ea177f9735859214784b826d7e8772ea2b89",
       "commandDisplayOnly": true
@@ -684,15 +686,15 @@
       "name": "confirmed-assistant-preferences",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:10.249Z",
-      "finishedAt": "2026-09-26T00:48:12.867Z",
-      "durationMs": 2618,
+      "startedAt": "2026-09-26T07:17:32.275Z",
+      "finishedAt": "2026-09-26T07:17:35.313Z",
+      "durationMs": 3038,
       "command": [
         "node",
         "tests/assistant-memory-browser.mjs"
       ],
-      "log": "test-results/verification-1790383361338/confirmed-assistant-preferences.txt",
-      "logSha256": "487b80215c5ca88ea5db7ca86ede23a19b66506b9a5b1c33c38f975b7772b3fe",
+      "log": "test-results/verification-1790406709083/confirmed-assistant-preferences.txt",
+      "logSha256": "d20a0b183bd117b28aac7b4148ee382967b7ad15c96239ed66e386c33dd1cb27",
       "artifactDirectories": [],
       "executedCommandSha256": "2cbddb7775860f220c419f7d2f24fa1b4464e8ba9ccba59efa66993156cdd26c",
       "commandDisplayOnly": true
@@ -701,15 +703,15 @@
       "name": "workspace-restore-pages",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:12.867Z",
-      "finishedAt": "2026-09-26T00:48:22.450Z",
-      "durationMs": 9583,
+      "startedAt": "2026-09-26T07:17:35.313Z",
+      "finishedAt": "2026-09-26T07:17:44.856Z",
+      "durationMs": 9543,
       "command": [
         "node",
         "tests/workspace-epoch-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/workspace-restore-pages.txt",
-      "logSha256": "19e1de869efe455ad4008da90bef03c98e8e7aec5a1843c69b9ead6bc24b465d",
+      "log": "test-results/verification-1790406709083/workspace-restore-pages.txt",
+      "logSha256": "5bc6d3011031d4976c202e16f9431994d16d0d586796b85420e685bf5ae0c444",
       "artifactDirectories": [],
       "executedCommandSha256": "962a670787f15f6312db56e83867f5eab350093aefdeb8f3df56fd2f3b83e6e4",
       "commandDisplayOnly": true
@@ -718,15 +720,15 @@
       "name": "recording-restore-finalize",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:22.450Z",
-      "finishedAt": "2026-09-26T00:48:34.343Z",
-      "durationMs": 11893,
+      "startedAt": "2026-09-26T07:17:44.856Z",
+      "finishedAt": "2026-09-26T07:17:56.078Z",
+      "durationMs": 11222,
       "command": [
         "node",
         "tests/exam-restore-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/recording-restore-finalize.txt",
-      "logSha256": "d42632d200f960312469d765048f7c989931806fb4c6164c54ca769b95f699ac",
+      "log": "test-results/verification-1790406709083/recording-restore-finalize.txt",
+      "logSha256": "24de270fdad7e8b82eebc4d85481d0034deed28982db4716ec3feaf85c03b535",
       "artifactDirectories": [],
       "executedCommandSha256": "78376901539eb7f9478e891a624bf2e057cd72f0cb510eb00cdd4d8fd33a1eb0",
       "commandDisplayOnly": true
@@ -735,17 +737,17 @@
       "name": "real-ocr-material-chain",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:48:34.343Z",
-      "finishedAt": "2026-09-26T00:50:24.388Z",
-      "durationMs": 110045,
+      "startedAt": "2026-09-26T07:17:56.078Z",
+      "finishedAt": "2026-09-26T07:19:52.348Z",
+      "durationMs": 116270,
       "command": [
         "node",
         "tests/material-ocr-chain-ui.mjs"
       ],
-      "log": "test-results/verification-1790383361338/real-ocr-material-chain.txt",
-      "logSha256": "16f5207f45882e8cde35d3192989cad58c88723db1f8a5acd1b784a56b16eb52",
+      "log": "test-results/verification-1790406709083/real-ocr-material-chain.txt",
+      "logSha256": "add8d30f8cd519860e4f98de28ef85692dbba8d2596cb31a72aedc8f4e74ba22",
       "artifactDirectories": [
-        "test-results/material-ocr-chain-ui/run-1nt3g1"
+        "test-results/material-ocr-chain-ui/run-qECcYi"
       ],
       "executedCommandSha256": "e97d0d14730fbd8a1d8a3e167322ba5cdcbf4fa8b1392c24426b85e5950052e6",
       "commandDisplayOnly": true
@@ -754,17 +756,17 @@
       "name": "windows-credentials-runtime",
       "status": "passed",
       "exitCode": 0,
-      "startedAt": "2026-09-26T00:50:24.388Z",
-      "finishedAt": "2026-09-26T00:50:26.969Z",
-      "durationMs": 2581,
+      "startedAt": "2026-09-26T07:19:52.348Z",
+      "finishedAt": "2026-09-26T07:19:55.011Z",
+      "durationMs": 2663,
       "command": [
         "node",
         "tests/credentials-electron.mjs"
       ],
-      "log": "test-results/verification-1790383361338/windows-credentials-runtime.txt",
-      "logSha256": "67de56748af957f0880e16845e9d8b21f7dd41d4fc27abca42c5dce45d108658",
+      "log": "test-results/verification-1790406709083/windows-credentials-runtime.txt",
+      "logSha256": "8014cd6572e321aa8880c1ec234811c5ed520081ff0f91a7dffe39dcc50556e4",
       "artifactDirectories": [
-        "test-results/credentials-runtime-1790383824491"
+        "test-results/credentials-runtime-1790407192457"
       ],
       "executedCommandSha256": "305a11fc8019e031dc43eb64ea1e52700fb03fe4715f01ed7f6313f381cbcdd2",
       "commandDisplayOnly": true

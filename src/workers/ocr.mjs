@@ -106,6 +106,7 @@ export function createOcrWorker({assetDir,artifactDir,resolveAsset,checkGuard,la
         if(page.state==='recognized'){
           const core=assertOcrCoreSelection(page,assets.files);
           value=projectOcrEvidence({data:page.data,source,textLayer:page.textLayer,engine:{backend:'tesseract.js',packageVersion:'7.0.0',language:'eng',languageVersion:'1.0.0',languageHash:assets.language.sha256,runtimeLockHash:assets.runtimeLockHash,launchLockHash:spec.launchLockHash,launchProfile:spec.profile,...core,device:'cpu'}});
+          value.recognitionMode=page.recognitionMode==='ruled_table'?'ruled_table':'auto';
         }else value={version:1,kind:'document-region-evidence',state:page.state,source,textLayer:page.textLayer||'',ocrCalled:page.ocrCalled===true,issues:page.code?[{code:page.code,reason:'此页 OCR 暂不可用；原件与已保存页面仍保留。'}]:[]};
         if(page.partialTextItems)value.issues.unshift({code:'ocr_region_partial_text',reason:'选区只覆盖了部分文字项；未读取项内选区外文字，请对照选区原图核对边界。'});
         const json=Buffer.from(JSON.stringify(value));publishedBytes+=json.length;if(publishedBytes>r.budget.maxOutputBytes)throw ocrError('OCR_OUTPUT_LIMIT','OCR 证据超过本次预算。',413);

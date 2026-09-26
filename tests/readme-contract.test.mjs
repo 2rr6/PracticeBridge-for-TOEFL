@@ -10,7 +10,7 @@ async function fixture(t){
   const parent=path.resolve('test-results/readme-contract');await fs.mkdir(parent,{recursive:true});const root=await fs.mkdtemp(path.join(parent,'run-'));
   t.after(async()=>{assert.equal(path.dirname(path.resolve(root)),parent);await fs.rm(root,{recursive:true,force:true});});
   await fs.mkdir(path.join(root,'docs/development'),{recursive:true});
-  const pkg={version:'0.5.0',scripts:{test:'node --test tests/*.test.mjs'}},readme='# Self-authored fixture\n\n这是独立实现的 **0.5.0 本地练习软件**。\n\n[Guide](docs/guide.md)\n';
+  const pkg={version:'0.5.0',scripts:{test:'node --test tests/*.test.mjs'}},readme='# Self-authored fixture\n\n这是独立实现的本地练习软件。\n\n[Guide](docs/guide.md)\n';
   const policy={source:['package.json','README.md','docs/guide.md','docs/development/README_FACTS.json','docs/development/release-policy.json']};
   const files={'package.json':JSON.stringify(pkg)+'\n','README.md':readme,'docs/guide.md':'A self-authored public guide.\n','docs/development/release-policy.json':JSON.stringify(policy)+'\n'};
   for(const [name,content] of Object.entries(files))await fs.writeFile(path.join(root,name),content);

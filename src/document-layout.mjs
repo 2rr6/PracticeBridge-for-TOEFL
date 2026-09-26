@@ -253,7 +253,9 @@ export function mapDocumentFields(pack, layout) {
         }
       }
     }
-    result.push({ path, state: answer ? answerState : matches.length === 1 ? 'known' : matches.length > 1 ? 'ambiguous' : 'missing', blockIds: [...new Set(matches.flat())], method: answer ? valueLocated?'literal-answer-row-match':'parser-source-reference' : 'literal-source-match', ...(answer?{valueLocated}:{}) });
+    // A short value such as a one-word tile can occur hundreds of times; the
+    // field stays ambiguous and keeps at most the candidate schema's 500 blocks.
+    result.push({ path, state: answer ? answerState : matches.length === 1 ? 'known' : matches.length > 1 ? 'ambiguous' : 'missing', blockIds: [...new Set(matches.flat())].slice(0, 500), method: answer ? valueLocated?'literal-answer-row-match':'parser-source-reference' : 'literal-source-match', ...(answer?{valueLocated}:{}) });
   };
   for (const [gi,g] of (pack.groups || []).entries()) {
     add(`groups.${gi}.passage`,g.passage,g.questions?.[0]?.source);

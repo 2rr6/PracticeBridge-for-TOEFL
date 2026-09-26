@@ -1,0 +1,26 @@
+# PracticeBridge for TOEFL
+
+> Free, open-source (MIT), offline Windows app that turns your own TOEFL iBT practice material for the January 2026 format — PDFs, Word files, text copied from web pages, and scanned PDFs — into a question bank you practice in an exam-style interface with timers. Not affiliated with ETS.
+
+Key facts:
+- Platform: Windows 10/11, 64-bit portable build (unzip and run PracticeBridge.exe). Source runs on Node.js 22.16+.
+- Price: free. No account. Importing and practicing run offline on the user's computer.
+- Scope: TOEFL iBT task types introduced in January 2026 only (not the older TPO format). It does not ship official ETS questions and does not convert results to official scores.
+- Imports: official ETS practice tests (student and teacher editions), full mock tests, single-task practice sets (Complete the Words, Build a Sentence, Listen and Repeat, Write an Email, Academic Discussion, Take an Interview), pasted web text, practice-pack JSON/ZIP, and audio files.
+- Scanned PDFs: optional local English OCR (Tesseract.js) reads pages without a text layer automatically. Answers the local reading cannot confirm are left blank instead of guessed; an optional AI proofreading pass (any image-capable model the user connects) compares each page image with the OCR text and fills in most of them. In the project's tests on simulated scans (about 400 pages with local OCR only, about 140 pages with AI proofreading), neither mode gave a wrong answer.
+- Practice: Reading, Listening, Writing, Speaking; 12 task types; PRACTICE (per section, resumable) and TEST (all sections in a row) modes; attempt history, review and retry.
+- Optional AI: bring your own model (OpenAI API or any OpenAI-compatible service, including local models) to organize material, proofread scanned pages, get written feedback and ask questions. The app shows what will be sent before any request.
+- Data: stored in the `data` folder next to the app; full personal backup and restore.
+- Interface language: Chinese (task names and exam screens use English TOEFL terms).
+
+## Docs
+
+- [README (中文)](https://github.com/2rr6/PracticeBridge-for-TOEFL/blob/main/README.md): step-by-step guide with screenshots and FAQ
+- [README (English)](https://github.com/2rr6/PracticeBridge-for-TOEFL/blob/main/README.en.md): the same guide in English
+- [Download (latest release)](https://github.com/2rr6/PracticeBridge-for-TOEFL/releases/latest)
+- [Project page](https://2rr6.github.io/PracticeBridge-for-TOEFL/)
+
+## Optional
+
+- [Input formats (Chinese)](https://github.com/2rr6/PracticeBridge-for-TOEFL/blob/main/docs/输入格式.md)
+- [License (MIT)](https://github.com/2rr6/PracticeBridge-for-TOEFL/blob/main/LICENSE)

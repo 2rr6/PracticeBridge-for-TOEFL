@@ -95,3 +95,14 @@ test('ambiguous prompt evidence retains sensitive-source visibility', async () =
   assert.equal(entry.state,'ambiguous');
   assert.deepEqual(entry.sourceReferences.map(r=>r.visibility),['source','reference']);
 });
+
+test('a one-word value found on hundreds of lines stays ambiguous within the candidate schema limit', async () => {
+  const { projectDocumentLayout, mapDocumentFields } = await import('../src/document-layout.mjs');
+  const text = Array.from({ length: 600 }, (_, i) => `Line ${i + 1}: the answer is here`).join('\n');
+  const layout = projectDocumentLayout([{ name: 'long.txt', kind: 'text', text }]);
+  const evidence = mapDocumentFields({ groups: [{ questions: [{ type: 'sentence_order', prompt: 'Order the words', options: [{ id: 'F1', text: 'the' }], source: 'long.txt · 第 1 页' }] }] }, layout);
+  const tile = evidence.find(e => e.path.endsWith('.options.0.text'));
+  assert.equal(tile.state, 'ambiguous');
+  assert.ok(tile.blockIds.length > 1 && tile.blockIds.length <= 500, String(tile.blockIds.length));
+  assert.ok(tile.sourceReferences.length <= 500);
+});

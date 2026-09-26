@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "lockfileCanonicalSha256": "747b519f95b017524c5a1f56d035499485077f11d5e49c3cfc83e1253354663e",
+  "lockfileCanonicalSha256": "ad89a3731ce34830c9417137d31e32854f93f3734dd3ef9a441f5f504b8ac6b8",
   "runtime": {
     "@zip.js/zip.js": "2.14.0",
     "ajv": "8.20.0",

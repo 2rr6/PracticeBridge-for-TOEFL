@@ -11,6 +11,48 @@ const bounds=m=>{const x=[m[4],m[0]+m[4],m[2]+m[4],m[0]+m[2]+m[4]],y=[m[5],m[1]+
 const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
 const contained=(a,b)=>a.x>=b.x&&a.y>=b.y&&a.x+a.width<=b.x+b.width&&a.y+a.height<=b.y+b.height;
 
+// Ruled answer tables defeat Tesseract's page segmentation: the grid is read as
+// glyphs. Thin straight ink runs are found with a small tolerance for scan tilt
+// and blur; such pages are read again with the rules erased, at a larger scale,
+// as one uniform text block, and the reading with more confident words is kept.
+function ruleMask(context,width,height){
+  const band=2,d=context.getImageData(0,0,width,height).data,dark=new Uint8Array(width*height),ink=new Uint8Array(width*height);
+  for(let i=0;i<width*height;i++){const v=Math.min(d[i*4],d[i*4+1],d[i*4+2]);dark[i]=v<200?1:0;ink[i]=v<235?1:0;}
+  const mask=new Uint8Array(width*height),rowHit=new Uint8Array(height),colHit=new Uint8Array(width),minRow=Math.round(width*0.08),minCol=Math.round(height*0.03);
+  for(let y=0;y<height;y++){let start=-1;for(let x=0;x<=width;x++){let on=false;if(x<width)for(let k=-band;k<=band&&!on;k++){const yy=y+k;if(yy>=0&&yy<height&&dark[yy*width+x])on=true;}
+    if(on&&start<0)start=x;if(!on&&start>=0){if(x-start>=minRow){rowHit[y]=1;for(let xx=start;xx<x;xx++)for(let k=-band;k<=band;k++){const yy=y+k;if(yy>=0&&yy<height&&ink[yy*width+xx])mask[yy*width+xx]=1;}}start=-1;}}}
+  for(let x=0;x<width;x++){let start=-1;for(let y=0;y<=height;y++){let on=false;if(y<height)for(let k=-band;k<=band&&!on;k++){const xx=x+k;if(xx>=0&&xx<width&&dark[y*width+xx])on=true;}
+    if(on&&start<0)start=y;if(!on&&start>=0){if(y-start>=minCol){colHit[x]=1;for(let yy=start;yy<y;yy++)for(let k=-band;k<=band;k++){const xx=x+k;if(xx>=0&&xx<width&&ink[yy*width+xx])mask[yy*width+xx]=1;}}start=-1;}}}
+  // Filled areas such as a dark footer band are not rules.
+  const thin=(hits,limit)=>{let n=0,run=0;for(let i=0;i<=hits.length;i++){if(i<hits.length&&hits[i])run++;else{if(run>0&&run<=limit)n++;run=0;}}return n;};
+  return {mask,horizontal:thin(rowHit,Math.max(12,Math.round(height*0.02))),vertical:thin(colHit,Math.max(12,Math.round(width*0.02)))};
+}
+const ruledTable=r=>r.horizontal>=6||r.horizontal>=4&&r.vertical>=2;
+function eraseMask(context,width,height,mask){const image=context.getImageData(0,0,width,height),d=image.data;for(let i=0;i<mask.length;i++)if(mask[i])d[i*4]=d[i*4+1]=d[i*4+2]=255;context.putImageData(image,0,0);}
+const numberedLines=data=>(data?.blocks||[]).flatMap(b=>(b.paragraphs||[]).flatMap(p=>p.lines||[])).filter(l=>/^\s*\d{1,3}[.)]?\s+\S/.test(l.text||'')).length;
+const betterReading=(table,auto)=>{const t=numberedLines(table),a=numberedLines(auto);return t!==a?t>a:confidentWords(table)>confidentWords(auto);};
+const confidentWords=data=>(data?.blocks||[]).flatMap(b=>(b.paragraphs||[]).flatMap(p=>(p.lines||[]).flatMap(l=>l.words||[]))).filter(w=>Number(w.confidence)>=70&&/[A-Za-z0-9]/.test(w.text||'')).length;
+// Scans are often a degree or two off. The angle whose horizontal projection of
+// ink is sharpest (text lines line up) is found on a small copy; the page is
+// turned upright before it is saved and read, so boxes match the saved image.
+function estimateSkew(createCanvas,canvas){
+  const scale=Math.min(1,700/canvas.width),w=Math.max(1,Math.round(canvas.width*scale)),h=Math.max(1,Math.round(canvas.height*scale));
+  const small=createCanvas(w,h),sx=small.getContext('2d');sx.drawImage(canvas,0,0,w,h);const d=sx.getImageData(0,0,w,h).data,xs=[],ys=[];
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4;if(Math.min(d[i],d[i+1],d[i+2])<150){xs.push(x-w/2);ys.push(y);}}
+  if(xs.length<200)return 0;let best=0,bestScore=-1;
+  for(let step=-30;step<=30;step++){const a=step/10,t=Math.tan(a*Math.PI/180),bins=new Float64Array(h+w);for(let k=0;k<xs.length;k++){const b=Math.round(ys[k]-xs[k]*t+w/2);if(b>=0&&b<bins.length)bins[b]++;}let score=0;for(const v of bins)score+=v*v;if(score>bestScore){bestScore=score;best=a;}}
+  return best;
+}
+function upright(createCanvas,canvas,angle){
+  const out=createCanvas(canvas.width,canvas.height),x=out.getContext('2d');x.fillStyle='white';x.fillRect(0,0,out.width,out.height);
+  x.translate(out.width/2,out.height/2);x.rotate(-angle*Math.PI/180);x.drawImage(canvas,-canvas.width/2,-canvas.height/2);return out;
+}
+function scaleBoxes(value,factor){
+  if(Array.isArray(value))return value.map(v=>scaleBoxes(v,factor));
+  if(!value||typeof value!=='object')return value;
+  const out={};for(const [k,v] of Object.entries(value))out[k]=k==='bbox'&&v&&typeof v==='object'?Object.fromEntries(Object.entries(v).map(([n,m])=>[n,Number.isFinite(m)?m*factor:m])):scaleBoxes(v,factor);return out;
+}
+
 function textBounds(item,style,view){
   const matrix=multiply(view.transform,item.transform),horizontal=Math.hypot(matrix[0],matrix[1]),vertical=Math.hypot(matrix[2],matrix[3]);
   if(!horizontal||!vertical||!Number.isFinite(item.width)||!Number.isFinite(item.height))return null;
@@ -66,7 +108,7 @@ async function run(config){
   const bytes=await fs.readFile(config.inputPath);if(bytes.length>OCR_LIMITS.maxInputBytes||hash(bytes)!==config.assetId)throw Error('OCR_INPUT_INVALID');
   const {createCanvas,loadImage}=await import(assertOcrLaunchModule(verified,import.meta.resolve('@napi-rs/canvas'),'@napi-rs/canvas'));
   let document,task,worker,totalPixels=0,totalOutput=0;const results=[];
-  async function recognize(png){
+  async function recognize(png,pageSegMode='3'){
     if(!config.assets)throw Error('OCR_ASSETS_MISSING');
     if(!worker){
       process.env.PRACTICEBRIDGE_OCR_RUNTIME=config.assets.runtimeRoot;
@@ -75,6 +117,7 @@ async function run(config){
       const require=createRequire(import.meta.url);const {createWorker}=require(config.assets.modulePath);
       worker=await createWorker('eng',1,{workerPath:spec.workerPath,langPath:config.assets.assetDir,gzip:true,cacheMethod:'none',workerBlobURL:false,logger:()=>{},errorHandler:()=>{}});
     }
+    await worker.setParameters({tessedit_pageseg_mode:pageSegMode});
     const result=await worker.recognize(png,{}, {text:true,blocks:true});
     const core=JSON.parse(await fs.readFile(path.join(config.outputDir,'core-selection.json'),'utf8'));
     return {data:result.data,coreEntry:core.coreEntry,coreHash:core.coreHash,wasmEntry:core.wasmEntry,wasmHash:core.wasmHash};
@@ -101,14 +144,28 @@ async function run(config){
         totalPixels+=rect.width*rect.height;
         if(page)textLayer=await pageText(page,view,rect,pdfjs.OPS);
         if(textLayer.reliable&&config.toolId==='document.ocr'){results.push({page:selection.page,region,pixelRect:rect,pageDimensions:{width:view.width,height:view.height},state:'text_layer',textLayer:textLayer.text,width:rect.width,height:rect.height,ocrCalled:false});continue;}
-        const canvas=createCanvas(rect.width,rect.height);const context=canvas.getContext('2d');context.fillStyle='white';context.fillRect(0,0,rect.width,rect.height);
+        let canvas=createCanvas(rect.width,rect.height);let context=canvas.getContext('2d');context.fillStyle='white';context.fillRect(0,0,rect.width,rect.height);
         if(page)await page.render({canvasContext:context,viewport:view,transform:[1,0,0,1,-rect.x,-rect.y],background:'white'}).promise;
         else context.drawImage(image,-rect.x,-rect.y);
+        const skew=config.toolId==='document.ocr'?estimateSkew(createCanvas,canvas):0;
+        if(Math.abs(skew)>=1){canvas=upright(createCanvas,canvas,skew);context=canvas.getContext('2d');}
         const png=canvas.toBuffer('image/png');totalOutput+=png.length;if(totalOutput>config.budget.maxOutputBytes)throw Error('OCR_OUTPUT_LIMIT');
         const imageName=`page-${selection.page}.png`;await fs.writeFile(path.join(config.outputDir,imageName),png,{flag:'wx'});
         const base={page:selection.page,region,pixelRect:rect,pageDimensions:{width:view.width,height:view.height},textLayer:textLayer.text,partialTextItems:textLayer.partialTextItems===true,imageName,imageHash:hash(png),width:rect.width,height:rect.height};
         if(config.toolId==='document.render'){results.push({...base,state:'rendered',ocrCalled:false});continue;}
-        try{const ocr=await recognize(png);results.push({...base,...ocr,state:'recognized',ocrCalled:true});}
+        try{
+          let ocr=await recognize(png),mode='auto';
+          if(ruledTable(ruleMask(context,rect.width,rect.height))&&rect.width*1.5<=16000&&rect.height*1.5<=16000){
+            const w3=Math.round(rect.width*1.5),h3=Math.round(rect.height*1.5),large=createCanvas(w3,h3),lc=large.getContext('2d');lc.fillStyle='white';lc.fillRect(0,0,w3,h3);
+            if(page){const view3=page.getViewport({scale:3});await page.render({canvasContext:lc,viewport:view3,transform:[1,0,0,1,-rect.x*1.5,-rect.y*1.5],background:'white'}).promise;}
+            else lc.drawImage(image,-rect.x*1.5,-rect.y*1.5,view.width*1.5,view.height*1.5);
+            let straight=large,sc=lc;if(Math.abs(skew)>=1){straight=upright(createCanvas,large,skew);sc=straight.getContext('2d');}
+            eraseMask(sc,w3,h3,ruleMask(sc,w3,h3).mask);
+            const table=await recognize(straight.toBuffer('image/png'),'6');
+            if(betterReading(table.data,ocr.data)){ocr={...table,data:scaleBoxes(table.data,1/1.5)};mode='ruled_table';}
+          }
+          results.push({...base,...ocr,recognitionMode:mode,deskewDegrees:Math.abs(skew)>=1?skew:0,state:'recognized',ocrCalled:true});
+        }
         catch(e){results.push({...base,state:'unavailable',code:config.assets?'OCR_RECOGNITION_FAILED':'OCR_ASSETS_MISSING',ocrCalled:Boolean(config.assets)});}
       }catch(e){results.push({page:selection.page,state:'failed',code:/^OCR_[A-Z_]+$/.test(e.message)?e.message:'OCR_PAGE_FAILED',ocrCalled:false});}
       finally{page?.cleanup();}

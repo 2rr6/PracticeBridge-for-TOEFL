@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { addExamDocumentMetadata } from './exam-plan.mjs';
+import { coverSentence, inferredFixedText, rejoinSpaces, scannedSentenceLooksWhole, tileInFixedText } from './task-grammar.mjs';
 
 // A deliberately narrow, local converter for a modular practice-document
 // layout. These are structural labels, never a bundled question bank. Source
@@ -24,12 +25,50 @@ const location = line => `${line.name}${line.page ? ` · 第 ${line.page} 页` :
 const scopeKey = (section, module) => `${section}:${module ?? ''}`;
 
 function pageLines(chunk) {
-  const lines = clean(chunk.text).split('\n').map((text, index) => ({ text: text.trim(), name: chunk.name, page: chunk.page, line: chunk.sourceLineMap?.[index] || index + 1, x: chunk.sourceLineX?.[index] ?? null }));
+  const lines = clean(chunk.text).split('\n').map((text, index) => ({ text: text.trim(), name: chunk.name, page: chunk.page, line: chunk.sourceLineMap?.[index] || index + 1, x: chunk.sourceLineX?.[index] ?? null, ocr: Boolean(chunk.ocr), strict: Boolean(chunk.ocr) && chunk.ocr.proofread !== true }));
   // A footer has the document/test title followed by a page number. Restrict
   // removal to the final non-empty line so a question's content stays intact.
+  // OCR often reads the title and the page number as two lines.
   const last = lines.findLastIndex(line => line.text);
   if (last >= 0 && /^(?:.+?\s+)?(?:Practice|Sample|Mock)\s+Test\s+\d+\s+\d+$/i.test(lines[last].text)) lines[last].text = '';
+  else if (chunk.ocr && last >= 0) {
+    const title = /^\d{1,3}$/.test(lines[last].text) ? lines.findLastIndex((line, i) => i < last && line.text) : last;
+    if (title >= 0 && /^(?:.+?\s+)?(?:Practice|Sample|Mock)\s+Test\s+\d+$/i.test(lines[title].text)) lines[title].text = lines[last].text = '';
+  }
   return lines;
+}
+
+// Missing letters never start a word, so they are lower case: OCR's capital I
+// among lower-case letters ("Ived") is an l, and "SO" is "so". An all-capital
+// reading with an I could be i or l and is left open.
+const missingLetters = answer => {
+  if (!answer || !/^[A-Za-z]+$/.test(answer)) return answer;
+  if (/[a-z]/.test(answer)) return answer.replace(/I/g, 'l');
+  if (answer.includes('I')) return null;
+  // A lone capital may be a choice letter that reached the wrong row.
+  if (answer.length === 1) return null;
+  return answer.toLowerCase();
+};
+
+// Drops extra OCR blanks so the rest line up with the keyed answer lengths.
+// Returns null unless one choice fits strictly better than every other.
+function alignBlanks(blanks, answers) {
+  const extra = blanks.length - answers.length;
+  if (extra < 1 || extra > 3) return null;
+  const printed = blanks.map(blank => (blank[2].match(/[_-]/g) || []).length);
+  const costs = [];
+  const choose = (start, dropped) => {
+    if (dropped.length === extra) {
+      const kept = blanks.map((_, i) => i).filter(i => !dropped.includes(i));
+      costs.push({ kept, cost: kept.reduce((sum, i, j) => sum + (printed[i] === answers[j].length ? 0 : 1), 0) });
+      return;
+    }
+    for (let i = start; i < blanks.length; i++) choose(i + 1, [...dropped, i]);
+  };
+  choose(0, []);
+  costs.sort((a, b) => a.cost - b.cost);
+  if (costs.length > 1 && costs[0].cost === costs[1].cost) return null;
+  return costs[0].kept.map(i => blanks[i]);
 }
 
 function recognizes(chunks) {
@@ -206,6 +245,11 @@ export function parseExamDocument(chunks, { title = '', mediaNames = [] } = {}) 
     };
   }
 
+  function peekKey(number) {
+    const unique = [...new Set((keys.get(scopeKey(section, module))?.get(number) || []).map(entry => entry.answer.replace(/\s+/g, ' ').trim()))];
+    return unique.length === 1 ? unique[0] : null;
+  }
+
   function keyFor(q) {
     const scope = scopeKey(section, module);
     const candidates = keys.get(scope)?.get(q.number) || [];
@@ -237,7 +281,30 @@ export function parseExamDocument(chunks, { title = '', mediaNames = [] } = {}) 
       const lines = question.promptLines;
       const frameIndex = lines.findIndex(line => /_{2,}/.test(line.text));
       const optionIndex = lines.findIndex((line, index) => index > frameIndex && line.text.includes('/'));
-      if (frameIndex < 0 || optionIndex < 0) {
+      // A scanned slot line can be unreadable while the tiles and the keyed
+      // sentence are not. The frame is then the keyed sentence with the tiles
+      // taken out, and the question says so.
+      const tileIndex = frameIndex < 0 ? lines.findIndex((line, index) => index > 0 && line.text.split('/').length >= 3) : -1;
+      const inferred = tileIndex > 0 ? (() => {
+        let fragments = textOf(lines.slice(tileIndex)).split(/\s*\/\s*/).map(value => value.replace(/\s+/g, ' ').trim());
+        const keyed = keys.get(scopeKey(section, module))?.get(question.number) || [];
+        let answers = [...new Set(keyed.map(entry => entry.answer.replace(/\s+/g, ' ').trim()))];
+        if (answers.length === 1 && lines.some(line => line.ocr)) ({ fragments, answer: answers[0] } = rejoinSpaces(fragments, answers[0]));
+        const cover = answers.length === 1 && fragments.every(Boolean) ? coverSentence(answers[0], fragments) : null;
+        const strict = lines.some(line => line.strict);
+        return cover && !tileInFixedText(cover, fragments) && (!strict || scannedSentenceLooksWhole(answers[0], fragments, cover.order.length) && !inferredFixedText(cover)) ? { fragments, cover, answer: answers[0] } : null;
+      })() : null;
+      if (inferred) {
+        question.sentenceFrame = inferred.cover.frame;
+        question.answerSlots = inferred.cover.order.length;
+        question.options = inferred.fragments.map((text, index) => ({ id: `F${index + 1}`, text }));
+        question.prompt = textOf(lines.slice(0, 1));
+        const answer = keyFor(question);
+        question.answer = inferred.cover.order.map(index => question.options[index].id);
+        question.explanation = answer ? inferred.answer : '';
+        question.source += '；句子框架由答案与词块推定（原文空位行无法识别）';
+        issues.push(issue('warning', `${question.source}：原文的空位行无法识别，已用答案句减去词块推定固定文字，请对照原文核对。`, question.id));
+      } else if (frameIndex < 0 || optionIndex < 0) {
         issues.push(issue('error', `${question.source} 的句子空位或词块边界不明确，请对照原文补充。`, question.id));
       } else {
         question.sentenceFrame = textOf(lines.slice(frameIndex, optionIndex));
@@ -250,12 +317,16 @@ export function parseExamDocument(chunks, { title = '', mediaNames = [] } = {}) 
         const answer = keyFor(question);
         if (answer !== null) {
           question.answer = compatible ? orderedAnswer(question.sentenceFrame, question.options, answer) : null;
-          if (!question.answer) issues.push(issue('error', `${question.source} 的完整答案不能唯一拆成原文词块及固定文字，已保留为未评分。`, `${question.id}.answer`));
+          if (question.answer && lines.some(line => line.strict) && !scannedSentenceLooksWhole(answer, fragments, question.answer.length)) {
+            question.answer = null;
+            issues.push(issue('error', `${question.source} 是扫描页，本机识别的答案句或词块不完整，已留空；连接 AI 看图校对后可以补全。`, `${question.id}.answer`));
+          } else if (!question.answer) issues.push(issue('error', `${question.source} 的完整答案不能唯一拆成原文词块及固定文字，已保留为未评分。`, `${question.id}.answer`));
           question.explanation = answer;
         }
       }
     } else if (question.type === 'listen_repeat') {
-      question.answer = question.prompt;
+      // A sentence to repeat never ends in a comma; OCR reads the period so.
+      question.answer = question.promptLines.some(line => line.ocr) ? question.prompt.replace(/[,;]$/, '.') : question.prompt;
       question.prompt = 'Listen carefully and repeat what you heard.\n\n请先播放材料，再复述原句。';
     }
     if (question.lastLine.page !== question.firstLine.page) question.source += `；题目续至 ${location(question.lastLine)}`;
@@ -266,28 +337,53 @@ export function parseExamDocument(chunks, { title = '', mediaNames = [] } = {}) 
   function finishFill() {
     if (!fill) return;
     const passage = textOf(fill.lines);
-    const blanks = [...passage.matchAll(/([A-Za-z]+)((?:\s*[_-])+(?![A-Za-z]))/g)];
+    const printedBlanks = [...passage.matchAll(/([A-Za-z]+)((?:\s*[_-])+(?![A-Za-z]))/g)];
+    let blanks = printedBlanks;
     const expected = fill.range ? fill.range[1] - fill.range[0] + 1 : 0;
+    // OCR miscounts dashes, so on scanned pages the answer key decides each
+    // blank's length, and an extra blank is dropped only when exactly one
+    // choice lines the blanks up with the key.
+    const scanned = fill.lines.some(line => line.ocr);
+    const keyed = scanned && expected ? Array.from({ length: expected }, (_, i) => missingLetters(peekKey(fill.range[0] + i))) : [];
+    if (scanned && expected && blanks.length > expected && keyed.every(answer => answer && /^[A-Za-z]+$/.test(answer))) blanks = alignBlanks(blanks, keyed) || blanks;
     if (!expected || blanks.length !== expected) {
       issues.push(issue('error', `${location(fill.line)} 的缺字题范围与空白数量不一致（题号范围 ${expected || '未识别'}，空白 ${blanks.length}），未猜测编号；完整段落保留在来源中。`, location(fill.line)));
       fill = null; return;
     }
     newGroup(fill.label, 'fill', fill.line);
     current.passage = passage;
+    const counts = [];
     for (let bi = 0; bi < blanks.length; bi++) {
       const blank = blanks[bi];
       const number = fill.range[0] + bi;
       const lineOffset = passage.slice(0, blank.index).split('\n').length - 1;
       const blankLine = fill.lines[lineOffset] || fill.line;
       const q = baseQuestion(number, 'fill_blank', blankLine);
-      const count = (blank[2].match(/[_-]/g) || []).length;
+      const printed = (blank[2].match(/[_-]/g) || []).length;
+      // OCR miscounts a gap by one; a larger difference means the key row
+      // itself does not belong here, and the length check then refuses it.
+      const count = scanned && /^[A-Za-z]+$/.test(keyed[bi] || '') && Math.abs(keyed[bi].length - printed) <= 1 ? keyed[bi].length : printed;
+      counts.push(count);
+      if (count !== printed) q.source += `；扫描页上的空白数 ${printed} 按答案改为 ${count}`;
       q.prompt = `${fill.label}\n\n原题号 ${number}：${blank[1]}${'_'.repeat(count)}\n只填写缺少的 ${count} 个字母，不填写完整单词。`;
-      const answer = keyFor(q);
+      const keyText = keyFor(q), answer = scanned ? missingLetters(keyText) : keyText;
+      if (keyText !== null && answer === null) issues.push(issue('error', `${q.source} 是扫描页，答案“${keyText}”的大小写或字母无法确定，已留空；连接 AI 看图校对后可以补全。`, `${q.id}.answer`));
       if (answer !== null) {
         if (/^[A-Za-z]+$/.test(answer) && answer.length === count) q.answer = answer;
         else issues.push(issue('error', `${q.source} 的答案长度或形式与缺少字母不符，未猜测完整单词。`, `${q.id}.answer`));
       }
       current.questions.push(q);
+    }
+    // The paragraph shows the corrected blanks; a dropped blank becomes "[?]"
+    // so it no longer reads as a gap.
+    if (scanned) {
+      let text = '', at = 0;
+      for (const match of printedBlanks) {
+        const bi = blanks.indexOf(match), start = match.index + match[1].length;
+        text += passage.slice(at, start) + (bi < 0 ? '[?]' : match[2].trim()[0].repeat(counts[bi]));
+        at = start + match[2].length;
+      }
+      current.passage = text + passage.slice(at);
     }
     fill = null;
   }

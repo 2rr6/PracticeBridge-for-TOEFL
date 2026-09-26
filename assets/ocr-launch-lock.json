@@ -2,13 +2,13 @@
   "version": 1,
   "profile": "windows-x64-ocr-physical-v1",
   "platform": "win32-x64",
-  "packageLockCanonicalHash": "747b519f95b017524c5a1f56d035499485077f11d5e49c3cfc83e1253354663e",
-  "sourceInventoryHash": "6a73e9db4cd331452f89018f938bb70cfacf7e2ec5e2ab14a250625676a64167",
+  "packageLockCanonicalHash": "ad89a3731ce34830c9417137d31e32854f93f3734dd3ef9a441f5f504b8ac6b8",
+  "sourceInventoryHash": "6a0cfba239dce704d06c126e2b68fd5f25e28270e9de8cb392d498608969b026",
   "packageTransform": "@electron/packager.defaultSanitizePackageJson; JSON.stringify(value,null,2)+LF",
   "developmentPackageJson": {
     "path": "package.json",
     "bytes": 916,
-    "sha256": "abf23c6233f6e73a75234fba3b18080e3cedd1f7762872e1c7a4ca7ff07fb1d3"
+    "sha256": "dd8266b91b49ec8f9f918a4c94ba001a28447cc69c26ae1224c48798358c38c3"
   },
   "physicalCompanions": [
     {
@@ -9383,12 +9383,12 @@
     {
       "path": "package-lock.json",
       "bytes": 51309,
-      "sha256": "77d2921113f9ad365c4e44c19b17f36e6ab652c2dc279faf583a5d94a1952be6"
+      "sha256": "55d64be71a8d0a60babd68d8cd910d4743c053c1599669d8b458e1ce8462e223"
     },
     {
       "path": "package.json",
       "bytes": 448,
-      "sha256": "9e7fd1bbd27090f20bfc98ff4a510ab06d376e3876ad06eef305eceaed589a0e"
+      "sha256": "2925ad54de5e5900803194e3dddfcddef946484d5a76f126f929b92969fb86f2"
     },
     {
       "path": "src/archive/zip-adapter.mjs",
@@ -9407,8 +9407,8 @@
     },
     {
       "path": "src/ocr-evidence.mjs",
-      "bytes": 2772,
-      "sha256": "9ac35ba33a54fc744e10235945a3dcef30a29a9c826ea7ba84455e839b94aefc"
+      "bytes": 2798,
+      "sha256": "7008792cba78879d27655fe31aa23bd978900480c69a2930b25bee5ec0cc07af"
     },
     {
       "path": "src/ocr-launch.mjs",
@@ -9432,8 +9432,8 @@
     },
     {
       "path": "src/workers/ocr-child.mjs",
-      "bytes": 10998,
-      "sha256": "bda7284112995daae66f8f6ab56fd7d93c9ee17aad279fe85aa2c02ffb603c41"
+      "bytes": 16808,
+      "sha256": "2c1de51f5eb628bd7eeb81c84a2d0012326bd5af00525e4eaf550747f2cad275"
     },
     {
       "path": "src/workers/ocr-resolve.cjs",
@@ -9447,8 +9447,8 @@
     },
     {
       "path": "src/workers/ocr.mjs",
-      "bytes": 13446,
-      "sha256": "dc7d2c02d704489ad9c2eb127dace8594a1821cfa414b197381eef1b53781a72"
+      "bytes": 13537,
+      "sha256": "68c7560b5d98fe2d86d19f45227f0a2276e3039c175805d885ea9c940a77d163"
     },
     {
       "path": "tools/asr-worker/worker.py",

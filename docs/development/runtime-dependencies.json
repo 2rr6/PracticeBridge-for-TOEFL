@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "platform": "win32-x64",
-  "lockfileCanonicalSha256": "747b519f95b017524c5a1f56d035499485077f11d5e49c3cfc83e1253354663e",
+  "lockfileCanonicalSha256": "ad89a3731ce34830c9417137d31e32854f93f3734dd3ef9a441f5f504b8ac6b8",
   "packages": [
     {
       "path": "node_modules/@napi-rs/canvas",

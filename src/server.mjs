@@ -29,6 +29,7 @@ import { createExamChat } from './exam-chat-context.mjs';
 import { createAssistantMemory, exportConfirmedPreferences, restorePreferencePolicy } from './assistant-memory.mjs';
 import { createOcrService } from './ocr-service.mjs';
 import {createMaterialOcr} from './material-ocr.mjs';
+import { createScanOcr } from './scan-ocr.mjs';
 import {createFeedbackQueue} from './feedback-queue.mjs';
 
 const PROJECT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -95,14 +96,14 @@ async function publicLibrary(library, overlays, materials = []) {
   const projection = await overlays.project(library, runtime, materials);
   return { ...runtime, examPlan: buildExamPlan(projection.pack, { mediaCatalog: projection.mediaCatalog }), mediaUrls: { ...Object.fromEntries(Object.entries(library.mediaMap).map(([name, id]) => [name, `/api/media/${id}`])), ...projection.mediaUrls }, extraMedia: projection.extraMedia, examProjectionVersion: projection.projectionVersion };
 }
-async function publicState(state, models, inbox, writerToken, overlays) {
+async function publicState(state, models, inbox, writerToken, overlays, progress = () => null, scans = () => null) {
   return {
     libraries: await Promise.all(state.libraries.map(library => publicLibrary(library, overlays, state.materials || []))),
     attempts: state.attempts.map(publicAttempt),
     sessions: state.sessions.map(session => isExamSession(session) ? examSessionView(session, { writerToken }) : session),
     jobs: state.jobs.map(publicJob),
     settings: models.publicSettings(),
-    materials: inbox.list(),
+    materials: inbox.list().map(material => { const current = progress(material.id), scan = scans(material.id); return { ...material, ...(current ? { progress: current } : {}), ...(scan ? { scan } : {}) }; }),
     workspaceEpoch: state.workspaceEpoch,
   };
 }
@@ -516,7 +517,7 @@ export async function startServer({ dataDir = path.join(PROJECT_DIR, 'data'), po
     nativeMediaProbes.add(pending);void pending.finally(()=>nativeMediaProbes.delete(pending)).catch(()=>{});return pending;
   };
   const drainNativeMedia=async()=>{while(nativeMediaProbes.size)await Promise.allSettled([...nativeMediaProbes]);if(nativeMediaTerminationFailure)throw nativeMediaTerminationFailure;};
-  const materialProcessing = createMaterialProcessing({ inbox, models, registerDraft, candidateRepository, getWorkspaceEpoch:()=>store.captureEpoch(),probeMedia });
+  const materialProcessing = createMaterialProcessing({ inbox, models, registerDraft, candidateRepository, getWorkspaceEpoch:()=>store.captureEpoch(),probeMedia,scanOcr:createScanOcr({ocrService:ocr}) });
   let materialJobs=null;
   const ocrHumanContext=Object.freeze({});
   const materialOcr=createMaterialOcr({store,repository:candidateRepository,getJobs:()=>materialJobs,ocrService:ocr,authorizeHuman:context=>context===ocrHumanContext});
@@ -596,7 +597,7 @@ export async function startServer({ dataDir = path.join(PROJECT_DIR, 'data'), po
       if (request.method === 'GET' && pathname === '/api/state') {
         for (let attempt = 0; attempt < 3; attempt++) {
           const capturedEpoch = writerToken;
-          const result = await publicState(store.read(), models, inbox, capturedEpoch, examOverlay);
+          const result = await publicState(store.read(), models, inbox, capturedEpoch, examOverlay, id => materialProcessing.progress(id), id => materialProcessing.scans(id));
           if (capturedEpoch === writerToken) return sendJSON(response, 200, result);
         }
         throw new InputError('工作区刚刚更新，请刷新后继续。', 409);
@@ -646,7 +647,13 @@ export async function startServer({ dataDir = path.join(PROJECT_DIR, 'data'), po
         if(request.method==='GET'&&route.length===4&&route[3]==='tool-evidence')return sendJSON(response,200,{expectedEpoch:store.read().workspaceEpoch,evidence:await materialToolRuntime.evidence(id,{author:requestUrl.searchParams.get('author')==='1'})});
         if(request.method==='POST'&&route.length===5&&route[3]==='tool-evidence'&&route[4]==='retract')return sendJSON(response,200,await materialJobSource.retractEvidence({...body,materialId:id}));
         if(['GET','HEAD'].includes(request.method)&&route.length===5&&route[3]==='tool-media'){const asset=await materialToolRuntime.readMaterialAsset(id,route[4]);return sendMedia(request,response,asset.bytes,asset.mime);}
-        if (request.method === 'GET' && route.length === 3) return sendJSON(response, 200, { material: inbox.get(id) });
+        if (request.method === 'GET' && route.length === 3) { const material = inbox.get(id), progress = materialProcessing.progress(id), scan = materialProcessing.scans(id); return sendJSON(response, 200, { material: { ...material, ...(progress ? { progress } : {}), ...(scan ? { scan } : {}) } }); }
+        if (request.method === 'GET' && route.length === 4 && route[3] === 'scan-crop') {
+          const number = key => Number(requestUrl.searchParams.get(key));
+          const bytes = await materialProcessing.scanCrop(id, { file: requestUrl.searchParams.get('file'), page: number('page'), line: number('line'), lines: requestUrl.searchParams.has('lines') ? number('lines') : 1 });
+          return sendMedia(request, response, bytes, 'image/jpeg', { cacheControl: 'no-store' });
+        }
+        if (request.method === 'POST' && route.length === 4 && route[3] === 'proofread-scans') return sendJSON(response, 200, await materialProcessing.proofreadScans(id, { consent: body.consent === true, expectedBinding: body.expectedBinding }));
         if (request.method === 'POST' && route.length === 4 && route[3] === 'assess') return sendJSON(response, 200, await materialProcessing.assess(id, { consent: body.consent === true, useAI: body.useAI !== false,expectedBinding:body.expectedBinding }));
         if (request.method === 'POST' && route.length === 4 && route[3] === 'convert') return sendJSON(response, 200, await materialProcessing.convert(id, { consent: body.consent === true, useAI: body.useAI !== false,expectedBinding:body.expectedBinding }));
         if (request.method === 'GET' && route.length === 4 && route[3] === 'draft') return sendJSON(response, 200, await materialProcessing.openDraft(id));

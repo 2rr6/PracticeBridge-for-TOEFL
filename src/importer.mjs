@@ -10,6 +10,7 @@ import { collectMediaPaths } from './package.mjs';
 import { hasReadingInteractionEvidence } from './models.mjs';
 import { projectDocumentLayout, projectDocumentChunks, projectDocxSemantics, mapDocumentFields } from './document-layout.mjs';
 import { parseTaskGrammar } from './task-grammar.mjs';
+import { ocrEvidenceToChunk } from './ocr-layout.mjs';
 
 /*
  * PracticeBridge's deterministic text template (all demo prose is original):
@@ -214,6 +215,44 @@ async function extractDocx(buffer, name, { signal } = {}) {
 function sourceLocation(chunk, line) {
   return `${chunk.name}${chunk.page ? ` · 第 ${chunk.page} 页` : ''}${chunk.paragraph ? ` · 第 ${chunk.paragraph} 段` : ''} · 第 ${line} 行`;
 }
+// Scanned PDF pages: replace the empty text-layer pages of one file with the
+// positioned text read by local OCR, and say plainly which pages came from OCR
+// and which words it was unsure of.
+export function applyScannedPages(extraction, name, evidenceByPage) {
+  const pages = [];
+  extraction.chunks = extraction.chunks.map(chunk => {
+    if (chunk.name !== name || chunk.kind !== 'pdf' || chunk.text.trim() || !evidenceByPage.has(chunk.page)) return chunk;
+    pages.push(chunk.page);
+    return ocrEvidenceToChunk(evidenceByPage.get(chunk.page), { name, page: chunk.page, pagePoints: { width: chunk.layout?.width, height: chunk.layout?.height } });
+  });
+  if (!pages.length) return pages;
+  const recognized = new Set(pages);
+  extraction.issues = extraction.issues.filter(item => {
+    const page = item.path === name && /第 (\d+) 页未提取到文字/.exec(item.message);
+    if (page && recognized.has(Number(page[1]))) return false;
+    if (item.path === name && /未执行 OCR/.test(item.message)) return false;
+    return !(item.path === 'sources' && /没有可提取的文字/.test(item.message));
+  });
+  extraction.issues.push(issue('warning', `${name} 按 PDF 文字层和本机 OCR 提取；分栏、表格、图片和阅读顺序须对照原文件复核。`, name));
+  const unsure = extraction.chunks.filter(chunk => chunk.name === name && recognized.has(chunk.page)).flatMap(chunk => (chunk.ocr?.lowConfidence || []).map(word => `第 ${chunk.page} 页 “${word.text}”`));
+  const list = pages.length > 12 ? `${pages.slice(0, 12).join('、')} 等 ${pages.length} 页` : `${pages.join('、')} 页`;
+  extraction.issues.push(issue('warning', `${name} 第 ${list}是扫描页，文字由本机英语 OCR 识别。识别可能有误，尤其是答案、题号、选项字母和补字空格，请对照原件核对。${unsure.length ? `可信度较低的词：${unsure.slice(0, 20).join('，')}${unsure.length > 20 ? ` 等 ${unsure.length} 处` : ''}。` : ''}`, name));
+  const text = markedSource(extraction.chunks.filter(chunk => chunk.name === name));
+  extraction.sources = (extraction.sources || []).map(source => source.name === name ? { ...source, text } : source);
+  delete extraction.documentLayout; delete extraction.projectedChunks;
+  return pages;
+}
+
+// Questions whose source lines are on a scanned page say so where they are reviewed.
+export function markScannedQuestions(pack, name, pages) {
+  const scanned = new Set(pages);
+  for (const group of pack?.groups || []) for (const question of group.questions || []) {
+    const page = typeof question.source === 'string' && question.source.startsWith(name) && /第 (\d+) 页/.exec(question.source);
+    if (page && scanned.has(Number(page[1])) && !question.source.includes('扫描识别')) question.source += ' · 扫描识别，请对照原件核对';
+  }
+  return pack;
+}
+
 function markedSource(chunks) {
   return chunks.map(chunk => `[来源：${chunk.name}${chunk.page ? `；第 ${chunk.page} 页` : ''}${chunk.paragraph ? `；第 ${chunk.paragraph} 段` : ''}]\n${chunk.text}`).join('\n\n');
 }

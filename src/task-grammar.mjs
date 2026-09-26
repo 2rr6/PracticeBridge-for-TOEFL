@@ -50,7 +50,7 @@ const keyHeading = text => /^(?:answerkey|answersandexplanations|answers)/.test(
 
 function prepare(chunks) {
   const pages = chunks.map(chunk => String(chunk.text).replace(/\r\n?/g, '\n').split('\n')
-    .map((text, index) => ({ text: text.trim(), name: chunk.name, page: chunk.page ?? null, paragraph: chunk.paragraph ?? null, line: chunk.sourceLineMap?.[index] || index + 1 }))
+    .map((text, index) => ({ text: text.trim(), name: chunk.name, page: chunk.page ?? null, paragraph: chunk.paragraph ?? null, line: chunk.sourceLineMap?.[index] || index + 1, ocr: Boolean(chunk.ocr), strict: Boolean(chunk.ocr) && chunk.ocr.proofread !== true }))
     .filter(line => line.text));
   // Page furniture: short text repeated at the top or bottom of several pages.
   const edgeCount = new Map();
@@ -106,6 +106,62 @@ export function coverSentence(answer, fragments) {
   }
   frame += answer.slice(cursor);
   return { frame: frame.replace(/\s+/g, ' ').trim(), order: slots.map(slot => slot.fragment) };
+}
+
+const squashWords = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+// OCR drops the space between words: a tile "tellme" whose letters are
+// exactly consecutive words of the keyed sentence becomes "tell me", and a
+// keyed word "youremember" made of two single-word tiles is split.
+export function rejoinSpaces(fragments, answer) {
+  const words = answer.split(' ');
+  fragments = fragments.map(fragment => {
+    if (fragment.includes(' ')) return fragment;
+    for (let i = 0; i < words.length; i++) for (let k = 2; i + k <= words.length && k <= 4; k++) {
+      const run = words.slice(i, i + k);
+      if (squashWords(run.join('')) === squashWords(fragment)) return run.join(' ').replace(/[.,;:!?]+$/, '');
+    }
+    return fragment;
+  });
+  const single = new Set(fragments.filter(fragment => !fragment.includes(' ')).map(squashWords));
+  answer = words.map(word => {
+    if (single.has(squashWords(word))) return word;
+    const core = squashWords(word);
+    const splits = [];
+    for (let s = 1; s < core.length; s++) if (single.has(core.slice(0, s)) && single.has(core.slice(s))) splits.push(s);
+    if (splits.length !== 1 || /[^A-Za-z.,;:!?]/.test(word)) return word;
+    const at = splits[0] + (/^[^A-Za-z]/.test(word) ? 1 : 0);
+    return `${word.slice(0, at)} ${word.slice(at)}`;
+  }).join(' ');
+  return { fragments, answer };
+}
+
+// Without a proofreading pass, a scanned tile answer must look whole: the
+// keyed sentence ends like a sentence, at most one tile is left over and no
+// tile carries OCR debris such as "|" or "»".
+export function scannedSentenceLooksWhole(answer, fragments, usedCount) {
+  return /[.?!]["'”’]?$/.test(String(answer || '').trim()) && fragments.length - usedCount <= 1 && fragments.every(fragment => /^[A-Za-z][A-Za-z'’ ,.-]*$/.test(fragment));
+}
+
+// An unused tile that also appears in the inferred fixed text means the
+// cover guessed wrong about which words were printed in the frame.
+export function tileInFixedText(cover, fragments) {
+  const fixed = cover.frame.split(/_{2,}/).join(' ').split(/\s+/).map(squashWords).filter(Boolean);
+  const used = new Set(cover.order);
+  const inFixed = letters => fixed.some((_, i) => { let run = ''; for (let k = i; k < fixed.length && run.length < letters.length; k++) run += fixed[k]; return run === letters; });
+  // "I am" read as "lam", "learn" as "lear": an unused tile and a fixed word
+  // that differ by a letter or two at one end.
+  const near = (a, b) => a !== b && Math.min(a.length, b.length) >= 2 && Math.abs(a.length - b.length) <= 2 && (a.startsWith(b) || a.endsWith(b) || b.startsWith(a) || b.endsWith(a));
+  const glued = letters => fixed.some(word => near(word, letters));
+  // "do / a" read as one tile "do fa": a word of an unused tile is printed text.
+  const shared = fragment => fragment.split(/\s+/).map(squashWords).some(word => word && fixed.includes(word));
+  return fragments.some((fragment, index) => !used.has(index) && squashWords(fragment) && (inFixed(squashWords(fragment)) || glued(squashWords(fragment)) || fragment.includes(' ') && shared(fragment)));
+}
+
+// Fixed words in a frame inferred from the key (not read from a printed frame
+// line). Without a proofreading pass these cannot be told from lost tiles.
+export function inferredFixedText(cover) {
+  return /[A-Za-z]/.test(cover.frame.replace(/_{2,}/g, ''));
 }
 
 // Web Complete the Words pages lose their letter boxes when copied, leaving
@@ -330,7 +386,7 @@ export function parseTaskGrammar(chunks, { title = '' } = {}) {
         const target = outGroup('writing', 'sentence', /build a sentence/i.test(g.title) ? g.title : 'Build a Sentence');
         const extras = body.map(l => l.text.match(/^Extra words? (?:not used)?\s*[:：]\s*(.+)$/i)).find(Boolean);
         const explanation = [...body, ...sample].filter(l => /^Explanation\s*[:：]/i.test(l.text)).map(l => l.text.replace(/^Explanation\s*[:：]\s*/i, ''));
-        const q = { id: uniqueId(`${target.id}-q${it.number}`), type: 'sentence_order', prompt: promptText || 'Make an appropriate sentence.', options: fragments.map((text, index) => ({ id: `F${index + 1}`, text })), answer: null, explanation: explanation.join('\n'), audio: null, image: null, timeLimitSeconds: 0, prepareSeconds: 0, source: sourceNote(it.line, `原题号 ${it.number}`), _number: it.number, _group: gi, _sentenceKey: textKey?.[1] || null, _extras: extras?.[1] || null };
+        const q = { id: uniqueId(`${target.id}-q${it.number}`), type: 'sentence_order', prompt: promptText || 'Make an appropriate sentence.', options: fragments.map((text, index) => ({ id: `F${index + 1}`, text })), answer: null, explanation: explanation.join('\n'), audio: null, image: null, timeLimitSeconds: 0, prepareSeconds: 0, source: sourceNote(it.line, `原题号 ${it.number}`), _number: it.number, _group: gi, _sentenceKey: textKey?.[1] || null, _extras: extras?.[1] || null, _ocr: Boolean(it.line.ocr), _strict: Boolean(it.line.strict) };
         target.questions.push(q); questions.push(q);
         continue;
       }
@@ -398,7 +454,9 @@ export function parseTaskGrammar(chunks, { title = '' } = {}) {
     const pool = questions.filter(q => q.type === type && q._number === key.number && q._group < key.block && !q._keyed && !q._duplicate);
     const previousBlock = Math.max(-1, ...keys.filter(other => other.block < key.block).map(other => other.block));
     const recent = pool.filter(q => q._group >= previousBlock);
-    const candidates = recent.length ? recent : pool;
+    // On a scanned page a question can go unread; its key must then stay
+    // unused rather than reach back to an earlier passage's question.
+    const candidates = recent.length ? recent : key.line?.ocr && previousBlock >= 0 ? [] : pool;
     if (candidates.length !== 1) {
       if (candidates.length > 1) issues.push(issue('error', `${where(key.line)} 的答案题号 ${key.number} 对应多道题，未自动判定。`, where(key.line)));
       else issues.push(issue('warning', `${where(key.line)} 的答案题号 ${key.number} 没有对应的题目。`, where(key.line)));
@@ -423,9 +481,18 @@ export function parseTaskGrammar(chunks, { title = '' } = {}) {
       else issues.push(issue('warning', `${q.source} 没有明确的本题答案键，保留为未评分。`, `${q.id}.answer`));
       if (q.options.length < 2 || q.options.some((option, index) => option.id !== 'ABCDEF'[index])) issues.push(issue('error', `${q.source} 的选项不完整或顺序不连续。`, `${q.id}.options`));
     } else if (q.type === 'sentence_order') {
-      const fragments = q.options.map(option => option.text);
-      const answer = q._sentenceKey?.replace(/^["“]|["”]$/g, '').trim() || null;
-      const cover = answer ? coverSentence(answer, fragments) : null;
+      let fragments = q.options.map(option => option.text);
+      let answer = q._sentenceKey?.replace(/^["“]|["”]$/g, '').trim() || null;
+      if (answer && q._ocr) {
+        ({ fragments, answer } = rejoinSpaces(fragments, answer));
+        q.options = fragments.map((text, index) => ({ ...q.options[index], text }));
+      }
+      let cover = answer ? coverSentence(answer, fragments) : null;
+      if (cover && q._ocr && tileInFixedText(cover, fragments)) cover = null;
+      if (cover && q._strict && (!scannedSentenceLooksWhole(answer, fragments, cover.order.length) || inferredFixedText(cover))) {
+        issues.push(issue('error', `${q.source} 是扫描页，本机识别的答案句或词块不完整，已留空；连接 AI 看图校对后可以补全。`, `${q.id}.answer`));
+        cover = null; answer = null;
+      }
       if (cover) {
         q.sentenceFrame = cover.frame; q.answerSlots = cover.order.length;
         q.answer = cover.order.map(index => q.options[index].id); q.explanation = [answer, q.explanation].filter(Boolean).join('\n');

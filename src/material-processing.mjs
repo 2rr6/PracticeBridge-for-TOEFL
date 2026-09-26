@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { InputError, LIMITS, inputFileLimit, decodeUpload, safeRelativeName, prepareImportFiles, createArchiveSession, identifyMedia, validatePackage } from './package.mjs';
-import { extractMaterialSources, buildDraftFromSources } from './importer.mjs';
+import { extractMaterialSources, buildDraftFromSources, applyScannedPages, markScannedQuestions } from './importer.mjs';
+import { ocrEvidenceToChunk } from './ocr-layout.mjs';
 import {materialSourceRevision} from './material-candidates.mjs';
 
 const PROCESSORS = new Set(['native', 'exam-document', 'worksheet', 'ai']);
@@ -136,9 +137,13 @@ function checkedAnalysis(result, inspected, mode) {
 }
 
 /** Receiving is handled by the inbox. Nothing here can erase the originals. */
-export function createMaterialProcessing({ inbox, models, registerDraft, candidateRepository, getWorkspaceEpoch,probeMedia }) {
+export function createMaterialProcessing({ inbox, models, registerDraft, candidateRepository, getWorkspaceEpoch,probeMedia,scanOcr=null }) {
   if (!inbox?.get || !inbox?.loadFiles || !inbox?.update || typeof registerDraft !== 'function') throw new TypeError('createMaterialProcessing requires an inbox and registerDraft.');
   const active = new Map();
+  // In-memory only: which scanned pages are being read for a material.
+  const progress = new Map();
+  // In-memory only: scanned pages found by the last local reading of a material.
+  const scans = new Map();
   const mediaProbes=new Set();let mediaTerminationFailure=null;
   let stopped = false,paused=false;
   const interrupted = () => new InputError('处理已中断；原文件已保留，可以稍后重新评估或整理。', 409);
@@ -165,6 +170,8 @@ export function createMaterialProcessing({ inbox, models, registerDraft, candida
     const files = [...prepared.files].map(([name, bytes]) => ({ name, mime: mimeFor(name, bytes), size: bytes.length }));
     const extracted = { chunks: [], media: [], sources: [], issues: [...prepared.issues], files: [...prepared.files].map(([name, bytes]) => ({ name, data: bytes.toString('base64') })) };
     let textSize = 0;
+    const scanned = [];
+    scans.delete(id);
     const addExtraction = part => {
       const added = part.chunks.reduce((sum, chunk) => sum + chunk.text.length, 0);
       if (textSize + added > TEXT_LIMIT) {
@@ -193,7 +200,9 @@ export function createMaterialProcessing({ inbox, models, registerDraft, candida
       if (/^(audio|image|video)\//.test(mime)) { extracted.media.push({ name, mime }); continue; }
       try {
         if (DOCUMENT_EXTENSIONS.has(extension(name)) && bytes.length) {
-          addExtraction(await extractMaterialSources({ files: [{ name, data: bytes.toString('base64') }], title: material.title, signal }));
+          const part = await extractMaterialSources({ files: [{ name, data: bytes.toString('base64') }], title: material.title, signal });
+          if (extension(name) === '.pdf') scanned.push(...(await readScannedPages(id, name, bytes, part, signal)).map(page => [name, page]));
+          addExtraction(part);
         } else {
           const text = BINARY_EXTENSIONS.has(extension(name)) ? null : readableText(bytes);
           if (text === null) extracted.issues.push(warningIssue(`${name} 暂时只能保存为原文件；当前没有可读取的文字。`, name));
@@ -211,10 +220,32 @@ export function createMaterialProcessing({ inbox, models, registerDraft, candida
       processor = 'native';
     } else {
       localDraft = await buildDraftFromSources(extracted, { title: material.title, useAI: false }, models);
+      for (const name of new Set(scanned.map(([file]) => file))) markScannedQuestions(localDraft.pack, name, scanned.filter(([file]) => file === name).map(([, page]) => page));
       processor = hasQuestions(localDraft.pack) ? localDraft.method === 'exam-document' ? 'exam-document' : ['template', 'worksheet'].includes(localDraft.method) ? 'worksheet' : null : null;
     }
     check();
     return { material, prepared, files, sources: extracted.sources, issues: uniqueIssues(localDraft.issues), extracted, localDraft, availableProcessors: [...(processor ? [processor] : []), 'ai'], processingError: prepared.processingError };
+  }
+
+  async function readScannedPages(id, name, bytes, part, signal) {
+    const blank = part.chunks.filter(chunk => chunk.name === name && chunk.kind === 'pdf' && !chunk.text.trim()).map(chunk => chunk.page);
+    if (!blank.length) return [];
+    if (!scanOcr || !(await scanOcr.enabled())) {
+      part.issues.push(warningIssue(`${name} 有 ${blank.length} 页没有文字层，可能是扫描件。在「模型与数据」中安装并启用英语 OCR 后重新整理，可以自动识别这些页。`, name));
+      return [];
+    }
+    progress.set(id, { stage: 'ocr', file: name, done: 0, total: blank.length });
+    try {
+      const { results, failed, proofread = 0 } = await scanOcr.recognizePdf({ bytes, pages: blank, signal, onProgress: value => progress.set(id, { stage: 'ocr', file: name, ...value }) });
+      const summary = scans.get(id) || { pages: 0, proofread: 0 };
+      scans.set(id, { pages: summary.pages + results.size, proofread: summary.proofread + proofread });
+      if (failed.length) part.issues.push(warningIssue(`${name} 第 ${failed.join('、')} 页扫描识别没有得到文字，原件仍保留。`, name));
+      return applyScannedPages(part, name, results);
+    } catch (error) {
+      if (signal?.aborted) throw error;
+      part.issues.push(warningIssue(`${name} 的扫描页识别没有完成：${String(error.message || error).slice(0, 200)}。原件仍保留，可以稍后重新整理。`, name));
+      return [];
+    } finally { progress.delete(id); }
   }
 
   function guarded(id, status, work, startPatch = {}) {
@@ -354,5 +385,72 @@ export function createMaterialProcessing({ inbox, models, registerDraft, candida
   function resume(){if(stopped)throw interrupted();paused=false;}
   async function stop(){stopped=true;await pause();}
 
-  return { assess, convert, openDraft, inspect, cancel, pause,resume,stop,awaitIdle, busy: () => active.size > 0 };
+  /**
+   * Sends the scanned pages of a material, as pictures with their local OCR
+   * lines, to the connected model for proofreading. Needs the user's consent
+   * for this material; the next local processing uses the corrected reading.
+   */
+  async function proofreadScans(id, { consent = false, expectedBinding } = {}) {
+    if (consent !== true) throw new InputError('请先确认把这批材料的扫描页图片发送给当前 AI 服务。');
+    if (!scanOcr?.proofreadPdf || !(await scanOcr.enabled())) throw new InputError('请先在「模型与数据」中安装并启用英语 OCR。');
+    models.assertBinding?.(expectedBinding);
+    const snapshot = modelSnapshot(models);
+    if (!snapshot.capabilities.proofreadScans || typeof models?.proofreadScanPage !== 'function') throw new InputError('当前 AI 连接不能看图；请在「模型与数据」中连接支持图片输入的 API 服务。');
+    return guarded(id, null, async operation => {
+      const signal = operation.controller.signal;
+      const prepared = await prepareReceivedFiles(await inbox.loadFiles(id), { signal });
+      const summary = { total: 0, proofread: 0, failed: [], model: null };
+      try {
+        for (const [name, bytes] of [...prepared.files]) {
+          checkpoint(operation);
+          if (extension(name) !== '.pdf') continue;
+          const part = await extractMaterialSources({ files: [{ name, data: bytes.toString('base64') }], title: '', signal });
+          const pages = part.chunks.filter(chunk => chunk.name === name && chunk.kind === 'pdf' && !chunk.text.trim()).map(chunk => chunk.page);
+          if (!pages.length) continue;
+          progress.set(id, { stage: 'ocr', file: name, done: 0, total: pages.length });
+          await scanOcr.recognizePdf({ bytes, pages, signal, onProgress: value => progress.set(id, { stage: 'ocr', file: name, ...value }) });
+          const result = await scanOcr.proofreadPdf({
+            bytes, pages, signal, onProgress: value => progress.set(id, { stage: 'proofread', file: name, ...value }),
+            ask: async ({ image, lines, signal: pageSignal }) => { assertSameModel(models, snapshot); return models.proofreadScanPage({ image, lines, consent: true, expectedBinding: snapshot.binding, signal: pageSignal }); },
+          });
+          summary.total += result.total; summary.proofread += result.proofread; summary.model = result.model || summary.model;
+          summary.failed.push(...result.failed.map(item => ({ file: name, ...item })));
+        }
+      } finally { progress.delete(id); }
+      if (!summary.total) throw new InputError('这批材料没有需要校对的扫描页。');
+      const current = scans.get(id);
+      if (current) scans.set(id, { ...current, proofread: summary.proofread });
+      return { ...summary, material: inbox.get(id) };
+    });
+  }
+
+  /**
+   * A band of the original scanned page around the given text lines, as the
+   * page picture OCR read, so a scanned question can be checked at a glance.
+   */
+  async function scanCrop(id, { file, page, line, lines = 1 } = {}) {
+    if (typeof file !== 'string' || !Number.isSafeInteger(page) || page < 1 || !Number.isSafeInteger(line) || line < 1 || !Number.isSafeInteger(lines) || lines < 1 || lines > 30) throw new InputError('原件位置无效。');
+    if (!scanOcr?.pageReading) throw new InputError('这批材料没有本机扫描识别结果。', 404);
+    const prepared = await prepareReceivedFiles(await inbox.loadFiles(id));
+    const bytes = prepared.files.get(file);
+    if (!bytes || extension(file) !== '.pdf') throw new InputError('找不到这份原件。', 404);
+    const reading = await scanOcr.pageReading(bytes, page);
+    if (!reading) throw new InputError('这一页没有保存的扫描图片，请重新整理一次。', 404);
+    const boxes = ocrEvidenceToChunk(reading.evidence, { name: file, page }).ocr.lineBoxes.slice(line - 1, line - 1 + lines);
+    if (!boxes.length) throw new InputError('原件中找不到这一行。', 404);
+    const { createCanvas, loadImage } = await import('@napi-rs/canvas');
+    const image = await loadImage(reading.picture);
+    const height = Math.max(...boxes.map(box => box.y1 - box.y0)), top = Math.max(0, Math.min(...boxes.map(box => box.y0)) - height * 1.5), bottom = Math.min(image.height, Math.max(...boxes.map(box => box.y1)) + height * 1.5);
+    const left = Math.max(0, Math.min(...boxes.map(box => box.x0)) - height * 2), right = Math.min(image.width, Math.max(...boxes.map(box => box.x1)) + height * 2);
+    const canvas = createCanvas(Math.max(1, Math.round(right - left)), Math.max(1, Math.round(bottom - top)));
+    const context = canvas.getContext('2d');
+    context.drawImage(image, left, top, right - left, bottom - top, 0, 0, canvas.width, canvas.height);
+    // A light band marks the line the question or answer came from.
+    context.fillStyle = 'rgba(255, 214, 10, 0.22)';
+    const first = boxes[0];
+    context.fillRect(0, first.y0 - top - height * 0.25, canvas.width, first.y1 - first.y0 + height * 0.5);
+    return canvas.toBuffer('image/jpeg', 85);
+  }
+
+  return { assess, convert, openDraft, inspect, cancel, pause,resume,stop,awaitIdle, proofreadScans, scanCrop, busy: () => active.size > 0, progress: id => progress.get(id) || null, scans: id => scans.get(id) || null };
 }

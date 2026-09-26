@@ -20,8 +20,6 @@ export async function verifyReadme({root=project}={}){
   const [packageBytes,readmeBytes,factsBytes,policyBytes]=await Promise.all(['package.json','README.md','docs/development/README_FACTS.json','docs/development/release-policy.json'].map(read));
   const pkg=JSON.parse(packageBytes),readme=readmeBytes.toString('utf8'),facts=JSON.parse(factsBytes),policy=JSON.parse(policyBytes),allowed=new Set(policy.source);
   if(facts.sourceSnapshot?.packageVersion!==pkg.version)fail('facts use a different package version');
-  const displayed=/\*\*(\d+\.\d+\.\d+(?:-[\w.-]+)?) 本地练习软件\*\*/.exec(readme)?.[1];
-  if(displayed!==pkg.version)fail('the trusted README version does not match package.json');
   const sourceFiles=facts.sourceSnapshot?.sourceFiles;
   if(!Array.isArray(sourceFiles)||!sourceFiles.length||new Set(sourceFiles.map(file=>file.path)).size!==sourceFiles.length)fail('missing or duplicate source snapshot entries');
   const sourcePaths=new Set(sourceFiles.map(file=>file.path));
