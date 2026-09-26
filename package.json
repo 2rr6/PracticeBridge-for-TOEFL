@@ -1,0 +1,35 @@
+{
+  "name": "practicebridge",
+  "version": "0.5.1",
+  "private": true,
+  "description": "A local-first practice workspace for your materials and your models.",
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "engines": {
+    "node": ">=22.16"
+  },
+  "scripts": {
+    "start": "electron .",
+    "web": "node src/server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "package": "node scripts/package.mjs",
+    "verify": "node scripts/verify.mjs",
+    "package:source": "node scripts/release-source.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@zip.js/zip.js": "2.14.0",
+    "ajv": "8.17.1",
+    "mammoth": "1.12.2",
+    "pdfjs-dist": "6.3.289",
+    "tesseract.js": "7.0.0",
+    "tesseract.js-core": "7.0.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "44.3.0",
+    "fast-check": "4.10.0",
+    "playwright": "1.63.0"
+  }
+}

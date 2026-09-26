@@ -1,0 +1,75 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {chromium} from 'playwright';
+import {startServer} from '../src/server.mjs';
+import {appFetch} from './auth-client.mjs';
+
+const root=path.resolve('test-results/material-candidate-drafts-ui');await fs.mkdir(root,{recursive:true});
+const run=await fs.mkdtemp(path.join(root,'run-'));
+const question=id=>({id,type:'single_choice',prompt:`Original ${id}.`,options:[{id:'A',text:'Blue'},{id:'B',text:'Red'},{id:'C',text:'White'}],answer:'A'});
+const pack={schemaVersion:1,id:'drafts',version:'1',title:'Self-authored draft regression',groups:[{id:'read',section:'reading',taskKind:'read_daily',title:'Notice',passage:'The flag is blue.',questions:[question('q1'),question('q2')]}]};
+const wav=Buffer.alloc(16044);wav.write('RIFF');wav.writeUInt32LE(wav.length-8,4);wav.write('WAVEfmt ',8);wav.writeUInt32LE(16,16);wav.writeUInt16LE(1,20);wav.writeUInt16LE(1,22);wav.writeUInt32LE(8000,24);wav.writeUInt32LE(16000,28);wav.writeUInt16LE(2,32);wav.writeUInt16LE(16,34);wav.write('data',36);wav.writeUInt32LE(16000,40);
+let instance,browser;const errors=[];
+try{
+  instance=await startServer({dataDir:path.join(run,'data'),models:{publicSettings:()=>({provider:'none',capabilities:{}})}});
+  const post=async(endpoint,body)=>{const response=await appFetch(instance.url+'/api'+endpoint,{method:'POST',headers:{'X-PracticeBridge':'1','Content-Type':'application/json'},body:JSON.stringify(body)});const result=await response.json();assert.equal(response.status,200,JSON.stringify(result));return result;};
+  const {material}=await post('/materials',{files:[{name:'practicebridge.json',data:Buffer.from(JSON.stringify(pack)).toString('base64')},{name:'stimulus.wav',data:wav.toString('base64')}]});
+  await post(`/materials/${material.id}/assess`,{useAI:false});await post(`/materials/${material.id}/convert`,{useAI:false});
+  const candidates=()=>fetch(instance.url+`/api/materials/${material.id}/candidates?author=1`).then(r=>r.json());
+  browser=await chromium.launch({channel:'msedge',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(instance.url+`/#candidates/${material.id}`);await page.locator('#candidate-author').check();await page.locator('textarea[name=prompt]').first().waitFor();
+  const first=page.locator('[data-candidate]').nth(0),second=page.locator('[data-candidate]').nth(1);
+  await second.locator('.candidate-editor>summary').click();
+  await second.locator('[name=prompt]').fill('Unsaved second prompt.');await second.locator('[name=option-0]').fill('Unsaved option');await second.locator('[name=answer]').fill('B');await second.locator('[name=answer-reviewed]').check();
+  await second.locator('[name=audio-asset]').selectOption({label:'stimulus.wav'});await second.locator('[name=content-checked]').check();
+  await first.locator('[name=prompt]').fill('Saved first prompt.');await first.getByRole('button',{name:'保存字段校对'}).click();await first.getByText('候选修订 2',{exact:false}).waitFor();
+  assert.equal(await second.locator('[name=prompt]').inputValue(),'Unsaved second prompt.');
+  assert.equal(await second.locator('[name=audio-asset] option:checked').textContent(),'stimulus.wav');assert.equal(await second.locator('[name=content-checked]').isChecked(),true);
+  await page.locator('#select-answerable').click();
+  assert.equal(await second.locator('[name=option-0]').inputValue(),'Unsaved option');assert.equal(await second.locator('[name=answer]').inputValue(),'B');assert.equal(await second.locator('[name=answer-reviewed]').isChecked(),true);assert.equal(await second.locator('details').first().getAttribute('open'),'');
+  await page.locator('#candidate-author').uncheck();await page.locator('[data-candidate-form]').first().waitFor({state:'detached'});await page.locator('#candidate-author').check();await second.locator('[name=prompt]').waitFor();assert.equal(await second.locator('[name=prompt]').inputValue(),'Unsaved second prompt.');
+  await second.getByRole('button',{name:'保存字段校对'}).click();await second.getByText('候选修订 2',{exact:false}).waitFor();
+  assert.equal((await candidates()).candidates[1].fields.prompt,'Unsaved second prompt.');
+  // Shared mapping updates both persisted revisions; the other dirty form must keep its old CAS base.
+  await second.locator('[name=prompt]').fill('Stale draft survives shared mapping.');
+  await first.locator('[name=media-role]').selectOption('groupAudio');await first.locator('[name=audio-asset]').selectOption({label:'stimulus.wav'});await first.getByRole('button',{name:'保存对应关系'}).click();await first.getByText('候选修订 3',{exact:false}).waitFor();
+  assert.equal(await second.locator('[name=prompt]').inputValue(),'Stale draft survives shared mapping.');
+  const conflict=page.waitForResponse(r=>r.url().endsWith('/patch')&&r.status()===409);await second.getByRole('button',{name:'保存字段校对'}).click();await conflict;
+  await second.locator('[data-candidate-error]').filter({hasText:/更新|冲突/}).waitFor();assert.equal(await second.locator('[name=prompt]').inputValue(),'Stale draft survives shared mapping.');assert.equal((await candidates()).candidates[1].revision,3);
+  await page.screenshot({path:path.join(run,'shared-conflict.png'),fullPage:true});
+  await second.getByRole('button',{name:'放弃未保存修改并载入最新修订'}).click();
+  assert.equal(await second.locator('[name=prompt]').inputValue(),'Unsaved second prompt.');
+  // A delayed successful response remains owned by its card after another save rerenders the page.
+  let release,arrived;const held=new Promise(resolve=>release=resolve),started=new Promise(resolve=>arrived=resolve);
+  const firstId=await first.getAttribute('data-candidate');
+  await page.route(`**/candidates/${firstId}/patch`,async route=>{const response=await route.fetch();arrived();await held;await route.fulfill({response});});
+  await first.locator('[name=prompt]').fill('Delayed first save.');await first.getByRole('button',{name:'保存字段校对'}).click();await started;
+  await second.locator('[name=prompt]').fill('Concurrent second save.');await second.getByRole('button',{name:'保存字段校对'}).click();await second.getByText('候选修订 4',{exact:false}).waitFor();
+  assert.equal(await first.locator('[name=prompt]').isDisabled(),true);
+  await second.locator('[name=explanation]').fill('Typed while the first response is delayed.');release();await first.locator('[name=prompt]:enabled').waitFor();
+  assert.equal(await first.locator('[name=prompt]').inputValue(),'Delayed first save.');assert.equal(await second.locator('[name=explanation]').inputValue(),'Typed while the first response is delayed.');
+  await page.screenshot({path:path.join(run,'late-save.png'),fullPage:true});
+  // A valid competing patch removes an option that still has an unsaved draft.
+  const oldView=await candidates(),oldSecond=oldView.candidates[1];
+  await second.locator('[name=option-2]').fill('UNSAVED_OPTION_C_MUST_REMAIN_VISIBLE');
+  await post(`/materials/${material.id}/candidates/${oldSecond.candidateId}/patch`,{expectedRevision:oldSecond.revision,expectedEpoch:oldView.expectedEpoch,fields:{options:oldSecond.fields.options.slice(0,2)}});
+  await first.locator('[name=prompt]').fill('Refresh after another writer removes option C.');await first.getByRole('button',{name:'保存字段校对'}).click();await first.getByText('候选修订 5',{exact:false}).waitFor();
+  assert.equal(await second.locator('[name=option-2]').count(),1,'removed option must remain in the old draft structure');
+  assert.equal(await second.locator('[name=option-2]').inputValue(),'UNSAVED_OPTION_C_MUST_REMAIN_VISIBLE');
+  assert.equal(await second.locator('[name=option-2]').locator('..').locator('span').textContent(),'选项 C');
+  await page.locator('#select-answerable').click();assert.equal(await second.locator('[name=option-2]').inputValue(),'UNSAVED_OPTION_C_MUST_REMAIN_VISIBLE');
+  const shapeConflict=page.waitForResponse(r=>r.url().endsWith(`/candidates/${oldSecond.candidateId}/patch`)&&r.status()===409);
+  await second.getByRole('button',{name:'保存字段校对'}).click();await shapeConflict;
+  await second.locator('[data-candidate-error]').filter({hasText:/更新|冲突/}).waitFor();
+  assert.equal(await second.locator('[name=option-2]').inputValue(),'UNSAVED_OPTION_C_MUST_REMAIN_VISIBLE');
+  assert.equal(await second.locator('[name=explanation]').inputValue(),'Typed while the first response is delayed.');
+  assert.equal((await candidates()).candidates[1].revision,5,'stale draft cannot overwrite the competing edit');
+  await second.screenshot({path:path.join(run,'option-shape-conflict.png')});
+  await second.getByRole('button',{name:'放弃未保存修改并载入最新修订'}).click();
+  assert.equal(await second.locator('[name=option-2]').count(),0);assert.equal(await second.locator('[name=explanation]').inputValue(),'');
+  await second.locator('[name=prompt]').fill('New draft after explicit recovery.');await second.getByRole('button',{name:'保存字段校对'}).click();await second.getByText('候选修订 6',{exact:false}).waitFor();
+  const recovered=(await candidates()).candidates[1];assert.deepEqual(recovered.fields.options.map(o=>o.id),['A','B']);assert.equal(recovered.fields.prompt,'New draft after explicit recovery.');
+  assert.deepEqual(errors,[]);
+  await fs.writeFile(path.join(run,'result.json'),JSON.stringify({passed:true,optionShapeConflict:true,recoveredRevision:recovered.revision,errors},null,2));console.log(`PASS draft preservation, shared revision conflict, late response and changed option shape: ${run}`);
+}finally{await browser?.close();await instance?.close();}

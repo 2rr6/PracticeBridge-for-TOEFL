@@ -1,0 +1,22 @@
+*.cmd text eol=crlf
+
+# Exact authored files whose bytes enter the OCR physical launch contract.
+/package.json text eol=lf
+/package-lock.json text eol=lf
+/assets/ocr-runtime-lock.json text eol=lf
+/docs/practicebridge.v2.schema.json text eol=lf
+/src/package.mjs text eol=lf
+/src/package-schema.mjs text eol=lf
+/src/exam-plan.mjs text eol=lf
+/src/media-manifest.mjs text eol=lf
+/src/archive/zip-adapter.mjs text eol=lf
+/src/ocr-policy.mjs text eol=lf
+/src/ocr-evidence.mjs text eol=lf
+/src/ocr-launch.mjs text eol=lf
+/src/workers/ocr.mjs text eol=lf
+/src/workers/ocr-child.mjs text eol=lf
+/src/workers/ocr-thread.cjs text eol=lf
+/src/workers/ocr-resolve.cjs text eol=lf
+/tools/asr-worker/worker.py text eol=lf
+/assets/ocr-launch-lock.json text eol=lf
+/docs/development/runtime-dependencies.json text eol=lf

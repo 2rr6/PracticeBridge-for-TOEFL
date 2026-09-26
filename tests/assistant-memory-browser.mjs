@@ -1,0 +1,44 @@
+// Synthetic material and a loopback-only provider; no model account or private files.
+import {chromium} from 'playwright';
+import {startServer} from '../src/server.mjs';
+import {appFetch} from './auth-client.mjs';
+import {createServer} from 'node:http';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const run=path.resolve('test-results',`memory-browser-${Date.now()}`);await fs.mkdir(run,{recursive:true});
+let browser,server,provider;const bodies=[],errors=[];
+try{
+  provider=createServer(async(req,res)=>{let body='';for await(const chunk of req)body+=chunk;bodies.push(JSON.parse(body));res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({choices:[{finish_reason:'stop',message:{content:'OLD_ANSWER_BROWSER_SENTINEL'}}]}));});await new Promise(r=>provider.listen(0,'127.0.0.1',r));
+  server=await startServer({dataDir:path.join(run,'data')});
+  const api=async(route,body)=>{const response=await appFetch(server.url+'/api'+route,{method:body?'POST':'GET',headers:{'Content-Type':'application/json','X-PracticeBridge':'1'},...(body?{body:JSON.stringify(body)}:{})});const result=await response.json();assert.equal(response.status,200,JSON.stringify(result));return result;};
+  await api('/settings',{provider:'compatible',baseUrl:`http://127.0.0.1:${provider.address().port}/v1`,model:'local-memory-fixture',maxOutputTokens:1000,timeoutSeconds:5});
+  const pack={schemaVersion:1,examContractVersion:1,minReaderVersion:'0.3.0',id:'memory-browser',version:'1',title:'Synthetic memory exercise',groups:[{id:'notice',section:'reading',taskKind:'read_daily',title:'A notice',passage:'The reading room opens at nine.',questions:[{id:'q1',type:'single_choice',prompt:'When does the room open?',options:[{id:'A',text:'Nine'},{id:'B',text:'Ten'}],answer:'A',source:'Self-authored browser fixture.'}]}],examSets:[{id:'memory-set',title:'Synthetic set',sections:[{id:'reading',section:'reading',title:'Reading',modules:[{id:'reading-main',title:'Reading',taskIds:['notice']}]}]}]};
+  const preview=await api('/import/preview',{files:[{name:'practicebridge.json',data:Buffer.from(JSON.stringify(pack)).toString('base64')}]});const {library}=await api('/import/commit',{draftId:preview.draftId,pack:preview.pack,acknowledged:true});
+  browser=await chromium.launch({channel:'msedge',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.setDefaultTimeout(7000);page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(`${server.url}/#exam/${library.libraryId}/memory-set/reading/practice`);await page.locator('#exam-next').click();await page.locator('#exam-coach-pill').click();
+  await page.locator('#coach-preference-settings').click();
+  await page.locator('[data-preference-key="feedbackStyle"]').selectOption('brief');
+  const before=await api('/assistant/preferences');assert.equal(before.preferences.length,0);
+  await page.locator('[data-preference-save="feedbackStyle"]').click();
+  await page.getByText('已确认保存。',{exact:true}).waitFor();
+  assert.equal((await api('/assistant/preferences')).preferences[0].value,'brief');
+  await page.locator('#coach-preference-include').check();
+  assert.match(await page.locator('#coach-preference-preview').innerText(),/反馈详略：简要/);
+  await page.locator('#coach-preference-settings').click();
+  await page.screenshot({path:path.join(run,'preferences-send-preview.png'),fullPage:true});
+  await page.locator('#coach-preference-settings').click();
+  await page.evaluate(()=>{window.originalExamRoot=document.querySelector('.exam-shell');});
+  await page.locator('#exam-coach-input').fill('Explain the notice.');await page.locator('#exam-coach-send').click();await page.locator('.exam-coach-reply').last().getByText('OLD_ANSWER_BROWSER_SENTINEL',{exact:true}).waitFor();
+  assert.match(JSON.stringify(bodies[0]),/反馈详略：简要/);
+  await page.locator('#coach-preference-include').uncheck();await page.locator('#exam-coach-input').fill('Explain it again.');await page.locator('#exam-coach-send').click();await page.waitForFunction(()=>document.querySelectorAll('.exam-coach-reply').length===2&&[...document.querySelectorAll('.exam-coach-reply')].every(e=>e.textContent==='OLD_ANSWER_BROWSER_SENTINEL'));
+  assert.doesNotMatch(JSON.stringify(bodies[1]),/OLD_ANSWER_BROWSER_SENTINEL|反馈详略：简要/);
+  await page.locator('[data-preference-delete="feedbackStyle"]').click();await page.getByText('已删除；旧备份不会自动恢复这项偏好。',{exact:true}).waitFor();
+  await page.locator('#coach-preference-include').check();await page.locator('#exam-coach-input').fill('One final explanation.');await page.locator('#exam-coach-send').click();await page.waitForFunction(()=>document.querySelectorAll('.exam-coach-reply').length===3&&[...document.querySelectorAll('.exam-coach-reply')].every(e=>e.textContent==='OLD_ANSWER_BROWSER_SENTINEL'));
+  assert.doesNotMatch(JSON.stringify(bodies[2]),/OLD_ANSWER_BROWSER_SENTINEL|反馈详略：简要/);
+  assert.equal(await page.evaluate(()=>window.originalExamRoot===document.querySelector('.exam-shell')),true);
+  assert.equal(await page.evaluate(()=>{const panel=document.querySelector('#exam-coach-panel').getBoundingClientRect(),head=document.querySelector('.exam-coach-head').getBoundingClientRect();return head.top>=panel.top&&head.bottom<=panel.bottom;}),true,'expanded preferences keep the coach title and collapse control visible');
+  await page.screenshot({path:path.join(run,'preferences-desktop.png'),fullPage:true});
+  await page.setViewportSize({width:900,height:800});await page.screenshot({path:path.join(run,'preferences-compact.png'),fullPage:true});
+  assert.deepEqual(errors,[]);await fs.writeFile(path.join(run,'result.json'),JSON.stringify({ok:true,requests:bodies.length,errors,checks:['explicit confirmation','preview and inclusion','old-history sentinel absent on disable/delete','exam root preserved']},null,2));console.log('PASS memory browser flow; '+run);
+}finally{await browser?.close();await server?.close();await new Promise(r=>provider?.close(r)||r());}

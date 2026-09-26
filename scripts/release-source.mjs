@@ -1,0 +1,16 @@
+import {writeArchive} from '../src/archive/zip-adapter.mjs';
+import {mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {stageRelease,auditSource,projectRoot,sha256,json,outputDirectory} from './audit-release.mjs';
+const root=projectRoot,version=(await json(resolve(root,'package.json'))).version;
+const args=process.argv.slice(2);
+if(args.length&&!(args.length===2&&args[0]==='--out'))throw new Error('Usage: node scripts/release-source.mjs [--out dist/BUILD]');
+const out=await outputDirectory(args[1]??'dist',root),stage=await mkdtemp(resolve(out,'source-stage-'));
+const inventory=await stageRelease({root,stage,kind:'source'}),entries=[];
+for(const file of inventory.files)entries.push({name:file.path,bytes:await readFile(resolve(stage,file.path))});
+const filename=`PracticeBridge-${version}-source.zip`,target=resolve(out,filename);
+const bytes=(await writeArchive({entries,budget:{maxExpandedBytes:512*1024*1024,maxEntryBytes:128*1024*1024,maxCompressedBytes:256*1024*1024,maxEntries:10000}})).buffer;
+await writeFile(target,bytes,{flag:'wx'});
+const result=await auditSource(target,inventory);
+await writeFile(`${target}.inventory.json`,JSON.stringify({...inventory,filename,sha256:sha256(bytes),audit:result},null,2)+'\n');
+console.log(`Source bundle: ${filename}; ${result.fileCount} files checked in actual ZIP.`);

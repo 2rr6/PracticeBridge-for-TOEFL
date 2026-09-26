@@ -1,0 +1,13 @@
+node_modules/
+.cache/
+data/
+dist/
+test-results/
+*.log
+.env
+.env.*
+!.env.example
+
+# The local implementation plan is private review material, not release source.
+/docs/PracticeBridge-0.5.0-最终实施方案.md
+

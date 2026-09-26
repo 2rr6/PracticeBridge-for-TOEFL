@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-12",
+  "verification": "Official GitHub release API asset digests and git ls-remote tag refs; no inferred SHAs",
+  "electron": {
+    "version": "44.3.0",
+    "windowsArchiveSha256": "26bf9a617d58d81772b3d68305d59ee48272969c15083c06db634a77358a8d9d",
+    "source": "https://github.com/electron/electron/releases/tag/v44.3.0"
+  },
+  "gitleaks": {
+    "version": "8.30.1",
+    "windowsArchiveSha256": "d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e",
+    "windowsExecutableSha256": "17157e2ee8b76fc8b1d8bee607a250e34b8a8023c8bc81822d4b5ee4d78fcb7c",
+    "linuxArchiveSha256": "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb",
+    "source": "https://github.com/gitleaks/gitleaks/releases/tag/v8.30.1"
+  },
+  "osv": {
+    "version": "2.5.1",
+    "windowsExecutableSha256": "25e42f5ef6711fd8c0fb45390972205891dd44c6bd02ac93f0f63e8e98d9bfb6",
+    "linuxExecutableSha256": "f9f25499a2c8cc367b3af45df2ea7eeca7fbccceab9c35079968f4b3652194be",
+    "source": "https://github.com/google/osv-scanner/releases/tag/v2.5.1"
+  },
+  "npm": {
+    "version": "12.0.1",
+    "purpose": "Development-only npm SBOM in CycloneDX format: complete source lock includes development dependencies; actual runtime tree omits development dependencies. No publish."
+  },
+  "actions": {
+    "actions/checkout@v4.2.2": "11bd71901bbe5b1630ceea73d27597364c9af683",
+    "actions/setup-node@v4.4.0": "49933ea5288caeca8642d1e84afbd3f7d6820020",
+    "actions/upload-artifact@v4.6.2": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+  }
+}

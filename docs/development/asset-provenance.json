@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-12T09:35:54.267Z",
+  "scope": "Application-owned non-code assets; optional dependency assets need separate inventory at install/build",
+  "assets": [
+    {
+      "path": "docs/preview.png",
+      "bytes": 179447,
+      "sha256": "720ecb30d3153cbd61b41a3833d994f7135dfb7bb7a0335a993fcecea02b019a",
+      "license": "MIT",
+      "status": "reviewed",
+      "reviewedAt": "2026-09-12T11:26:40Z",
+      "source": "Existing PracticeBridge empty-workspace UI screenshot, linked as the first-version desktop interface in docs/首版验证结果.md; MIT declared by docs/development/release-policy.json and the project LICENSE",
+      "reviewBasis": "T00 review correction, after the initial inventory review: independently viewed the image and verified its size and SHA-256. Visible libraries, completed attempts and review items are zero; no personal materials or credentials are visible. The license is a project declaration; the screenshot and hash alone do not establish authorship or rights ownership."
+    },
+    {
+      "path": "public/examples/announcement.wav",
+      "bytes": 743648,
+      "sha256": "052821d10da7f3255b5923c061ca5a41c2cbc5ee7404cb741e3764b0a4e13e31",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/getting-started.txt",
+      "bytes": 4572,
+      "sha256": "4f2e04281858b27b24a793058e4839260a63b25a8613a125b6eb301afdf0b8ff",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/getting-started.zip",
+      "bytes": 837015,
+      "sha256": "142338d5a9395fe3d5c1d7aa73cfa126a30204dbb3ac4900ea868ffdb72ec8fd",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/interview.wav",
+      "bytes": 394218,
+      "sha256": "5a19b61032f93e66af0cbb07edf8b43ceba413bf124b12920bebdcc0d35b0499",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/ordinary-materials.zip",
+      "bytes": 721613,
+      "sha256": "4f939639473859716a3d50b2b6a25bd97faef6a4518a0e2e500de37182a35c45",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-worksheet.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/ordinary-worksheet/ordinary-worksheet.docx",
+      "bytes": 1682,
+      "sha256": "2fe2706dacfc2a45b6b5838ee6189f013b35cf8ae7aaf62665c6c8e7a76bfa16",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-worksheet.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/ordinary-worksheet/set-a/prompt.wav",
+      "bytes": 743648,
+      "sha256": "052821d10da7f3255b5923c061ca5a41c2cbc5ee7404cb741e3764b0a4e13e31",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-worksheet.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/ordinary-worksheet/set-b/prompt.wav",
+      "bytes": 394218,
+      "sha256": "5a19b61032f93e66af0cbb07edf8b43ceba413bf124b12920bebdcc0d35b0499",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-worksheet.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/practicebridge.json",
+      "bytes": 21929,
+      "sha256": "ad8099f74f8c97ba431d6a4f14800513bcc2e17229fe1422150eb7d5f85efd07",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/repeat.wav",
+      "bytes": 162948,
+      "sha256": "b80fbf2564c1cd33b86e963af7e9ce8908c1679fb0a21db77563fa6e84a4bdd6",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/examples/source-with-audio.txt",
+      "bytes": 3558,
+      "sha256": "907499fb2260f5ff7be2aef18da3a5521d0bfe560b50bf88115f88b53950fb2b",
+      "license": "CC0-1.0",
+      "status": "reviewed",
+      "source": "scripts/make-examples.mjs and original synthetic speech from scripts/make-example-audio.ps1",
+      "reviewBasis": "Authoring script and source text reviewed; generated document/package member content checked independently"
+    },
+    {
+      "path": "public/icon.svg",
+      "bytes": 304,
+      "sha256": "8130e7cd1aa78d9387d5088eb63beb9bfee54b0b706887ae489d86c9a6a5fe6f",
+      "license": "MIT",
+      "status": "reviewed",
+      "source": "Original project SVG and its raster/container derivatives",
+      "reviewBasis": "SVG geometric paths reviewed; ICO PNG payload equals public/icon.png"
+    },
+    {
+      "path": "public/icon.png",
+      "bytes": 20137,
+      "sha256": "678480dc3249be93658fc7aae1022e724732bbf7654635a21092153e4286caac",
+      "license": "MIT",
+      "status": "reviewed",
+      "source": "Original project SVG and its raster/container derivatives",
+      "reviewBasis": "SVG geometric paths reviewed; ICO PNG payload equals public/icon.png"
+    },
+    {
+      "path": "desktop/icon.ico",
+      "bytes": 20159,
+      "sha256": "930f6b8fcd3c6f9289f967f610c8ab743f9af121177c9b98dad009a518ab839c",
+      "license": "MIT",
+      "status": "reviewed",
+      "source": "Original project SVG and its raster/container derivatives",
+      "reviewBasis": "SVG geometric paths reviewed; ICO PNG payload equals public/icon.png"
+    },
+    {
+      "path": "docs/screenshots/overview.png",
+      "bytes": 71752,
+      "sha256": "bf180b35c3f8f915659a051a75e76e1a1035935f61777637d57378f022ba5914",
+      "license": "MIT",
+      "status": "reviewed",
+      "reviewedAt": "2026-09-25T23:13:35.641Z",
+      "source": "Overview page of PracticeBridge for TOEFL 0.5.1 with only the self-authored getting-started sample imported",
+      "reviewBasis": "Captured from a disposable data directory holding only the project-authored CC0 sample; image viewed before publication. No personal materials, recordings or credentials are visible."
+    },
+    {
+      "path": "docs/screenshots/practice.png",
+      "bytes": 90433,
+      "sha256": "ef2be431aa46d720845e138cc67071eff96715afe5e5251a64ae4aa0d6e218dc",
+      "license": "MIT",
+      "status": "reviewed",
+      "reviewedAt": "2026-09-25T23:13:35.641Z",
+      "source": "Reading question from the self-authored getting-started sample in the practice screen of PracticeBridge for TOEFL 0.5.1",
+      "reviewBasis": "Captured from a disposable data directory holding only the project-authored CC0 sample; image viewed before publication. No personal materials, recordings or credentials are visible."
+    }
+  ],
+  "publicationReviewAt": "2026-09-14T03:01:14.022Z"
+}

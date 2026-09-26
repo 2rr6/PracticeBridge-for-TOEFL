@@ -1,0 +1,717 @@
+{
+  "schemaVersion": 1,
+  "language": "zh-CN",
+  "preparedAt": "2026-09-25T23:15:12.347Z",
+  "status": "maintainer_written_readme_0.5.1",
+  "sourceSnapshot": {
+    "commit": "ccc2db465c270edbd3373e190292788dbfcf1c1e",
+    "targetVersion": "0.5.1",
+    "packageVersion": "0.5.1",
+    "frozen": true,
+    "finalIntegratedSnapshot": true,
+    "refreshRequiredBeforeGeneration": true,
+    "sourceFiles": [
+      {
+        "path": "assets/ocr-launch-lock.json",
+        "bytes": 342062,
+        "sha256": "000ae1eb44557d9e9543b976509c1aa7ee95ebea263e50b28658e20707e9aca8",
+        "text": true,
+        "canonicalLfSha256": "000ae1eb44557d9e9543b976509c1aa7ee95ebea263e50b28658e20707e9aca8"
+      },
+      {
+        "path": "desktop/secret-store.cjs",
+        "bytes": 4163,
+        "sha256": "89bf2fc633b42e1f2a57a648e0afed01f6ca01d42f8f0b2cd83d4189dd57c3da",
+        "text": true,
+        "canonicalLfSha256": "a56ed771b4e699ea396f07603fe2aeeba6667e52d35e4a778f65edd4b1d3077a"
+      },
+      {
+        "path": "docs/development/release-policy.json",
+        "bytes": 121142,
+        "sha256": "11af1cef08cb3bc2450aaeb69768ac15cd127168636c4a52f22e204d059fa344",
+        "text": true,
+        "canonicalLfSha256": "54186f5e7cd36cecdfc135d2b68e413b5999015a7d99d9149128628d62dd6c4b"
+      },
+      {
+        "path": "docs/development/runtime-dependencies.json",
+        "bytes": 460313,
+        "sha256": "af4a748017fd01b0a8680838bf0d43f24f5975d55faa1d0af5c6e545714ab165",
+        "text": true,
+        "canonicalLfSha256": "af4a748017fd01b0a8680838bf0d43f24f5975d55faa1d0af5c6e545714ab165"
+      },
+      {
+        "path": "docs/RELEASING.md",
+        "bytes": 4757,
+        "sha256": "2bbb124555e85046d29e8615b3ca0e87302672c94b5af411e8d40a2c76e76878",
+        "text": true,
+        "canonicalLfSha256": "459b7574f4fb0d191bf9ee852dfc2b05474742f2def64ea30c73480344322a62"
+      },
+      {
+        "path": "docs/verification-summary.json",
+        "bytes": 29062,
+        "sha256": "53118207c76516440965aba1bc2166bfff721318d6257ec432f4cafb5e240194",
+        "text": true,
+        "canonicalLfSha256": "53118207c76516440965aba1bc2166bfff721318d6257ec432f4cafb5e240194"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 1105,
+        "sha256": "305a66ab770e86573f352d959bc50ce67e6ace21affe3769ba8f5753c531e65a",
+        "text": true,
+        "canonicalLfSha256": "26d1271329de2d974010b31c168562c1e4ce83253c9f7e8b54ae6662d6500a96"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 51361,
+        "sha256": "4fa7e96cfdb13158f8e98dcf8b835b71a5ab339852b7609f6c95536178ad8e69",
+        "text": true,
+        "canonicalLfSha256": "4fa7e96cfdb13158f8e98dcf8b835b71a5ab339852b7609f6c95536178ad8e69"
+      },
+      {
+        "path": "package.json",
+        "bytes": 916,
+        "sha256": "05414fdfd2c7ae2d5733f778107dccb830944dd4835dead867a66a91347cae98",
+        "text": true,
+        "canonicalLfSha256": "05414fdfd2c7ae2d5733f778107dccb830944dd4835dead867a66a91347cae98"
+      },
+      {
+        "path": "public/app.mjs",
+        "bytes": 46664,
+        "sha256": "c51a7a2070e7a889dc874960f5178537069190431a3020532fece76de6636b0a",
+        "text": true,
+        "canonicalLfSha256": "c51a7a2070e7a889dc874960f5178537069190431a3020532fece76de6636b0a"
+      },
+      {
+        "path": "public/asr-settings.mjs",
+        "bytes": 8323,
+        "sha256": "6a6572ad06b84efd072430220b34bab146a8ef4c806fafdb4b1b43fdb2d2a902",
+        "text": true,
+        "canonicalLfSha256": "5e684e0935594388d25c12780cafdfa62fe89479484d058a3c9f1b3e66f2ec0d"
+      },
+      {
+        "path": "public/material-candidates.mjs",
+        "bytes": 15140,
+        "sha256": "e6674c8f82adffeb7890c4ce0140eb9d63ee3cc9372c336e37539545c0450110",
+        "text": true,
+        "canonicalLfSha256": "1bf5bf6060fcb2e05151771e86ef65bf3432aeaa8bac59015f61cec24edd2d3f"
+      },
+      {
+        "path": "public/material-jobs.mjs",
+        "bytes": 29833,
+        "sha256": "4577ab87e44d4bb21d3e85489725c0031ae6aea66aea9692d144e1b23329e4e5",
+        "text": true,
+        "canonicalLfSha256": "b1bb71349770e6ac51a1bd32a1beb770c977f4f457d5f5757aa094361288b021"
+      },
+      {
+        "path": "public/material-ocr.mjs",
+        "bytes": 14859,
+        "sha256": "ef1c308c7130372f579ba7a8c0ce741608d5d66d10bdb16ca825fd51c4bcadf7",
+        "text": true,
+        "canonicalLfSha256": "ef1c308c7130372f579ba7a8c0ce741608d5d66d10bdb16ca825fd51c4bcadf7"
+      },
+      {
+        "path": "public/style.css",
+        "bytes": 27694,
+        "sha256": "a895b01ca2e002c87b6ce7e6a7268065d3e7672eac7d4bfb2fed7679b452f78a",
+        "text": true,
+        "canonicalLfSha256": "39ceb8fa4f950d4a4f236c10855c1df2aa15269bc87eb8e6fb8c447dc875f34b"
+      },
+      {
+        "path": "public/workspace-connection.mjs",
+        "bytes": 4249,
+        "sha256": "ff5cd7016954533a56614083d23a4742b5127b3007c2454752beb7a164798b42",
+        "text": true,
+        "canonicalLfSha256": "ff5cd7016954533a56614083d23a4742b5127b3007c2454752beb7a164798b42"
+      },
+      {
+        "path": "README.md",
+        "bytes": 7857,
+        "sha256": "f45ae7d56d09be97532f93d4fbc4b134e44532649146d76ba2df6823fea6c0c6",
+        "text": true,
+        "canonicalLfSha256": "f45ae7d56d09be97532f93d4fbc4b134e44532649146d76ba2df6823fea6c0c6"
+      },
+      {
+        "path": "scripts/audit-release.mjs",
+        "bytes": 12237,
+        "sha256": "d2783a91d707a9abdc15fedf7d6600a6a8bb57cc0e450c3619856004ba0a59b8",
+        "text": true,
+        "canonicalLfSha256": "bd612ba5ac54f35405f4206e0325b899560f7d17a83b70f84a9ce8dde5abecbe"
+      },
+      {
+        "path": "scripts/check.mjs",
+        "bytes": 552,
+        "sha256": "d359c915d5db3a92d0d1fa6be0015348f74119cc089c964fe82f11fc698b0dc8",
+        "text": true,
+        "canonicalLfSha256": "ea170bee0a84717249c7c4b08412444053cf93fb2d411324a09dadec8baabe6e"
+      },
+      {
+        "path": "scripts/package.mjs",
+        "bytes": 5337,
+        "sha256": "82db8368c62d5d509451f3d49ad12c74b18e2c6d13799b8a5208071b4cfd11e9",
+        "text": true,
+        "canonicalLfSha256": "d374a8e25f9eae86005cce722460e2f383a8f2775d6e818a6d54a03c62f7e881"
+      },
+      {
+        "path": "scripts/release-source.mjs",
+        "bytes": 1388,
+        "sha256": "f5cf2b0984cdde24c98c445a6689444cc2ae6d031bfe4fd117c3d04ab9cce609",
+        "text": true,
+        "canonicalLfSha256": "2b89008909efe9af56b41cb4dbb92ec9045f7a24734c5c497bb6d2f263ecfb03"
+      },
+      {
+        "path": "scripts/verify-readme.mjs",
+        "bytes": 5188,
+        "sha256": "53ec94ad369704f57eca5bf1116dd0e68b13f54266aef866e742085b2c4c0aa2",
+        "text": true,
+        "canonicalLfSha256": "53ec94ad369704f57eca5bf1116dd0e68b13f54266aef866e742085b2c4c0aa2"
+      },
+      {
+        "path": "scripts/verify.mjs",
+        "bytes": 12043,
+        "sha256": "f1417ee96ebe182a1a2640b903b437a38fd276c0454a1e965fe9314bc619a1f2",
+        "text": true,
+        "canonicalLfSha256": "ee515fc0ff1a3e531a0918dff03603cd608f91b58dcf25c19fa7dffd3933037e"
+      },
+      {
+        "path": "src/archive/zip-adapter.mjs",
+        "bytes": 13477,
+        "sha256": "54a841e7ede42204b55a7ee41ddb5587de720ef4a8c06d0c1ef21456cbbc88b5",
+        "text": true,
+        "canonicalLfSha256": "54a841e7ede42204b55a7ee41ddb5587de720ef4a8c06d0c1ef21456cbbc88b5"
+      },
+      {
+        "path": "src/asr-mapping.mjs",
+        "bytes": 4631,
+        "sha256": "5b679e07027bb2bf8ae82291094b2498769e381e4ed9f1da5a027e7c22193220",
+        "text": true,
+        "canonicalLfSha256": "aba4762dcf51bfcc5a3458b091acb81db5dc37fb07fcde094703480ce392aa7f"
+      },
+      {
+        "path": "src/asr-provider.mjs",
+        "bytes": 5399,
+        "sha256": "c32cadc87f8fd46b36c78928f2205a8f88e2ed108881067f3886e2a18b8c439b",
+        "text": true,
+        "canonicalLfSha256": "621e1d39ec8bf2689543a75f4400771a88304179d007e4f80fc0f9d3ec1399b9"
+      },
+      {
+        "path": "src/assistant-memory.mjs",
+        "bytes": 6174,
+        "sha256": "48242aa70dbcbe4f89988ea023a8a87c75946cd0c9eaf87c17d8e2d6ae02594d",
+        "text": true,
+        "canonicalLfSha256": "7f48e025f0f37ff66129527aa9b50a65f549050f03842ea77973c05186973156"
+      },
+      {
+        "path": "src/document-layout.mjs",
+        "bytes": 18959,
+        "sha256": "ac92e36b40314bc89314a0c0bb990126bc1e822a5d9d37d8b9c8a51d0f4c385a",
+        "text": true,
+        "canonicalLfSha256": "7467a86574caf986d55ef1fc8a9a8107223b6d539222460b7586e438ef55715a"
+      },
+      {
+        "path": "src/material-candidates.mjs",
+        "bytes": 29791,
+        "sha256": "73931cbeac1d2607cb6d9111ce5a3577bd385ecbdcc5c88b63c24bd73b6200a1",
+        "text": true,
+        "canonicalLfSha256": "b73a728318e76559ecfae13316f3951a43ec63039f1bdd926c7d247187687f4c"
+      },
+      {
+        "path": "src/material-compiler.mjs",
+        "bytes": 10697,
+        "sha256": "61b236fb93569f02f16b01155aba629cac5d12ec9185a516df0fc4d60337c8d2",
+        "text": true,
+        "canonicalLfSha256": "74ebeb1e39b541e7d8d7a26315e3787183caa7b06096cdede2f176fee6e438a4"
+      },
+      {
+        "path": "src/material-execution-ledger.mjs",
+        "bytes": 9561,
+        "sha256": "cb72fecec7182cbb2416f6baf9ecf980728cb5d1091322a9c1182c65415b9f3e",
+        "text": true,
+        "canonicalLfSha256": "cb72fecec7182cbb2416f6baf9ecf980728cb5d1091322a9c1182c65415b9f3e"
+      },
+      {
+        "path": "src/material-job-source.mjs",
+        "bytes": 41921,
+        "sha256": "89440950481ed1ce5214325d9b666193ee7ac4e82d5cf809c98ad6fee59e1851",
+        "text": true,
+        "canonicalLfSha256": "6733ea994d57fd75c3cc97ed0bce5ca4406530b12b597c6976726b5ac22944b1"
+      },
+      {
+        "path": "src/material-jobs.mjs",
+        "bytes": 43359,
+        "sha256": "066d2c5b3ba3ab87aee46529e3a2e5408435bb858516afe006ae0a3f44278033",
+        "text": true,
+        "canonicalLfSha256": "b2cff0c13be99abef30bd101aed5a3951c776493d9379a46af10c2e7974bb978"
+      },
+      {
+        "path": "src/material-ocr.mjs",
+        "bytes": 16990,
+        "sha256": "4cac4446bb19f27a354af09cb89e232081d96f8b5e668e73509e8071f4a2c0d9",
+        "text": true,
+        "canonicalLfSha256": "4cac4446bb19f27a354af09cb89e232081d96f8b5e668e73509e8071f4a2c0d9"
+      },
+      {
+        "path": "src/material-processing.mjs",
+        "bytes": 25577,
+        "sha256": "b5538aeafe05c15ce1994c5ae1448aef5f5bd4594c3840048a766800f763133c",
+        "text": true,
+        "canonicalLfSha256": "839b1adfc20e70a265771cec73da02d4bda82a7f20f0574fc031cdf8e87cec00"
+      },
+      {
+        "path": "src/material-tools.mjs",
+        "bytes": 12890,
+        "sha256": "64de258d57cbccc85bf9ee2121e6844e1930357b193862c9ee0e3ee179074b6d",
+        "text": true,
+        "canonicalLfSha256": "fc3fcd318765e5b90d666d137bfae173c603370635fefd219193007600cb4dbe"
+      },
+      {
+        "path": "src/media-manifest.mjs",
+        "bytes": 15729,
+        "sha256": "465a2f52ccb4df1e97cd9bb548295916954fad32a91f6a3eb39a8a574f803a4e",
+        "text": true,
+        "canonicalLfSha256": "465a2f52ccb4df1e97cd9bb548295916954fad32a91f6a3eb39a8a574f803a4e"
+      },
+      {
+        "path": "src/models.mjs",
+        "bytes": 81622,
+        "sha256": "4e55d93896005a7990e71159652c1fbade399a92bdacec088db8cb65b98e3faa",
+        "text": true,
+        "canonicalLfSha256": "57f874ffcaa149143d6bef9d2d9bdedecb29a9422064b20365461d0f2f2b5827"
+      },
+      {
+        "path": "src/ocr-launch.mjs",
+        "bytes": 13597,
+        "sha256": "265cfda122d8aa9c3d32603060955d132f6217fc7af3f7974d458475c217838a",
+        "text": true,
+        "canonicalLfSha256": "265cfda122d8aa9c3d32603060955d132f6217fc7af3f7974d458475c217838a"
+      },
+      {
+        "path": "src/ocr-policy.mjs",
+        "bytes": 15585,
+        "sha256": "0ba019eb33109fc50da7c30c504cc0a4f471bea23aec606fa4c1af8f2247cd4c",
+        "text": true,
+        "canonicalLfSha256": "0ba019eb33109fc50da7c30c504cc0a4f471bea23aec606fa4c1af8f2247cd4c"
+      },
+      {
+        "path": "src/processing-backup.mjs",
+        "bytes": 16321,
+        "sha256": "00f1016e478764fc9941d9c32f3987382d78152bc6bef90c18acc2d60fe66886",
+        "text": true,
+        "canonicalLfSha256": "00f1016e478764fc9941d9c32f3987382d78152bc6bef90c18acc2d60fe66886"
+      },
+      {
+        "path": "src/server.mjs",
+        "bytes": 80172,
+        "sha256": "be3196f0f5b80e77f3d414e70ff2356c14cb260fe0ea42fd0da240bb5637e555",
+        "text": true,
+        "canonicalLfSha256": "6bf8624434fe6b3d54f18b3f5253802590cbde1e79b1e8b9d4c2d677f6bfa98e"
+      },
+      {
+        "path": "src/store.mjs",
+        "bytes": 12651,
+        "sha256": "3dcb68313f2adafc50ccfa9dcecc73ac2653df683e99c4bd4e47efaa75f7fed1",
+        "text": true,
+        "canonicalLfSha256": "1f62b826b7579598d71abbf6b7328fbbd371230c0fb7a141395e966a4719df30"
+      },
+      {
+        "path": "src/workers/asr.mjs",
+        "bytes": 18562,
+        "sha256": "0249635a41fb4faa64cf0dd001989664a1c9a752f65eb9dc42feb203d2859b23",
+        "text": true,
+        "canonicalLfSha256": "71f357df968aa5b2088d5db9127908aa895589a30c485848030e10414402f44c"
+      },
+      {
+        "path": "src/workers/media.mjs",
+        "bytes": 17912,
+        "sha256": "200474e3d140f770cfaccf735eeb1dfee3f2fce37361067cdd42884325893d78",
+        "text": true,
+        "canonicalLfSha256": "31029512388d890374d18ca0f1c6ffabcc8299e08f4dd40e3b106a6efe49bfc2"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.md",
+        "bytes": 4146,
+        "sha256": "2a0ba57b000f13dd31873b5340e66bd36b44a3e842e84a0386248cb789282bfe",
+        "text": true,
+        "canonicalLfSha256": "3593d2f4182d5dfdb53ca58c02df0068b7ff1b79eb89fc52f89b0fd25352ae76"
+      },
+      {
+        "path": "tools/asr-worker/models.json",
+        "bytes": 1805,
+        "sha256": "1f1a8e4c9a5225d7add6d9b01109d5d79a317b1d76c28a5277952d02269e66ba",
+        "text": true,
+        "canonicalLfSha256": "e2f35c6bf17899d06ad08b2a09ab5ec212847a24fa1e6f5d0962df6108188d0d"
+      },
+      {
+        "path": "tools/asr-worker/README.md",
+        "bytes": 4225,
+        "sha256": "3d9aa4e776d778da31cc9a9d7fbee5e514535dfc00bb7820ef8a23cf4bae222d",
+        "text": true,
+        "canonicalLfSha256": "cddf76506049ed911b4d7e136a3c1f8f46d49038d70d1ac2a382526ddc7e82b4"
+      },
+      {
+        "path": "tools/asr-worker/requirements.lock",
+        "bytes": 636,
+        "sha256": "549bd7f868d856d17a9b7d3b3905c0c885411902437271b32203e2b5dda2d378",
+        "text": true,
+        "canonicalLfSha256": "def2f4c6a88343ec568791901aa7025d4a384bcd3514de37777e0f73e4139bd5"
+      }
+    ],
+    "dirty": true,
+    "snapshotMeaning": "File identities bind the integrated source used for factual maintenance. Git commit and dirty state are captured before this facts-file write; final artifact execution is recorded separately."
+  },
+  "interpretation": {
+    "reviewedCapabilities": "限定组件通过独立审阅；不等于最终版本或完整流程通过。",
+    "implementedCapabilities": "Current code or retained product behavior exists; validation scope is recorded separately and is not inferred from file presence.",
+    "unverifiedOrIncomplete": "未验证、未接入或尚未完成的工作；不可表述为已交付能力。",
+    "sourceHashes": "Physical SHA-256 records the captured bytes. Explicit canonicalLfSha256 permits only CRLF/LF checkout differences in these text fact sources; executable launch locks and release inventories still enforce their own exact byte contracts."
+  },
+  "product": {
+    "id": "product",
+    "name": "PracticeBridge",
+    "description": "以用户自己的材料和模型为输入的本地练习工作台。",
+    "license": "MIT",
+    "officialStatus": "独立项目；不声称 ETS 认证、官方题库、官方等值成绩或官方自适应选题。",
+    "defaultLibrary": "新工作区默认空题库；自编演示包需主动选择导入。",
+    "evidence": [
+      "package.json",
+      "LICENSE",
+      "README.md",
+      "THIRD_PARTY_NOTICES.md"
+    ]
+  },
+  "reviewedCapabilities": [
+    {
+      "id": "archive",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "统一 ZIP 边界检查路径、重复项、解压字节与 CRC，支持取消；DOCX 在交给解析器前使用独立预算。",
+      "evidence": [
+        "src/archive/zip-adapter.mjs",
+        "THIRD_PARTY_NOTICES.md"
+      ],
+      "limits": "失败实际解压量未知时耗尽剩余预算，不宣称所有内部字节均精确计量；不是任意格式保证。"
+    },
+    {
+      "id": "document",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "文档处理保留原件、页/段来源与布局信息，缺失或不明确的内容保持疑点。",
+      "evidence": [
+        "src/document-layout.mjs"
+      ],
+      "limits": "文字结构或提取结果不证明题目与答案正确。OCR 是另外启用的英语识别能力；用户仍需核对完整原图与字段。"
+    },
+    {
+      "id": "media",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "媒体格式、解码状态、配对依据和内容核对状态分开；部分解码不伪造缺失位置。",
+      "evidence": [
+        "src/media-manifest.mjs",
+        "src/workers/media.mjs"
+      ],
+      "limits": "可播放、相同文件名和完整解码都不证明音频语义属于本题。只有完整真实解码证据能建立对应的格式别名；未知缺失位置保持未知。"
+    },
+    {
+      "id": "candidates",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "候选题可按字段核对来源、保存修订和编译可作答子集；未保存编辑与已保存版本区分。",
+      "evidence": [
+        "src/material-candidates.mjs",
+        "src/material-compiler.mjs",
+        "public/material-candidates.mjs"
+      ],
+      "limits": "可作答子集不代表原考试完整；原题号和原题序未知时保持空值，未知答案不会被视为用户答错。"
+    },
+    {
+      "id": "asr",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "可选本地 ASR 的设置、自检、取消、停用和材料作业已接入；固定模型加载前校验，实际设备/精度与解码范围记录；题目与媒体关系版本绑定的差异证据可以撤回。",
+      "evidence": [
+        "src/asr-provider.mjs",
+        "src/workers/asr.mjs",
+        "src/asr-mapping.mjs",
+        "public/asr-settings.mjs",
+        "tools/asr-worker/README.md"
+      ],
+      "limits": "材料作业可保存实际请求范围、解码范围、设备与精度以及可撤回的比较证据；部分解码不应用为完整核对。模型、Python 与 GPU 运行库需独立配置，不自动安装；实际转写不证明普遍准确率或发音评分。"
+    },
+    {
+      "id": "credentials",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "桌面应用允许明确选择系统加密保存或仅会话使用密钥；凭据绑定供应商和规范化服务地址，不进入学习备份。连接测试针对明确显示的已保存配置并需同意。",
+      "evidence": [
+        "desktop/secret-store.cjs",
+        "src/models.mjs"
+      ],
+      "limits": "系统安全存储不可用时不回退明文。跨电脑或跨账户可移植性未实测；个人备份不包含密钥，浏览器版本不能据此宣称提供桌面安全存储。"
+    },
+    {
+      "id": "preferences",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "题面助手可使用用户明确保存并同意纳入的有限本地偏好；删除/停用及 TEST 限制保留。",
+      "evidence": [
+        "src/assistant-memory.mjs"
+      ],
+      "limits": "只使用用户明确保存并授权的有限本地偏好，不自动收集全部聊天。Memanto 实验未执行，生产没有外部 MemoryProvider。"
+    },
+    {
+      "id": "workspace-epoch",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "写入绑定捕获的工作区版本；恢复后旧页面响应或写入被拒绝并要求明确重新加载。",
+      "evidence": [
+        "src/store.mjs",
+        "public/workspace-connection.mjs"
+      ],
+      "limits": "恢复使旧页面、在途请求与写入租约失效；用户需要明确重新载入。真实麦克风与其他机器环境仍未验证。"
+    },
+    {
+      "id": "release-tools",
+      "status": "reviewed_component",
+      "integratedAtSnapshot": true,
+      "claim": "本地源码/运行时构建使用精确文件清单、依赖哈希与实际产物审计；验证报告记录运行范围、失败与跳过。",
+      "evidence": [
+        "scripts/package.mjs",
+        "scripts/release-source.mjs",
+        "scripts/audit-release.mjs",
+        "scripts/verify.mjs",
+        "docs/RELEASING.md"
+      ],
+      "limits": "精确清单和哈希不等于漏洞或权限的绝对保证；CI 配置存在不表示其他操作系统已经执行通过。公开仓库、标签和 Release 需要另行授权。"
+    },
+    {
+      "id": "t06",
+      "status": "reviewed_integrated_source",
+      "integratedAtSnapshot": true,
+      "claim": "材料按完整题组运行持久分块作业；批准预算包含重试、格式修复和未知结果，检查点保留，继续需确认。",
+      "evidence": [
+        "src/material-jobs.mjs",
+        "src/material-job-source.mjs",
+        "src/material-execution-ledger.mjs",
+        "public/material-jobs.mjs"
+      ],
+      "limits": "没有真实付费服务质量验收；结果未知可能已收费，继续可能重复计费，恢复旧备份不能清除本机已记录占用。"
+    },
+    {
+      "id": "t07",
+      "status": "reviewed_integrated_source",
+      "integratedAtSnapshot": true,
+      "claim": "英语 PNG/扫描 PDF 可在明确页码与选区运行本机 OCR，保留原图、词框和原文；作者手动填写完整字段并确认后建立无答案的不计分候选。",
+      "evidence": [
+        "src/material-ocr.mjs",
+        "public/material-ocr.mjs",
+        "src/ocr-policy.mjs",
+        "src/ocr-launch.mjs",
+        "assets/ocr-launch-lock.json"
+      ],
+      "limits": "英语语言资产需要另外确认安装；可靠文字层不重复 OCR。自编清晰图像测试不是任意扫描件准确率，身份、题意和答案仍需人工核对。"
+    },
+    {
+      "id": "t12",
+      "status": "reviewed_integrated_source",
+      "integratedAtSnapshot": true,
+      "claim": "个人备份包含原件、候选、处理产物、作业、学习记录与录音。恢复排空在途操作并保留当前执行账本；历史题包和已完成作答不被新候选覆盖。",
+      "evidence": [
+        "src/server.mjs",
+        "src/store.mjs",
+        "src/processing-backup.mjs",
+        "src/material-execution-ledger.mjs"
+      ],
+      "limits": "本机加密凭据、Python/模型/FFmpeg安装不随学习备份迁移。退回旧程序应使用升级前的配套数据备份，不能让旧版本写新状态。"
+    }
+  ],
+  "implementedCapabilities": [
+    {
+      "id": "practice-core",
+      "claim": "继承独立机考界面、12 个任务族、冻结练习计划、草稿续做、录音回听、历史作答和分析入口。",
+      "evidence": [
+        "README.md",
+        "src/server.mjs"
+      ],
+      "verification": "继承实现；本次准备不重新验证计时、真人麦克风或跨设备兼容。"
+    },
+    {
+      "id": "model-text",
+      "claim": "支持当前设置提供的 Responses / 兼容 Chat Completions / 本地兼容服务文字请求；录音需用户确认转写后才用于口语文字反馈。",
+      "evidence": [
+        "README.md",
+        "src/models.mjs",
+        "src/server.mjs"
+      ],
+      "verification": "文字接口、完整题组预算和提供方绑定已集成并有本地协议检查；没有本次真实付费模型质量验收。最终便携执行范围按验证摘要单独记录。"
+    },
+    {
+      "id": "timing-policy",
+      "claim": "现有面谈每题最多 45 秒及其他默认计时是应用/用户策略。",
+      "evidence": [
+        "README.md"
+      ],
+      "verification": "不得转述为本次核实的官方 TOEFL 标准。"
+    },
+    {
+      "id": "local-server",
+      "claim": "开发浏览器服务仅绑定 127.0.0.1，不提供远程或多用户模式。",
+      "evidence": [
+        "src/server.mjs"
+      ],
+      "verification": "只读核对绑定拒绝分支；本次未启动服务器。"
+    }
+  ],
+  "unverifiedOrIncomplete": [
+    {
+      "id": "final-release",
+      "state": "local_results_recorded",
+      "claim": "本机源代码与便携版的实际检查结果见可分享的验证摘要；仅适用于摘要所列环境、文件哈希与范围，不是其他机器或平台的通过声明。",
+      "evidence": [
+        "docs/verification-summary.json"
+      ]
+    },
+    {
+      "id": "external-writing",
+      "state": "prepared_manual",
+      "claim": "Antigravity 文案未调用；没有合格的文件权限边界。采用明确允许的 prepared_manual 回退，必要事实修正由维护者完成，不冒称外部模型撰写。"
+    },
+    {
+      "id": "unsupported",
+      "state": "not_claimed",
+      "claim": "不宣称任意材料完美导入、官方成绩预测、自适应难度、真人发音/流利度评分、自动更新或安装向导。"
+    },
+    {
+      "id": "acceptance-limits",
+      "state": "unverified",
+      "claim": "真人麦克风、人声或付费模型质量、真实 Windows 输入法、另一台电脑以及实际 Linux CI 未由这些本机检查证明。"
+    }
+  ],
+  "environment": {
+    "id": "environment",
+    "nodeMinimumDeclared": ">=22.16",
+    "nodeMinimumFinalDependenciesVerified": true,
+    "language": "原生 JavaScript 模块，无前端编译步骤",
+    "desktopElectronPinned": "44.3.0",
+    "uiTestRequirements": "已安装 Microsoft Edge 和项目锁定的 Playwright；浏览器样本使用模拟音频/协议。",
+    "optionalAsr": "独立 Python 3.12 / faster-whisper 1.2.1 / CTranslate2 4.8.2 / PyAV 18.1.0 为固定组件路线；模型、Python 环境、NVIDIA 运行库不随程序分发，也不自动安装。Python launcher 自动安装开关被显式禁用。",
+    "evidence": [
+      "package.json",
+      "tools/asr-worker/README.md"
+    ]
+  },
+  "commands": [
+    {
+      "id": "command-start",
+      "command": "npm start",
+      "expandsTo": "electron .",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "已按锁文件安装依赖；桌面启动另需 Electron 二进制。"
+    },
+    {
+      "id": "command-web",
+      "command": "npm run web",
+      "expandsTo": "node src/server.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "已按锁文件安装依赖；桌面启动另需 Electron 二进制。"
+    },
+    {
+      "id": "command-test",
+      "command": "npm test",
+      "expandsTo": "node --test tests/*.test.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "已按锁文件安装依赖；桌面启动另需 Electron 二进制。"
+    },
+    {
+      "id": "command-check",
+      "command": "npm run check",
+      "expandsTo": "node scripts/check.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "已按锁文件安装依赖；桌面启动另需 Electron 二进制。"
+    },
+    {
+      "id": "command-package",
+      "command": "npm run package",
+      "expandsTo": "node scripts/package.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "维护者专用：先遵循 docs/RELEASING.md 的清单、锁定依赖和全新输出目录要求；不代表发布。"
+    },
+    {
+      "id": "command-verify",
+      "command": "npm run verify",
+      "expandsTo": "node scripts/verify.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "已安装依赖；默认 full 包含 UI 验证，需 Edge。"
+    },
+    {
+      "id": "command-package-source",
+      "command": "npm run package:source",
+      "expandsTo": "node scripts/release-source.mjs",
+      "evidence": "package.json",
+      "executionInThisPreparation": "See exact executable/phase scope in local verification records; command availability is checked against package.json.",
+      "prerequisite": "维护者专用：先遵循 docs/RELEASING.md 的清单、锁定依赖和全新输出目录要求；不代表发布。"
+    }
+  ],
+  "commandNotes": {
+    "id": "command-notes",
+    "installation": "npm ci --cache .cache/npm is an explicit development dependency installation command. It is not called by validation, runtime startup or optional capability detection.",
+    "verificationProfiles": [
+      "node scripts/verify.mjs --profile pure-js",
+      "node scripts/verify.mjs --profile full",
+      "node scripts/verify.mjs --profile windows-smoke --packaged dist/BUILD-ID/PracticeBridge-win32-x64"
+    ],
+    "profilesEvidence": "scripts/verify.mjs",
+    "profilesStatus": "Profiles are registered and validated by focused scheduler checks. Actual product execution is separately recorded in the final validation summary.",
+    "readmeVerification": "node scripts/verify-readme.mjs performs local version, evidence-byte, command and link consistency checks; it does not replace semantic review."
+  },
+  "privacyAndCost": {
+    "id": "privacy-cost",
+    "localData": "原件、草稿、作答和录音在选择的本地数据目录保存。备份可能含私人材料，不应用于发布。",
+    "modelSend": "用户主动同意的模型操作会把相应文字发送到所选服务；题面聊天使用发送时的可见页面上下文。不能承诺所有数据绝不离机。",
+    "speechFeedback": "文字反馈只用已确认转写；当前文字模型不接收录音原文件，不判断发音、口音、语调或实际口语流利度。",
+    "cost": "模型账户、可用性、价格和额度由用户所选服务决定；没有自动免费保证，不静默更换服务。",
+    "helpers": "本地 helper 不主动联网的实现策略不等于已证明 OS 网络隔离；进程内存采样不等于硬内存上限或 GPU 显存配额。",
+    "evidence": [
+      "README.md",
+      "src/server.mjs",
+      "src/models.mjs",
+      "tools/asr-worker/README.md"
+    ]
+  },
+  "dataLocations": {
+    "id": "data-locations",
+    "development": "项目根目录 data/；PRACTICEBRIDGE_DATA_DIR 可明确指定位置，改变设置不会迁移旧数据。",
+    "portable": "便携应用目录中的 data/；整个应用文件夹需保留，更新时保留数据并按备份流程迁移。",
+    "credentials": "桌面加密槽位在本地凭据目录；不应复制进源码/发布材料或学习备份。",
+    "evidence": [
+      "README.md",
+      "desktop/secret-store.cjs"
+    ]
+  },
+  "provenance": {
+    "id": "provenance",
+    "application": "项目代码声明 MIT。",
+    "examples": "自编演示材料在元数据中声明 CC0-1.0；三段音频是 Windows 本地合成语音。不是真人语音验收、官方题库或官方录音。",
+    "thirdParty": "第三方依赖及来源见 THIRD_PARTY_NOTICES.md 和锁文件；历史通告扫描结果不外推为最终依赖已安全。",
+    "redistribution": "不将私人题库、录音、账户配置、模型权重、计划、验证证据或开发文案任务记录纳入发布。",
+    "evidence": [
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "docs/development/release-policy.json"
+    ]
+  },
+  "writingSelection": {
+    "id": "writing-selection",
+    "provider": null,
+    "requestedModel": null,
+    "actualModel": null,
+    "modelInvoked": false,
+    "state": "maintainer_written",
+    "maintainerEdits": "README rewritten for the 0.5.1 public release against the integrated source."
+  }
+}

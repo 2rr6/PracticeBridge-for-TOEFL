@@ -1,0 +1,1275 @@
+{
+  "version": 1,
+  "packageVersion": "7.0.0",
+  "coreVersion": "7.0.0",
+  "languageVersion": "1.0.0",
+  "languageHash": "ed350f3752f81ee8f38769edc14d92d997dababe23b565c59879372cc46a2468",
+  "languagePackage": {
+    "name": "@tesseract.js-data/eng",
+    "version": "1.0.0",
+    "url": "https://registry.npmjs.org/@tesseract.js-data/eng/-/eng-1.0.0.tgz",
+    "integrity": "sha512-mbTumm6KQPUHyzTPQaF3ObXYnx0SqqfV2nabqFVQBwD6Kl7PhGSLSzOlfFTWy0P3BjghaSKA2W9GB19Jk+ZcTg=="
+  },
+  "packages": [
+    {
+      "name": "bmp-js",
+      "version": "0.1.0",
+      "integrity": "sha512-vHdS19CnY3hwiNdkaqk93DvjVLfbEcI8mys4UjuWrlX1haDmroo8o4xCzh4wD6DGV6HxRCyauwhHRqMTfERtjw==",
+      "url": "https://registry.npmjs.org/bmp-js/-/bmp-js-0.1.0.tgz"
+    },
+    {
+      "name": "idb-keyval",
+      "version": "6.2.2",
+      "integrity": "sha512-yjD9nARJ/jb1g+CvD0tlhUHOrJ9Sy0P8T9MF3YaLlHnSRpwPfpTX0XIvpmw3gAJUmEu3FiICLBDPXVwyEvrleg==",
+      "url": "https://registry.npmjs.org/idb-keyval/-/idb-keyval-6.2.2.tgz"
+    },
+    {
+      "name": "is-url",
+      "version": "1.2.4",
+      "integrity": "sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==",
+      "url": "https://registry.npmjs.org/is-url/-/is-url-1.2.4.tgz"
+    },
+    {
+      "name": "node-fetch",
+      "version": "2.7.0",
+      "integrity": "sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==",
+      "url": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz"
+    },
+    {
+      "name": "opencollective-postinstall",
+      "version": "2.0.3",
+      "integrity": "sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==",
+      "url": "https://registry.npmjs.org/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz"
+    },
+    {
+      "name": "regenerator-runtime",
+      "version": "0.13.11",
+      "integrity": "sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==",
+      "url": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz"
+    },
+    {
+      "name": "tesseract.js",
+      "version": "7.0.0",
+      "integrity": "sha512-exPBkd+z+wM1BuMkx/Bjv43OeLBxhL5kKWsz/9JY+DXcXdiBjiAch0V49QR3oAJqCaL5qURE0vx9Eo+G5YE7mA==",
+      "url": "https://registry.npmjs.org/tesseract.js/-/tesseract.js-7.0.0.tgz"
+    },
+    {
+      "name": "tesseract.js-core",
+      "version": "7.0.0",
+      "integrity": "sha512-WnNH518NzmbSq9zgTPeoF8c+xmilS8rFIl1YKbk/ptuuc7p6cLNELNuPAzcmsYw450ca6bLa8j3t0VAtq435Vw==",
+      "url": "https://registry.npmjs.org/tesseract.js-core/-/tesseract.js-core-7.0.0.tgz"
+    },
+    {
+      "name": "tr46",
+      "version": "0.0.3",
+      "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
+      "url": "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
+    },
+    {
+      "name": "wasm-feature-detect",
+      "version": "1.8.0",
+      "integrity": "sha512-zksaLKM2fVlnB5jQQDqKXXwYHLQUVH9es+5TOOHwGOVJOCeRBCiPjwSg+3tN2AdTCzjgli4jijCH290kXb/zWQ==",
+      "url": "https://registry.npmjs.org/wasm-feature-detect/-/wasm-feature-detect-1.8.0.tgz"
+    },
+    {
+      "name": "webidl-conversions",
+      "version": "3.0.1",
+      "integrity": "sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==",
+      "url": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
+    },
+    {
+      "name": "whatwg-url",
+      "version": "5.0.0",
+      "integrity": "sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==",
+      "url": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz"
+    },
+    {
+      "name": "zlibjs",
+      "version": "0.3.1",
+      "integrity": "sha512-+J9RrgTKOmlxFSDHo0pI1xM6BLVUv+o0ZT9ANtCxGkjIVCCUdx9alUF8Gm+dGLKbkkkidWIHFDZHDMpfITt4+w==",
+      "url": "https://registry.npmjs.org/zlibjs/-/zlibjs-0.3.1.tgz"
+    }
+  ],
+  "files": [
+    {
+      "path": "bmp-js/.npmignore",
+      "sha256": "71f4f69e377d643123dcac91d29005d50d0d70d29237bb44731f402927bd6298",
+      "size": 18
+    },
+    {
+      "path": "bmp-js/bmp-js.iml",
+      "sha256": "3e424157a615b6a6912a9a510f0c3ef2045ebb77996a7018687a21d225fed1a4",
+      "size": 335
+    },
+    {
+      "path": "bmp-js/index.js",
+      "sha256": "77ab01e2cb073a3a5d60d3f2ef1ed9ffd67d27985f03e528767dfb80dcf95aa8",
+      "size": 233
+    },
+    {
+      "path": "bmp-js/lib/decoder.js",
+      "sha256": "4e941bb5d1b3ce9c67165fc98adc3dfe1850b0dc92b541c4e50862b6015d7ea5",
+      "size": 14445
+    },
+    {
+      "path": "bmp-js/lib/encoder.js",
+      "sha256": "54c54b0043868c436048ee5405d87956370acc0a9356811f50a123812735bef5",
+      "size": 2429
+    },
+    {
+      "path": "bmp-js/LICENSE",
+      "sha256": "9f165f5bd2b462122cacb8c6dc32028be1abb4d8ad0322e9a332f30b2ebdb833",
+      "size": 1077
+    },
+    {
+      "path": "bmp-js/package.json",
+      "sha256": "78f3eefd21ab427f9085270917585c39f3b110c321b3ddbb5a210abfab0c9bdb",
+      "size": 546
+    },
+    {
+      "path": "bmp-js/README.md",
+      "sha256": "a00f9076ed7ec0a0cd535b5f978894e8c24a3147a684cff461b1981289c5174e",
+      "size": 862
+    },
+    {
+      "path": "bmp-js/test/bit1_out.bmp",
+      "sha256": "c7069de1e72a6bb249cd2b87e8b290489c3c5a62e78f4657f9a215c67dd28c3e",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit1.bmp",
+      "sha256": "972bf08afeaac8883efd1327369ae2ff99d422a06765b99004de127a82588df9",
+      "size": 1664
+    },
+    {
+      "path": "bmp-js/test/bit16_565_out.bmp",
+      "sha256": "d8307f907031a65b4384099021db72df3f22a2bb47174206b775a78624d756d6",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit16_565.bmp",
+      "sha256": "5f6442fc05e22a1bdf937bde933d21c0f55f56f8ab82a642854549750887be4c",
+      "size": 20072
+    },
+    {
+      "path": "bmp-js/test/bit16_a444_out.bmp",
+      "sha256": "798810a5f1d2ca0b59d3f3c61b41a6c94beca8a01437025e424911a435599490",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit16_a444.bmp",
+      "sha256": "a92072fcfa9bcb3b251d6fb7d45d02fbd561f13fb341417f9f91df8b9f321066",
+      "size": 20072
+    },
+    {
+      "path": "bmp-js/test/bit16_a555_out.bmp",
+      "sha256": "64806e3bbd7a6ea88b2d1f98f9fb321086742aeb92bdc66b58c8c21007c72e40",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit16_a555.bmp",
+      "sha256": "abfc6723e7a2682fcc73b4b6fe535fafd2c1b29e84ce5c28dcff13c41fcc5817",
+      "size": 20072
+    },
+    {
+      "path": "bmp-js/test/bit16_x444_out.bmp",
+      "sha256": "798810a5f1d2ca0b59d3f3c61b41a6c94beca8a01437025e424911a435599490",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit16_x444.bmp",
+      "sha256": "ea0560ae3429d37bf70e5baa4bd84c37425b93ef1c4390a530c82cd1e89438d7",
+      "size": 20072
+    },
+    {
+      "path": "bmp-js/test/bit16_x555_out.bmp",
+      "sha256": "64806e3bbd7a6ea88b2d1f98f9fb321086742aeb92bdc66b58c8c21007c72e40",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit16_x555.bmp",
+      "sha256": "8bcd820884bf94d0d2101c4be0655649a098d671ead027f33bed155658955f03",
+      "size": 20056
+    },
+    {
+      "path": "bmp-js/test/bit24_out.bmp",
+      "sha256": "b2348e7be0f01e79ffdc15b334792aa71ff06d64fed5cac20b705b0f39a0b6be",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit24.bmp",
+      "sha256": "39ecec524ba6b6c3a612f5cb98663348f31be3af577f4d95f93873940d03e521",
+      "size": 30056
+    },
+    {
+      "path": "bmp-js/test/bit32_alpha_out.bmp",
+      "sha256": "b2348e7be0f01e79ffdc15b334792aa71ff06d64fed5cac20b705b0f39a0b6be",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit32_alpha.bmp",
+      "sha256": "2260f925924c46d31db7bbd804c28562de4b41de7a4ef405fe8364383370b403",
+      "size": 40056
+    },
+    {
+      "path": "bmp-js/test/bit32_out.bmp",
+      "sha256": "b2348e7be0f01e79ffdc15b334792aa71ff06d64fed5cac20b705b0f39a0b6be",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit32.bmp",
+      "sha256": "1c24cd51e65a752a0d4728f0d7d5646b7b7516fc62ce3d53b64d08b9be98c04f",
+      "size": 40072
+    },
+    {
+      "path": "bmp-js/test/bit4_out.bmp",
+      "sha256": "bcc8c3b00e04b7f2585aec43d83f111090bdd6879c055982fc2495c22ff8aff8",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit4_RLE_out.bmp",
+      "sha256": "62cd1f4e7331f2ae91efae1a8ea2a54987e05b30ffc1a152b72d3c5d81cc85fe",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit4_RLE.bmp",
+      "sha256": "6126e65d41169c1e223283c8176f849bc99b0c358c11c03838ced5d4c316df8e",
+      "size": 2708
+    },
+    {
+      "path": "bmp-js/test/bit4.bmp",
+      "sha256": "15bacc7226e74b57cc5f3bbf0140fc557e528843a951f476e93250f5f11ea180",
+      "size": 5288
+    },
+    {
+      "path": "bmp-js/test/bit8_out.bmp",
+      "sha256": "f63fd4875207adbe71b27f336205d628dd382c056c7abea359e79cb69fdae47f",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit8_RLE_out.bmp",
+      "sha256": "0e959767d2fb8107c941fcf34178b04cdaf2a7c228c47bd408469754a8e1ef24",
+      "size": 30054
+    },
+    {
+      "path": "bmp-js/test/bit8_RLE.bmp",
+      "sha256": "316e4b16707a3264b0126cf79b66eccca58831c17948b0d4086f183c7069e78c",
+      "size": 3528
+    },
+    {
+      "path": "bmp-js/test/bit8.bmp",
+      "sha256": "7a4c7da4420f721f46bb72ce2bd7097ab5a1afc9b6efd9b2e868964686941d6e",
+      "size": 10556
+    },
+    {
+      "path": "bmp-js/test/test.js",
+      "sha256": "f9c1d3230388c57111b6fc4d3d787a60a1444cf29236ab1603fc7977f3e83dcb",
+      "size": 801
+    },
+    {
+      "path": "idb-keyval/dist/compat.cjs",
+      "sha256": "5d0877a8e1bfa303a895290132931fd018a31f288f2bc1828ea8786498fa4ffd",
+      "size": 9805
+    },
+    {
+      "path": "idb-keyval/dist/compat.d.ts",
+      "sha256": "315394566cd879a2c3af92cc691d1ac76b7a0cf7c5f3b980b450a557d71862ce",
+      "size": 19
+    },
+    {
+      "path": "idb-keyval/dist/compat.js",
+      "sha256": "930a1b1291374269f11ab778bb14722e92d934dbf650976d4d43a5704ab76cbd",
+      "size": 9573
+    },
+    {
+      "path": "idb-keyval/dist/index.cjs",
+      "sha256": "5a8bcd8a6fe8ccb85aaad23435ba47bcc90d77064d983084625167428a6c9860",
+      "size": 7103
+    },
+    {
+      "path": "idb-keyval/dist/index.d.ts",
+      "sha256": "47f0a1a28b99d7d4e7fc38f20c620d60d0d8fa311113ef11241aab10e30f9f89",
+      "size": 3365
+    },
+    {
+      "path": "idb-keyval/dist/index.js",
+      "sha256": "5d1e57524e8a6b562cd895685ffceee1bad43943216ffb5219ce5bb5b237c0b4",
+      "size": 6871
+    },
+    {
+      "path": "idb-keyval/dist/src/index.d.ts",
+      "sha256": "47f0a1a28b99d7d4e7fc38f20c620d60d0d8fa311113ef11241aab10e30f9f89",
+      "size": 3365
+    },
+    {
+      "path": "idb-keyval/dist/test/index.html",
+      "sha256": "0fe9d0e29796908bcc0191cd937f5c39479e9a72528eeb60cfdb68444a74620c",
+      "size": 140
+    },
+    {
+      "path": "idb-keyval/dist/test/index.js",
+      "sha256": "78a44f494536198ce7874e9e707592ed1dcc202428cac70f655adae143cb0fb1",
+      "size": 865669
+    },
+    {
+      "path": "idb-keyval/dist/test/src/index.d.ts",
+      "sha256": "47f0a1a28b99d7d4e7fc38f20c620d60d0d8fa311113ef11241aab10e30f9f89",
+      "size": 3365
+    },
+    {
+      "path": "idb-keyval/dist/test/test/index.d.ts",
+      "sha256": "99ef4ac5b646799a2a3255f778eb087bfaceb300c11a939cd25f139e60eb3948",
+      "size": 22
+    },
+    {
+      "path": "idb-keyval/dist/umd.cjs",
+      "sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58",
+      "size": 4805
+    },
+    {
+      "path": "idb-keyval/dist/umd.d.ts",
+      "sha256": "315394566cd879a2c3af92cc691d1ac76b7a0cf7c5f3b980b450a557d71862ce",
+      "size": 19
+    },
+    {
+      "path": "idb-keyval/dist/umd.js",
+      "sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58",
+      "size": 4805
+    },
+    {
+      "path": "idb-keyval/LICENCE",
+      "sha256": "20c27d6339619eeb3113cb865d4e98a3f559e52964fc75caea9cb5fa72674565",
+      "size": 555
+    },
+    {
+      "path": "idb-keyval/package.json",
+      "sha256": "7a6bda294116ef0eaf564e16a4a40761e683bec3f1bb2f18dd987608b69be61b",
+      "size": 2102
+    },
+    {
+      "path": "idb-keyval/README.md",
+      "sha256": "2478d519db1e8b9beedbad317e63fa6d6440cb819aefc5a7d1a5d593e69fa333",
+      "size": 6133
+    },
+    {
+      "path": "is-url/.travis.yml",
+      "sha256": "d9fc251db24a95f9ab69ebe704b0546819669b7c3909b5bc17c4026fc516013f",
+      "size": 32
+    },
+    {
+      "path": "is-url/History.md",
+      "sha256": "e61a5e9320737b793e379319270032ab99ad1fe6e396ca9cf97e908222eba0ae",
+      "size": 503
+    },
+    {
+      "path": "is-url/index.js",
+      "sha256": "c7cb9f56300321d104c9772c054144d75e3bf280d184d547fab525f9fbf16e5c",
+      "size": 856
+    },
+    {
+      "path": "is-url/LICENSE-MIT",
+      "sha256": "80957b522b0ea4ce24290953d74d818220c804d1f42cad02b8d7da1c12ce1fc1",
+      "size": 1036
+    },
+    {
+      "path": "is-url/package.json",
+      "sha256": "215ed6a491b1ac845b556de17f46075897e084c7c9f6018bde7150017da34817",
+      "size": 274
+    },
+    {
+      "path": "is-url/Readme.md",
+      "sha256": "72cb0a1cdd26a2a16c8c2be75b5440c7c7de94142d41092f183052792d6b73fc",
+      "size": 193
+    },
+    {
+      "path": "is-url/test/index.js",
+      "sha256": "ac53796f4aaf8474830eec375f929b0269c2811eb2e7abf9cfdd87b793ee7f5b",
+      "size": 3688
+    },
+    {
+      "path": "node-fetch/browser.js",
+      "sha256": "2f59898f0efeaf430d2277e2519819e8e4fd365cb27f9d88d275cf43e1b1344f",
+      "size": 781
+    },
+    {
+      "path": "node-fetch/lib/index.es.js",
+      "sha256": "f786ccb522a08d5296a808bd0aef4bcfb8d9c9b4347e874fbbf6a64c6c1f8b97",
+      "size": 45346
+    },
+    {
+      "path": "node-fetch/lib/index.js",
+      "sha256": "79541f01338e70f4ff6f8a1d12f5c2914d4c6ab2ba96b7ddf48d2add01c13813",
+      "size": 45775
+    },
+    {
+      "path": "node-fetch/lib/index.mjs",
+      "sha256": "751ad19bb1be0a02e9d453eedd4a034e68b433bfbf4789c1645ab058882d11f6",
+      "size": 45272
+    },
+    {
+      "path": "node-fetch/LICENSE.md",
+      "sha256": "84eaa985e1ef71b8c630e8aba73404c219ff425c6fdb45c62e998b58d4fbdc8e",
+      "size": 1079
+    },
+    {
+      "path": "node-fetch/package.json",
+      "sha256": "000a0b3b037d4e3e211e7b7ca559a5a62a39b96ca2c6bcdaed3aba0a545eedba",
+      "size": 2668
+    },
+    {
+      "path": "node-fetch/README.md",
+      "sha256": "53ca2fdf67a57f9b26b19cb198f62aeaa2de9371992b2b54845aac5b6dc0f65d",
+      "size": 21332
+    },
+    {
+      "path": "opencollective-postinstall/index.js",
+      "sha256": "8bdb30e5e56e9466eb8ceb1e02337e3512c330a39b107870ddac10dfad1a8fba",
+      "size": 793
+    },
+    {
+      "path": "opencollective-postinstall/LICENSE",
+      "sha256": "86641df2e1c0c0e655d7eb9962a28e850e80c97c62a29500f2f93ab142c3c8f2",
+      "size": 1072
+    },
+    {
+      "path": "opencollective-postinstall/package.json",
+      "sha256": "8e0dab770014766c637d3f7679bdb6837b313b8d9847d0e36936250120cfbc52",
+      "size": 787
+    },
+    {
+      "path": "opencollective-postinstall/README.md",
+      "sha256": "7cb566430ed3107a170e16f6077e696e584743110ca4947b5b2993503e72b45e",
+      "size": 1035
+    },
+    {
+      "path": "regenerator-runtime/LICENSE",
+      "sha256": "51887a3d47051ac2fce1210562e5b9fe0830a8a8fabeb272c2d586eeb18a05fd",
+      "size": 1080
+    },
+    {
+      "path": "regenerator-runtime/package.json",
+      "sha256": "438ba14ad7859f5e16914e174e425afa8f5d9c21cf5ab208699a28454c4618ee",
+      "size": 464
+    },
+    {
+      "path": "regenerator-runtime/path.js",
+      "sha256": "29c3a3cc09287a723eb6b9452a8175ebfbad00f96f47939ae0709906f7b7a1ee",
+      "size": 252
+    },
+    {
+      "path": "regenerator-runtime/README.md",
+      "sha256": "6de6513adde7d09bd2c06075ef11f809ea70d0005b2e402ab8cfd06052127015",
+      "size": 761
+    },
+    {
+      "path": "regenerator-runtime/runtime.js",
+      "sha256": "e4fa2bcc7507e23fb226bad104bd3c526149ebc9891afbc4bb3a4a0c88afded3",
+      "size": 25202
+    },
+    {
+      "path": "tesseract.js-core/index.js",
+      "sha256": "cc5d319080bc2ef3c288128690ea598c8cbc1d1f2f13a6a750c0ba344ff5a162",
+      "size": 118
+    },
+    {
+      "path": "tesseract.js-core/LICENSE",
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+      "size": 11358
+    },
+    {
+      "path": "tesseract.js-core/package.json",
+      "sha256": "554b867684677c81aa3ffab61f31e83618445fa09adee99e8fff3515cee6ca54",
+      "size": 1784
+    },
+    {
+      "path": "tesseract.js-core/README.md",
+      "sha256": "8b24e92f90bac34a54935305b1d99d5b007898d29b03992f605453232468c6fa",
+      "size": 4562
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-lstm.js",
+      "sha256": "6510efc4e8b45c5465df30679b9911ffe0071cd2ee982fa064e6f5136ef2de85",
+      "size": 89261
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-lstm.wasm",
+      "sha256": "66b17df6e20c5329a17ffa9c202a47eaa3e32500b253d4c7f38e7f2bc01457c3",
+      "size": 2855361
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-lstm.wasm.js",
+      "sha256": "eef5f8b2f8e20e150680b20adaec4a60babafee3adbe8a94583c81fee46e8680",
+      "size": 3896484
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd-lstm.js",
+      "sha256": "a37ac78b707e8d5d3d2e532cc3c4e69b04d127ea44a608f1e7de17640402aa5c",
+      "size": 89360
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd-lstm.wasm",
+      "sha256": "7985c92d4c64e7267d24cadffe1b2a1da6bf8aa55fdcaf953fe94fe122a24545",
+      "size": 2862266
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "sha256": "861a536cf9ef8e63cb644d57bab39c388f37f7d6b6f60024b741c5f6b39a59b3",
+      "size": 3905767
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd.js",
+      "sha256": "716be037611f21b568347421f582f1e1a6456b6d5c3a7c2406c8a2a6c0136427",
+      "size": 89066
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd.wasm",
+      "sha256": "45f8c9b516df326b6ae6b493ed3a6289df5cbd10490e7b6ff8bf5b12ea42d1da",
+      "size": 3456075
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-relaxedsimd.wasm.js",
+      "sha256": "843074aa5bad1cc6421b74a86201768ced9f244795e4d81435435a61a40ce535",
+      "size": 4697227
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd-lstm.js",
+      "sha256": "e48e2f02ddae3716c8dd24bf41cd290d4efa96892d689cdc4013c2545d63f469",
+      "size": 89271
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd-lstm.wasm",
+      "sha256": "34e8d50cac216427d86bf397d610fdd9f49492539bbcdfbfccc4eda20c810bea",
+      "size": 2857601
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd-lstm.wasm.js",
+      "sha256": "c58b46a4c796c0b8afccf77591d5b875b6896b45d402bbce8caa6f5362447b38",
+      "size": 3899472
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd.js",
+      "sha256": "da428fd7989ba749855ea16718a83b23e7ce04016fe31866ad2735813efc7133",
+      "size": 88977
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd.wasm",
+      "sha256": "7d237a13edfeb0fa2f104744fccde0a00e0c076c3e23b7a8fc7af75ec9af2c3e",
+      "size": 3451410
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core-simd.wasm.js",
+      "sha256": "6b61ef4e911b5cf57e656bbfe983d6e2b3711a02dd164154ddda064566e8e09d",
+      "size": 4690932
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core.js",
+      "sha256": "a824c1b99a19e122d87e4467fe16aabb56c495d6cc9a08bc58cb8a7342636b43",
+      "size": 88967
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core.wasm",
+      "sha256": "c7f5ace62ac0ad065e71e9c6725f1d7cdf82e7eda8fba532cbb9563964da7098",
+      "size": 3449168
+    },
+    {
+      "path": "tesseract.js-core/tesseract-core.wasm.js",
+      "sha256": "0bc6ce3e5fbbd0cd89706cf2fd70960e3372f4f01ee24265b26990808aaeb286",
+      "size": 4687944
+    },
+    {
+      "path": "tesseract.js/dist/tesseract.esm.min.js",
+      "sha256": "64871d76c75609fd5413b88a8171e2ef40deedd77d5875ba23df104b2d05eb29",
+      "size": 63220
+    },
+    {
+      "path": "tesseract.js/dist/tesseract.esm.min.js.map",
+      "sha256": "b90e6734b6f835d5b619236e1d40b61accafe5b03cae5b813f0fec263ce6239e",
+      "size": 185596
+    },
+    {
+      "path": "tesseract.js/dist/tesseract.min.js",
+      "sha256": "000c27d9cd0def655f77b36c72a389c0ab13793aa31cb4d7aab56d09c0afbc7e",
+      "size": 62961
+    },
+    {
+      "path": "tesseract.js/dist/tesseract.min.js.LICENSE.txt",
+      "sha256": "cdf963ced7d25a0f98901a547647b4d6e2dbe0197fd78c87a059a87b0e542fe2",
+      "size": 149
+    },
+    {
+      "path": "tesseract.js/dist/tesseract.min.js.map",
+      "sha256": "a9478825f264a19344d379784f5211aa805d3cd020bdd8f7b35051dd20105d1f",
+      "size": 131627
+    },
+    {
+      "path": "tesseract.js/dist/worker.min.js",
+      "sha256": "576b7df7e3393e137e51849357c9adb53fe7ac1bb69bfa06cf3d61520f182c6d",
+      "size": 111307
+    },
+    {
+      "path": "tesseract.js/dist/worker.min.js.LICENSE.txt",
+      "sha256": "45f54171aeaa1d10c0c1a66f374b7bba1f02472b1487fbe892eec04f840002ac",
+      "size": 466
+    },
+    {
+      "path": "tesseract.js/dist/worker.min.js.map",
+      "sha256": "5cfacf7eb569f0e6e6302a7f045b2d76a2161b537230b90de790b81f5563fd7f",
+      "size": 342181
+    },
+    {
+      "path": "tesseract.js/docs/api.md",
+      "sha256": "43866f35c16fb2172ce2cd00d467ebb82f74e782a8da1e18234daf1d9bb278f3",
+      "size": 14875
+    },
+    {
+      "path": "tesseract.js/docs/examples.md",
+      "sha256": "156ba01e230a92d3bba7f5c20f50e68d1380ca2ed286240899c9ff3de0415302",
+      "size": 4670
+    },
+    {
+      "path": "tesseract.js/docs/faq.md",
+      "sha256": "8051e19e3b0b9061791bc436bb7c9203f6dbb1681952b7a379e542c01b2fe273",
+      "size": 7870
+    },
+    {
+      "path": "tesseract.js/docs/image-format.md",
+      "sha256": "03f93533eb436f34b8cc5d552cf5762155db07d97f504c43c218160637907375",
+      "size": 767
+    },
+    {
+      "path": "tesseract.js/docs/images/demo.gif",
+      "sha256": "6d05c954f32ed01263043cfe32fad2c1dd45410a74dc83c4070764cfb175bad9",
+      "size": 99283
+    },
+    {
+      "path": "tesseract.js/docs/images/tesseract_dark.png",
+      "sha256": "577bb023914aada203f5d665bf2e5b4ba93b9301f64eeffa2e12abf6e9d050ef",
+      "size": 7916
+    },
+    {
+      "path": "tesseract.js/docs/images/tesseract.png",
+      "sha256": "6154b2d3637dc1642a975c5947237ca6f343a826f70b5f12e3e5ce0412592c6e",
+      "size": 23940
+    },
+    {
+      "path": "tesseract.js/docs/images/video-demo.gif",
+      "sha256": "277b8c6a2c72863a7d0c5c2e5204c2b6fc5084535c244e4a26810aa1e2fa29d3",
+      "size": 242376
+    },
+    {
+      "path": "tesseract.js/docs/local-installation.md",
+      "sha256": "6db027a844b206f42e844508cff6b5d576dccdb12b5ed67a3587d4fa010652da",
+      "size": 2511
+    },
+    {
+      "path": "tesseract.js/docs/performance.md",
+      "sha256": "63fa4136795fae2575987fd761d81da27db178ea5d22cbbbd657a94db93d5c40",
+      "size": 4659
+    },
+    {
+      "path": "tesseract.js/docs/tesseract_lang_list.md",
+      "sha256": "7289527329c8b17cf50041826504b86b807bf28fd96a09e9d0662ec2df5484e5",
+      "size": 163
+    },
+    {
+      "path": "tesseract.js/docs/workers_vs_schedulers.md",
+      "sha256": "baf3a442abdfa67e1fb4deef2f458d6a14e1798fdacb6417a53957cc490b1943",
+      "size": 3991
+    },
+    {
+      "path": "tesseract.js/examples/browser/basic-efficient.html",
+      "sha256": "2b60ee641b1961509f6b2719b18185d146816812ddac554ff29f6af5ac9da05c",
+      "size": 874
+    },
+    {
+      "path": "tesseract.js/examples/browser/basic-scheduler.html",
+      "sha256": "9dc798b250d12c4eb4af6938ac68be894573c5c008a45a43278b136c674b32d9",
+      "size": 1463
+    },
+    {
+      "path": "tesseract.js/examples/browser/download-pdf.html",
+      "sha256": "69885a3b50b5ddfdc1ac37ec860d80c1fc1eae18c0ff3c2148021fd97aa65418",
+      "size": 1916
+    },
+    {
+      "path": "tesseract.js/examples/browser/image-processing.html",
+      "sha256": "47a027da4938f1f908bc44333c01abc5a48f4bd231b3658095ea00857c9f6a40",
+      "size": 1486
+    },
+    {
+      "path": "tesseract.js/examples/node/download-pdf.js",
+      "sha256": "1e900e3f2d0c006e371acf027afec8f0a53eb39e737aa64d56a0e68f628b0d9a",
+      "size": 647
+    },
+    {
+      "path": "tesseract.js/examples/node/image-processing.js",
+      "sha256": "06843300f2924cbd5b5cafaabc923385547a28039d0b357614d199f873819b80",
+      "size": 1183
+    },
+    {
+      "path": "tesseract.js/examples/node/recognize.js",
+      "sha256": "58645c0019ea89289add9ae4d6e85120573aac831c001e26b1b9d7bbba9eb590",
+      "size": 499
+    },
+    {
+      "path": "tesseract.js/examples/node/scheduler.js",
+      "sha256": "1eaf031d544112da2ebd1186051c6710bdc35e303135b5d2f84c77893b5cd861",
+      "size": 1166
+    },
+    {
+      "path": "tesseract.js/karma.conf.js",
+      "sha256": "141c1b382803e1a3483366e0b0d51577a2cf9f6c19b46cb6128acafcc89b0405",
+      "size": 1945
+    },
+    {
+      "path": "tesseract.js/LICENSE.md",
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "size": 11357
+    },
+    {
+      "path": "tesseract.js/package.json",
+      "sha256": "fa342f37afd665595eca66ee867197c47c9ac35a7967123d1132c39a40b3dfbd",
+      "size": 2914
+    },
+    {
+      "path": "tesseract.js/README.md",
+      "sha256": "ad7f6a92126e6995d8ce85f08b5010862e01d5938fb8539b7ed0711b687cda4b",
+      "size": 11163
+    },
+    {
+      "path": "tesseract.js/scripts/rollup.esm.mjs",
+      "sha256": "ef7d5a2644b2c4605e85bf416b93a5516b7de4fe4df8e30db2d63074ed7529c2",
+      "size": 350
+    },
+    {
+      "path": "tesseract.js/scripts/server.js",
+      "sha256": "5cd640b147b7d29d5dbb7924eb6c8a4d84ca2894a15912b8f6222e4287adf754",
+      "size": 874
+    },
+    {
+      "path": "tesseract.js/scripts/test-helper.mjs",
+      "sha256": "cc69ece57fb789a7e2505940e16904d851ed39ebe46a23104c2d9d8d30ca512e",
+      "size": 211
+    },
+    {
+      "path": "tesseract.js/scripts/webpack.config.common.js",
+      "sha256": "d333039f12d485b2a54fcdb1aa6d6cd459148f01f1d66359b607eff1898f1a30",
+      "size": 539
+    },
+    {
+      "path": "tesseract.js/scripts/webpack.config.prod.js",
+      "sha256": "e6134fed4003abedac5316df0ad2b8b9e25cda9e9779bc7b8e74a10e84ba371c",
+      "size": 814
+    },
+    {
+      "path": "tesseract.js/src/constants/defaultOptions.js",
+      "sha256": "c133a00e603dde9ae7aa2b5a59fa3ded7cdd5c1846af1c36940bd866c7f09d1b",
+      "size": 172
+    },
+    {
+      "path": "tesseract.js/src/constants/imageType.js",
+      "sha256": "64df6196df12df3b9cd2009556d21c9da421cf6f8d6960f05ece04cf6963280f",
+      "size": 73
+    },
+    {
+      "path": "tesseract.js/src/constants/languages.js",
+      "sha256": "c1de5ac399d8dd62e6763ee7936b2e6241a05abac11e8925414386b1cc0bc4f8",
+      "size": 5559
+    },
+    {
+      "path": "tesseract.js/src/constants/OEM.js",
+      "sha256": "01235a54415543fddf2c8c114328500fe6027e5ff5c084fe9d9a491c7895a442",
+      "size": 237
+    },
+    {
+      "path": "tesseract.js/src/constants/PSM.js",
+      "sha256": "3780ffd6bcd377d943546d42d3b00221d2d62f9a1c1f1df2bc8aed98ed48c3f3",
+      "size": 360
+    },
+    {
+      "path": "tesseract.js/src/createJob.js",
+      "sha256": "e96d0edb2d5fe1011f31f135518f0e79d934c6c3a512e66e87c4a3c4cfc601a1",
+      "size": 306
+    },
+    {
+      "path": "tesseract.js/src/createScheduler.js",
+      "sha256": "2f456f3ec13e5c89f32b52f5cef69ad3aa5bcb7af6e4a3d72997f57f054c7532",
+      "size": 1986
+    },
+    {
+      "path": "tesseract.js/src/createWorker.js",
+      "sha256": "730c82036c801416256cdbf4bf36df934b0f25f2dcb3913454bccd9e2cfdb857",
+      "size": 6672
+    },
+    {
+      "path": "tesseract.js/src/index.d.ts",
+      "sha256": "d09a2a53da56d20aeac85e4f0b69f2ef799d73f1186b3abf93d32388ab431fe1",
+      "size": 5906
+    },
+    {
+      "path": "tesseract.js/src/index.js",
+      "sha256": "882360f8435a9f2b80265fffc5df2a7c849c39afd05c36ffd89db9d1024979d0",
+      "size": 754
+    },
+    {
+      "path": "tesseract.js/src/Tesseract.js",
+      "sha256": "5eddc3f16fb0643f9cd4b7f1f8fd71316c262a0d2c29a5ac2ff9d6f5f2c03f7b",
+      "size": 522
+    },
+    {
+      "path": "tesseract.js/src/utils/getEnvironment.js",
+      "sha256": "90867901571990b7b8665567a81e10c827da9a1d2642328a619f9704f0a7eaef",
+      "size": 395
+    },
+    {
+      "path": "tesseract.js/src/utils/getId.js",
+      "sha256": "f27f8c6c0bbe48cb49dcd73afa4c3797c9701fce0d1e63a09185b3c1267cfe55",
+      "size": 117
+    },
+    {
+      "path": "tesseract.js/src/utils/log.js",
+      "sha256": "979b83c424ee6440894c51b0b0a41629f67e130d721fc33d2c703e60203fc3ad",
+      "size": 205
+    },
+    {
+      "path": "tesseract.js/src/utils/resolvePaths.js",
+      "sha256": "55333a374178c5c4ba30200a5f0471fb3523575062436cb9ca215fc19e7a7686",
+      "size": 413
+    },
+    {
+      "path": "tesseract.js/src/worker-script/browser/cache.js",
+      "sha256": "7d6355676f282e48ba6c95242880ec6131570e21258f2cb7b8d23a1406b8247b",
+      "size": 227
+    },
+    {
+      "path": "tesseract.js/src/worker-script/browser/getCore.js",
+      "sha256": "1b02ae0477af3201147c7ba4ac8f19248940b8e185a38f1f1e9f97a017280412",
+      "size": 2682
+    },
+    {
+      "path": "tesseract.js/src/worker-script/browser/gunzip.js",
+      "sha256": "91228afc0954f53c64e4428017dd0764ae51435164c17dcf4098e2b077431789",
+      "size": 62
+    },
+    {
+      "path": "tesseract.js/src/worker-script/browser/index.js",
+      "sha256": "ed824cc16d15782a2764cb6264fb5f677c60d5bde92d03f7ab0537b3d818027c",
+      "size": 676
+    },
+    {
+      "path": "tesseract.js/src/worker-script/constants/defaultOutput.js",
+      "sha256": "0bbce30ab5af59468849e19fa3ec01caf93e7a0760cb69b2a8955ee6d17d3909",
+      "size": 307
+    },
+    {
+      "path": "tesseract.js/src/worker-script/index.js",
+      "sha256": "a5759d6d3d8beda31134dd041e2d3482b3adf26b6da4a3e7da9b1c5379114268",
+      "size": 18777
+    },
+    {
+      "path": "tesseract.js/src/worker-script/node/cache.js",
+      "sha256": "815947619b583b3bbe91cab4aa9825db0987e26f8dc762e14a11c592eb70dbbd",
+      "size": 410
+    },
+    {
+      "path": "tesseract.js/src/worker-script/node/getCore.js",
+      "sha256": "139e22c350e002fd3794d32a850fc45f5593ee66f9160d70df5fd492bcbec4cb",
+      "size": 1334
+    },
+    {
+      "path": "tesseract.js/src/worker-script/node/gunzip.js",
+      "sha256": "aa725afcefa41fd181f6ddf9e1d228c5174e1e40c87c2c359b0b35b3d4b58f98",
+      "size": 60
+    },
+    {
+      "path": "tesseract.js/src/worker-script/node/index.js",
+      "sha256": "a973c23ce067bc752c0bf602297eac843098e531ac03f3ea34cdf694326a6d02",
+      "size": 771
+    },
+    {
+      "path": "tesseract.js/src/worker-script/utils/arrayBufferToBase64.js",
+      "sha256": "b8ef005b926588a88dbe3d7f61a2d00c817842578131c180ee1e9c5ada8d4ae1",
+      "size": 1857
+    },
+    {
+      "path": "tesseract.js/src/worker-script/utils/dump.js",
+      "sha256": "09a7e2585627056d48e5ae0facf77cd21a97fcd8219f0ca6abd21065d157ad9f",
+      "size": 2972
+    },
+    {
+      "path": "tesseract.js/src/worker-script/utils/setImage.js",
+      "sha256": "608f928a37d0c456ef60ec3a6b1e9b17acc14ce3363fb39fed138aba7208490c",
+      "size": 1188
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/defaultOptions.js",
+      "sha256": "66a296b99446fdf1bc80004f601e17c2d1f77861874091923eb3d92c079c082f",
+      "size": 318
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/index.js",
+      "sha256": "0886ce2448b0634a83eb15fbf2feb9db9d140ab1c68c5c87f5ecf4b82c40cec6",
+      "size": 633
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/loadImage.js",
+      "sha256": "7c4a6b296aa741c6a4425b56570774c73125726ed7ffb5bba9645837fc814157",
+      "size": 1844
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/onMessage.js",
+      "sha256": "ac93c361f5b181668e49b2270f37f03a6b84cd43a76289e8c69223b1ced69634",
+      "size": 142
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/send.js",
+      "sha256": "d07042e9f38faff1cf37dd3e51ec7cd24e7fcf27b244184320949254608cbc34",
+      "size": 196
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/spawnWorker.js",
+      "sha256": "39a3b5dcb28a649111974ba97d14c6651ab4a48696034727cb8cc2706501b84f",
+      "size": 466
+    },
+    {
+      "path": "tesseract.js/src/worker/browser/terminateWorker.js",
+      "sha256": "2924d34de86a287933d54e4494248e2caa16277d0d5b53630dae0d2b06be03fb",
+      "size": 174
+    },
+    {
+      "path": "tesseract.js/src/worker/node/defaultOptions.js",
+      "sha256": "da02fc10c3545154ae143d0cc762b2493cde4207272ee0f5ab5da6bea67249e7",
+      "size": 282
+    },
+    {
+      "path": "tesseract.js/src/worker/node/index.js",
+      "sha256": "edc9de52fb13bba841158741c883a68f8adea9d2505869dfc63266a623ee38bd",
+      "size": 645
+    },
+    {
+      "path": "tesseract.js/src/worker/node/loadImage.js",
+      "sha256": "fe47eb386a2a802b2621abec973e191fb9a0d9609dcf633dce085f82621d287f",
+      "size": 1028
+    },
+    {
+      "path": "tesseract.js/src/worker/node/onMessage.js",
+      "sha256": "f6a148f1ec9c175fcdee8565b82b8c5edc3058c69df644dedda7b422a9112b64",
+      "size": 91
+    },
+    {
+      "path": "tesseract.js/src/worker/node/send.js",
+      "sha256": "d07042e9f38faff1cf37dd3e51ec7cd24e7fcf27b244184320949254608cbc34",
+      "size": 196
+    },
+    {
+      "path": "tesseract.js/src/worker/node/spawnWorker.js",
+      "sha256": "0f1dc3715aa3abeb3ec28865a64c526d1cf5436c836aae53098201064f54c929",
+      "size": 228
+    },
+    {
+      "path": "tesseract.js/src/worker/node/terminateWorker.js",
+      "sha256": "264591091b8ab0bf015fc015e5e2d514917f3ead561668a0932efadc3508f4aa",
+      "size": 169
+    },
+    {
+      "path": "tr46/.npmignore",
+      "sha256": "220244e94c71eccaccee66cac3ccd592f503f4a21caabbde6b92d16ce4434ba1",
+      "size": 40
+    },
+    {
+      "path": "tr46/index.js",
+      "sha256": "8194f9425ce9ab06ea9aebcd64a85ec064d95d61bb349f8f1c98762ad256638e",
+      "size": 7567
+    },
+    {
+      "path": "tr46/lib/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "tr46/lib/mappingTable.json",
+      "sha256": "b6b39724dca9011113a08d9d6910204062b58169e98952acdfbd19bf2c31bbff",
+      "size": 260049
+    },
+    {
+      "path": "tr46/package.json",
+      "sha256": "615087f58ee138fd35c2b414c355b72e36e5919725b8aecc1c34f6a5585b9779",
+      "size": 732
+    },
+    {
+      "path": "wasm-feature-detect/dist/cjs/index.cjs",
+      "sha256": "1393262b2d5327b4ff2ebe1ebc0cc00a82f88bde0521e59b39c626a11c5aae43",
+      "size": 3226
+    },
+    {
+      "path": "wasm-feature-detect/dist/esm/index.js",
+      "sha256": "879dd39c8d9ebd5a3c64d1f18955b047907c677ca3b71865e2497264107e3aef",
+      "size": 3199
+    },
+    {
+      "path": "wasm-feature-detect/dist/index.d.cts",
+      "sha256": "543304b73458e2e611d9b71cb7b78cbf3294ff0e54a294460a28ee84f6e78d25",
+      "size": 837
+    },
+    {
+      "path": "wasm-feature-detect/dist/index.d.ts",
+      "sha256": "543304b73458e2e611d9b71cb7b78cbf3294ff0e54a294460a28ee84f6e78d25",
+      "size": 837
+    },
+    {
+      "path": "wasm-feature-detect/dist/umd/index.js",
+      "sha256": "74d3b2390e6988ec37e21bd7ba46e46a8a93c7ac38a743d7f23c74ca689ad456",
+      "size": 3439
+    },
+    {
+      "path": "wasm-feature-detect/LICENSE",
+      "sha256": "bcf29b4fd3ec2cb5f9d40a0866da446f6da62170d2ccedf4aeca9cf9406dd20c",
+      "size": 11341
+    },
+    {
+      "path": "wasm-feature-detect/package.json",
+      "sha256": "f511a8499a742e364d5bc9cdb23fb09108b12c7683fe06fb9e2bc324832b3b5b",
+      "size": 1859
+    },
+    {
+      "path": "wasm-feature-detect/README.md",
+      "sha256": "1f355d88b95f8c8c6e28d9501ad889b991e6e83e06744bae8c76e7992285c053",
+      "size": 5967
+    },
+    {
+      "path": "wasm-feature-detect/README.md.ejs",
+      "sha256": "5e4263cad319dd5b7a7dee9af0cddd6e888ea96daef3bfa405dff7c5988be3c9",
+      "size": 2728
+    },
+    {
+      "path": "webidl-conversions/lib/index.js",
+      "sha256": "0b29621626c38ddda2a8e20787c32d09db10dd031ea743c5e270b59d46754a84",
+      "size": 5056
+    },
+    {
+      "path": "webidl-conversions/LICENSE.md",
+      "sha256": "a889cc4dbee2ae172c179856b25d75b0b7a5a136e1b97109b9b590b2ff1a879c",
+      "size": 1323
+    },
+    {
+      "path": "webidl-conversions/package.json",
+      "sha256": "e26568c06b82596d754c7490fd568b4b3f970b3b97c55020d42f65990d0c86af",
+      "size": 511
+    },
+    {
+      "path": "webidl-conversions/README.md",
+      "sha256": "fd9075b4186b3167c44b00eb92d95971b3d36ed6cf10ace990afcadf5f52f08a",
+      "size": 5480
+    },
+    {
+      "path": "whatwg-url/lib/public-api.js",
+      "sha256": "0cbda6401c6179c4fb2ef0cebeccfb127485fee6f0ed5c129a8a539d4cd29018",
+      "size": 625
+    },
+    {
+      "path": "whatwg-url/lib/URL-impl.js",
+      "sha256": "e60103ff74b8bfc4001f5c05eea482f554de610cb5fc4e7ccbfc5aef9e443706",
+      "size": 3804
+    },
+    {
+      "path": "whatwg-url/lib/url-state-machine.js",
+      "sha256": "e038db71d8a2313d7d20ad6dd1116a2fcb34b41e39f7a2364c70ff1aff548850",
+      "size": 33573
+    },
+    {
+      "path": "whatwg-url/lib/URL.js",
+      "sha256": "3bd67335fc72b50924fa35523c2b0b73dce9cb814f6bae82644ccb1f22560706",
+      "size": 4212
+    },
+    {
+      "path": "whatwg-url/lib/utils.js",
+      "sha256": "96b941934b9050815f9397bc6796ea8611bfa00c5886587d81da64a23841e3b9",
+      "size": 562
+    },
+    {
+      "path": "whatwg-url/LICENSE.txt",
+      "sha256": "6b7a1792144374d84dc5ed3655b8bbe2754d06f4f1f64a9fb8b9de2d6f448b85",
+      "size": 1088
+    },
+    {
+      "path": "whatwg-url/package.json",
+      "sha256": "05a015c4176246f051bbaa3a543ed82480a4a4d85360283e049f159ba014b008",
+      "size": 886
+    },
+    {
+      "path": "whatwg-url/README.md",
+      "sha256": "f60e4cb8275e281590d826da8a1a3134367c5a8fa6c514d4440075f6b00a0b19",
+      "size": 5136
+    },
+    {
+      "path": "zlibjs/bin/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "zlibjs/bin/crc32.dev.min.js",
+      "sha256": "5205307bc8a39210fdd617279e7de2fdb4b39baea7b3b939174584ee68fbb107",
+      "size": 87511
+    },
+    {
+      "path": "zlibjs/bin/crc32.min.js",
+      "sha256": "2ea4037457a57437177020b8016d105fb958d863edb33b0abcc5718b1b0fa712",
+      "size": 3811
+    },
+    {
+      "path": "zlibjs/bin/deflate.dev.min.js",
+      "sha256": "0746cb5465755f2289f51b732c72c29e2169c0a84822cc57a8c26985f6e8112d",
+      "size": 200641
+    },
+    {
+      "path": "zlibjs/bin/deflate.min.js",
+      "sha256": "d14d83f01b98df0ff6e858dd9ddbbb041410a5a73e16678e638ac8d0572d4370",
+      "size": 11601
+    },
+    {
+      "path": "zlibjs/bin/gunzip.dev.min.js",
+      "sha256": "5522d8355a999ad91deefdd9327db835a23f68270be9e2621fa456d9a25cbc41",
+      "size": 238876
+    },
+    {
+      "path": "zlibjs/bin/gunzip.min.js",
+      "sha256": "497ebe27be7ea1833551745e105661470c8bf1a45124935e32cdb5901bc81403",
+      "size": 12372
+    },
+    {
+      "path": "zlibjs/bin/gzip.dev.min.js",
+      "sha256": "92dc7c2f5f9f41657d21dbe48895cf1246d8c0e068dfca6269b25d481ab2f641",
+      "size": 214483
+    },
+    {
+      "path": "zlibjs/bin/gzip.min.js",
+      "sha256": "00118a3dde872487c43763455f7c474a4571c58ce496ff66104c9bac22386816",
+      "size": 14671
+    },
+    {
+      "path": "zlibjs/bin/inflate_stream.dev.min.js",
+      "sha256": "3f133a6add5fd28894f59686a118aaadb434fcbfc02ff79e94e3996371ef501c",
+      "size": 137921
+    },
+    {
+      "path": "zlibjs/bin/inflate_stream.min.js",
+      "sha256": "5072a18cb8c1d10536e7947e3550b6b1007bee60074d5970b708c88d7fdf0a2e",
+      "size": 6233
+    },
+    {
+      "path": "zlibjs/bin/inflate.dev.min.js",
+      "sha256": "850cd25f382d7adf4c7d43c60c55741a64f5d4e1bb93637cef6ac06d7abaecac",
+      "size": 146824
+    },
+    {
+      "path": "zlibjs/bin/inflate.min.js",
+      "sha256": "550b17ae3db8a3dcd31e6af365e9abb7ddbcc28f798f9b0cc92c27ca237afc5b",
+      "size": 6980
+    },
+    {
+      "path": "zlibjs/bin/node-zlib.dev.js",
+      "sha256": "262810543818eb04bb1f89a790ddf0712dce8af7a8e59180d01bdb039e608d38",
+      "size": 329598
+    },
+    {
+      "path": "zlibjs/bin/node-zlib.js",
+      "sha256": "29c696dd3a05fe913959064ec64d1e5808340d390f10698632efdca506edf1e9",
+      "size": 24166
+    },
+    {
+      "path": "zlibjs/bin/rawdeflate.dev.min.js",
+      "sha256": "d6c81184b804ead95699f7b45b372638e01caf03dffd012826a7c3b726860fb1",
+      "size": 184950
+    },
+    {
+      "path": "zlibjs/bin/rawdeflate.min.js",
+      "sha256": "c679b878fdb20e0fb0e162843af12c1fedcd4db2d348565e594e299545e778ee",
+      "size": 10354
+    },
+    {
+      "path": "zlibjs/bin/rawinflate.dev.min.js",
+      "sha256": "95d8e29a2cb0e2a432dcca2ff37acb6e44cfa29f7d738458c8f797cb447adb1a",
+      "size": 134701
+    },
+    {
+      "path": "zlibjs/bin/rawinflate.min.js",
+      "sha256": "ac29c00716cfb7d7b063c07702cae932505cb5753e4232d79b0b2f5a85897a24",
+      "size": 6049
+    },
+    {
+      "path": "zlibjs/bin/unzip.dev.min.js",
+      "sha256": "a74129b6fc0bdd89c9f4d62bd3b1df45aa84aee2569a66d0fb100e14a53fc145",
+      "size": 280635
+    },
+    {
+      "path": "zlibjs/bin/unzip.min.js",
+      "sha256": "a4aa1b524ccf4ca327597e725c652de792e9ed6f696e868085a5e223f86022be",
+      "size": 14811
+    },
+    {
+      "path": "zlibjs/bin/zip.dev.min.js",
+      "sha256": "555a3618512c48257d68d881cf7fe14a8744a502544ca81bcde18310f6df39a6",
+      "size": 246025
+    },
+    {
+      "path": "zlibjs/bin/zip.min.js",
+      "sha256": "74b2c7bf87295599d5c32ca192404c2a660a943fd7e63a728aaad5b21f98864f",
+      "size": 17305
+    },
+    {
+      "path": "zlibjs/bin/zlib_and_gzip.dev.min.js",
+      "sha256": "0a48515934e35c2a9449be829a20f11eaa16703fdac5b122cd40e1b41d8892ff",
+      "size": 325074
+    },
+    {
+      "path": "zlibjs/bin/zlib_and_gzip.min.js",
+      "sha256": "95eba9c13bcf7a0446d55ae26df993932352bf6a467e2d2fefe311495621add1",
+      "size": 24502
+    },
+    {
+      "path": "zlibjs/bin/zlib.dev.min.js",
+      "sha256": "568ffa8b67604db0056afc7a935ce724f496e628c18fb00454eb979701bf2247",
+      "size": 272039
+    },
+    {
+      "path": "zlibjs/bin/zlib.min.js",
+      "sha256": "8b75479e72595b2a0c2c52f9a6386a2e169bd04a30fe11fce2066b7b888810f1",
+      "size": 17831
+    },
+    {
+      "path": "zlibjs/bin/zlib.pretty.dev.js",
+      "sha256": "3b3d1949747d765b14adcd6afccdeb268ab943b271bacc6dad1d445e8ce815ea",
+      "size": 614245
+    },
+    {
+      "path": "zlibjs/bin/zlib.pretty.js",
+      "sha256": "d9f2c06525d818da257c7cdc90aaf127a501b9014f6428ff2313130fff23bc2a",
+      "size": 124861
+    },
+    {
+      "path": "zlibjs/ChangeLog.md",
+      "sha256": "d84bc31a9edad781315307ccb3d8116f6384a775cae0023c6a70f2c4e44eff2f",
+      "size": 3693
+    },
+    {
+      "path": "zlibjs/LICENSE",
+      "sha256": "131afe3f7bdce1698beb292fb8de1a968de01bce876122a60ef5db230471c866",
+      "size": 1222
+    },
+    {
+      "path": "zlibjs/package.json",
+      "sha256": "5a087e0b211482ab3ab1de0ede25efe4296f77830ec5b7ec6fea357d68af9ede",
+      "size": 1387
+    },
+    {
+      "path": "zlibjs/README.en.md",
+      "sha256": "1d1dd4e652133de680b32300c3c087612efb0619cfbfdcd303c65e90c759c165",
+      "size": 6452
+    },
+    {
+      "path": "zlibjs/README.md",
+      "sha256": "c65f2d2e0dcff8f2c185036a737eb1b59667b9c56b8a6ec920bfc2a16bbb3a4d",
+      "size": 9668
+    }
+  ]
+}

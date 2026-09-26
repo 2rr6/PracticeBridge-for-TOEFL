@@ -1,0 +1,79 @@
+@title 自编演示 · 校园日常
+@description 九道自编题，体验材料导入、四科基础作答和独立重练。非官方试题，不用于官方成绩预测。
+@rights 本项目自编演示材料，CC0-1.0。音频由 Windows 本地语音合成，非真人录音。非 ETS 或任何机构的题库。
+@section reading
+@group A garden on campus
+@passage
+A small garden behind the campus library used to be an empty parking area. Last spring, a group of students planted vegetables there. They chose plants that needed little water because the area receives limited rain. The students now meet every Sunday morning to care for the garden. Some of the vegetables go to the campus kitchen, and the rest are shared among volunteers. The project has also created a quiet place where students can take a break between classes.
+@question single_choice
+Why did the students choose plants that needed little water?
+@option A | The campus kitchen requested those plants.
+@option B | There is limited rain in the area.
+@option C | The students only visited once a month.
+@option D | The garden had too much shade.
+@answer B
+@explanation The passage directly links the choice of plants to limited rainfall.
+@time 120
+@end
+@question single_choice
+Which activity is NOT mentioned as a use of the garden?
+@option A | Growing vegetables for the campus kitchen.
+@option B | Providing a place to rest between classes.
+@option C | Holding evening music performances.
+@option D | Sharing vegetables among volunteers.
+@answer C
+@explanation Music performances are not mentioned in the passage.
+@time 120
+@end
+@question fill_blank
+Complete the word. Students who freely give their time to a project are called volun____. Type the full word.
+@answer volunteers
+@explanation The word volunteers appears in the passage.
+@time 60
+@end
+@section listening
+@group A workshop announcement
+@groupAudio announcement.wav
+@question single_choice
+Why was the garden workshop moved to Sunday?
+@option A | The tools were not available.
+@option B | Rain was expected on Saturday.
+@option C | Students requested an earlier time.
+@answer B
+@explanation The announcement says the workshop moved because of rain.
+@time 60
+@end
+@section writing
+@group Writing in everyday life
+@question sentence_order
+Put the fragments in order to make a complete sentence. Use each fragment once.
+@option A | because it is quiet.
+@option B | in the library
+@option C | I prefer studying
+@answer C | B | A
+@time 60
+@end
+@question email
+You borrowed a book from your classmate Maya, but you need it for two more days. Write an email to Maya. Explain why you need extra time, suggest a specific return time, and offer to help her if she needs the book sooner.
+@time 420
+@end
+@question discussion
+Your class is discussing study spaces. The instructor asks: Should universities spend more money on quiet individual study rooms or on shared group spaces? State your view and support it with a specific reason or example. You may acknowledge a useful feature of the other option.
+@time 600
+@end
+@section speaking
+@group A short interview
+@question interview
+Think about a place where you enjoy studying. What makes this place work well for you? Give a specific example.
+@audio interview.wav
+@prepare 15
+@time 45
+@end
+@group Listen and repeat
+@question listen_repeat
+Listen to the sentence and repeat it as accurately as you can.
+@answer The library will stay open until nine this evening.
+@audio repeat.wav
+@prepare 0
+@time 15
+@end

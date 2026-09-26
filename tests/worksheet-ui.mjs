@@ -1,0 +1,29 @@
+import {appFetch} from './auth-client.mjs';
+import {saveAndProcessLocal} from './material-ui-helpers.mjs';
+import {chromium} from 'playwright';
+import {startServer} from '../src/server.mjs';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),run=resolve(root,'test-results',`worksheet-${Date.now()}`);await mkdir(run,{recursive:true});
+let browser,server,clean;const checks=[],errors=[];const pass=x=>{checks.push(x);console.log('PASS '+x);};
+try{
+  server=await startServer({dataDir:resolve(run,'data')});browser=await chromium.launch({channel:'msedge',headless:true,args:['--autoplay-policy=no-user-gesture-required']});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(server.url+'/#import');await page.locator('#import-folder').setInputFiles(resolve(root,'public/examples/ordinary-worksheet'));await saveAndProcessLocal(page);await page.locator('#candidate-author').check();
+  const pending=page.locator('[data-candidate]').filter({has:page.locator('[data-candidate-select]:disabled')});assert.equal(await pending.count(),1);await pending.locator('.candidate-editor>summary').click();await pending.locator('[name=media-role]').selectOption('groupAudio');await pending.locator('[name=audio-asset]').selectOption({label:'set-b/prompt.wav'});await pending.getByRole('button',{name:'保存对应关系'}).click();await page.waitForFunction(()=>document.querySelectorAll('[data-candidate-select]:disabled').length===0);await page.screenshot({path:resolve(run,'01-field-correction.png'),fullPage:true});
+  await page.locator('#select-answerable').click();await page.locator('#compile-candidates').click();await page.locator('#candidate-result .success').waitFor();let state=await(await appFetch(server.url+'/api/state')).json(),lib=state.libraries[0];assert.equal(lib.groups.length,4);assert.equal(lib.groups.reduce((n,g)=>n+g.questions.length,0),5);assert.equal(lib.groups[0].questions[0].answer,'B');assert.equal(lib.groups[0].questions[1].answer,null);assert.equal(lib.groups[1].questions[0].answer,'A');assert.ok(lib.groups[1].questions[0].prompt.includes('NOT'));assert.notEqual(lib.groups[0].questions[0].id,lib.groups[1].questions[0].id);assert.notEqual(lib.groups[2].audio,lib.groups[3].audio);pass('unmarked Word plus folder imports with exactly one form-based media correction and no JSON editing');
+  assert.ok(lib.groups[0].questions[0].source.includes('ordinary-worksheet.docx'));assert.ok(lib.groups[1].questions[0].source.includes('原题号 1'));pass('repeated local Q1 numbers keep distinct groups, source references and local answer keys');
+  // Answering and missing-key grading are exercised through the current engine
+  // by exam-workflow-ui. This suite keeps the independent document contract.
+  await page.goto(server.url+'/#dashboard');await page.locator('.hero').waitFor();const exported=Buffer.from(await(await appFetch(server.url+`/api/library/${lib.libraryId}/export`)).arrayBuffer());clean=await startServer({dataDir:resolve(run,'clean')});const post=async(path,data)=>{const r=await appFetch(clean.url+'/api'+path,{method:'POST',headers:{'Content-Type':'application/json','X-PracticeBridge':'1'},body:JSON.stringify(data)});assert.equal(r.status,200);return r.json();};const preview=await post('/import/preview',{files:[{name:'roundtrip.zip',data:exported.toString('base64')}]});const {library:again}=await post('/import/commit',{draftId:preview.draftId,pack:preview.pack,acknowledged:true});assert.deepEqual(again.groups.map(g=>g.questions.map(q=>[q.id,q.prompt,q.answer,q.source])),lib.groups.map(g=>g.questions.map(q=>[q.id,q.prompt,q.answer,q.source])));
+  for(const [index,relative] of [[2,'set-a/prompt.wav'],[3,'set-b/prompt.wav']]){
+    const mediaUrl=again.mediaUrls[again.groups[index].audio]||again.groups[index].audio,expected=await readFile(resolve(root,'public/examples/ordinary-worksheet',relative)),response=await appFetch(clean.url+mediaUrl);assert.equal(response.status,200);
+    const actual=Buffer.from(await response.arrayBuffer());assert.equal(createHash('sha256').update(actual).digest('hex'),createHash('sha256').update(expected).digest('hex'));
+    await page.goto(clean.url+'/#dashboard');await page.locator('.hero').waitFor();
+    const playback=await page.evaluate(async url=>{const audio=document.createElement('audio');audio.id='roundtrip-audio';audio.controls=true;audio.src=url;document.querySelector('#main').prepend(audio);await audio.play();const deadline=performance.now()+6000;while(audio.currentTime<=.05&&!audio.error&&performance.now()<deadline)await new Promise(resolve=>setTimeout(resolve,25));const result={time:audio.currentTime,readyState:audio.readyState,error:audio.error?.message||null};audio.pause();return result;},mediaUrl);
+    assert.ok(playback.time>.05,JSON.stringify(playback));assert.ok(playback.readyState>=2);assert.equal(playback.error,null);
+  }
+  await page.screenshot({path:resolve(run,'02-roundtrip-playback.png'),fullPage:true});pass('export and clean import preserve all corrected fields and both same-name audio files actually play');assert.deepEqual(errors,[]);await writeFile(resolve(run,'result.json'),JSON.stringify({ok:true,checks,manualChanges:[{field:'Speaking: Interview / group.audio',from:'missing.wav',to:'set-b/prompt.wav'}],inputs:'Original ordinary DOCX; no @ directives; two different audio files under distinct subfolders',errors},null,2));console.log('RESULT_DIR '+run);
+}catch(e){console.error(e);await writeFile(resolve(run,'failure.txt'),e.stack);process.exitCode=1;}finally{await browser?.close();await server?.close();await clean?.close();}

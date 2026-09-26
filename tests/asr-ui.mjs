@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { chromium } from 'playwright';
+import { startServer } from '../src/server.mjs';
+
+const directory = path.resolve('test-results/asr/ui', crypto.randomUUID());
+await fs.mkdir(directory, { recursive: true });
+const runtime = await startServer({ dataDir: directory });
+const configuration = process.env.ASR_TEST_CONFIGURATION ? JSON.parse(process.env.ASR_TEST_CONFIGURATION) : { interpreter: process.execPath, modelDirectory: path.join(directory, 'model-not-installed'), modelId: 'base', device: 'cpu', deviceIndex: 0, computeType: 'int8_float32', dllDirectories: [] };
+const expected = process.env.ASR_TEST_CONFIGURATION ? 'ready' : 'unavailable';
+let browser;
+try {
+  browser = await chromium.launch({ channel: 'msedge', headless: true });
+  const page = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
+  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto(runtime.url + '/#settings');
+  const form = page.locator('[data-asr-form]'); await form.waitFor({ state: 'attached' });
+  if (!await page.locator('#asr-fold').evaluate(details => details.open)) await page.locator('#asr-fold > summary').click();
+  await form.waitFor();
+  for (const name of ['interpreter', 'modelDirectory']) await form.locator(`[name=${name}]`).fill(configuration[name]);
+  for (const name of ['modelId', 'device', 'computeType']) await form.locator(`[name=${name}]`).selectOption(configuration[name]);
+  await form.locator('[name=deviceIndex]').fill(String(configuration.deviceIndex));
+  await form.locator('[name=dllDirectories]').fill(configuration.dllDirectories.join('\n'));
+  await form.locator('[name=confirmed]').check();
+  await form.locator('[type=submit]').click();
+  await page.waitForFunction(() => document.querySelector('[data-asr-status]')?.dataset.state === 'configured');
+  await form.locator('[data-asr-test]').click();
+  await page.waitForFunction(expected => document.querySelector('[data-asr-status]')?.dataset.state === expected, expected, { timeout: 200000 });
+  const statusText = await page.locator('[data-asr-status]').innerText();
+  const actualText = await page.locator('[data-asr-actual]').innerText();
+  if (expected === 'ready') assert.match(actualText, new RegExp(configuration.device));
+  await form.locator('..').screenshot({ path: path.join(directory, 'capability.png') });
+  await form.locator('[data-asr-disable]').click();
+  await page.waitForFunction(() => document.querySelector('[data-asr-status]')?.dataset.state === 'disabled');
+  assert.equal(await form.locator('[data-asr-test]').isDisabled(), true);
+  await form.locator('[type=submit]').click();
+  await page.waitForFunction(() => document.querySelector('[data-asr-status]')?.dataset.state === 'configured');
+  const panel = form.locator('..'); await panel.scrollIntoViewIfNeeded();
+  await panel.screenshot({ path: path.join(directory, 'settings.png') });
+  await page.evaluate(async () => {
+    const { mountAsrComparison } = await import('/asr-review.mjs');
+    const element = document.createElement('div'); element.id = 'asr-test-comparison'; document.querySelector('main').append(element);
+    mountAsrComparison(element, { evidenceId: 'example', targetId: 'q1', candidateRevision: 2, reference: 'Alice does not need twenty tickets.', transcript: '<img src=x onerror="window.injected=true"> Alice does need thirty tickets.', state: 'conflict', doubts: [{ code: 'negation_difference' }, { code: 'number_difference' }] }, { onRetract: async evidence => ({ ...evidence, state: 'notChecked', retracted: true }) });
+  });
+  const comparison = page.locator('#asr-test-comparison');
+  assert.equal(await comparison.locator('img').count(), 0);
+  assert.match(await comparison.innerText(), /否定词差异.*数字/);
+  await comparison.screenshot({ path: path.join(directory, 'comparison.png') });
+  await comparison.locator('button').click();
+  await page.waitForFunction(() => document.querySelector('#asr-test-comparison')?.textContent.includes('已撤回'));
+  assert.deepEqual(errors, []);
+  await fs.writeFile(path.join(directory, 'result.json'), JSON.stringify({ expected, statusText, actualText, errors, comparison: 'escaped differences visible, retraction leaves original text' }, null, 2));
+  console.log(JSON.stringify({ ok: true, expected, directory, statusText, actualText }));
+  console.log('PASS local ASR settings and escaped comparison component');console.log('RESULT_DIR '+directory);
+} finally { await browser?.close(); await runtime.close(); }

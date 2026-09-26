@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 1,
+  "id": "practicebridge-original-demo",
+  "version": "1.1.0",
+  "title": "自编演示 · 校园日常",
+  "description": "九道自编题、八个独立任务，体验四科机考作答、保存和重练。全部时限为演示设置，不是官方考试规则，也不用于官方成绩预测。",
+  "rights": "本项目自编演示材料，CC0-1.0。音频由 Windows 本地语音合成，非真人录音。非 ETS 或任何机构的题库。",
+  "groups": [
+    {
+      "id": "g1",
+      "section": "reading",
+      "title": "A garden on campus",
+      "passage": "A small garden behind the campus library used to be an empty parking area. Last spring, a group of students planted vegetables there. They chose plants that needed little water because the area receives limited rain. The students now meet every Sunday morning to care for the garden. Some of the vegetables go to the campus kitchen, and the rest are shared among volunteers. The project has also created a quiet place where students can take a break between classes.",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "single_choice",
+          "prompt": "Why did the students choose plants that needed little water?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The campus kitchen requested those plants."
+            },
+            {
+              "id": "B",
+              "text": "There is limited rain in the area."
+            },
+            {
+              "id": "C",
+              "text": "The students only visited once a month."
+            },
+            {
+              "id": "D",
+              "text": "The garden had too much shade."
+            }
+          ],
+          "answer": "B",
+          "explanation": "The passage directly links the choice of plants to limited rainfall.",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 120,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q1",
+          "localNumber": 1,
+          "ordinalInTask": 1
+        },
+        {
+          "id": "q2",
+          "type": "single_choice",
+          "prompt": "Which activity is NOT mentioned as a use of the garden?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Growing vegetables for the campus kitchen."
+            },
+            {
+              "id": "B",
+              "text": "Providing a place to rest between classes."
+            },
+            {
+              "id": "C",
+              "text": "Holding evening music performances."
+            },
+            {
+              "id": "D",
+              "text": "Sharing vegetables among volunteers."
+            }
+          ],
+          "answer": "C",
+          "explanation": "Music performances are not mentioned in the passage.",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 120,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q2",
+          "localNumber": 2,
+          "ordinalInTask": 2
+        }
+      ],
+      "taskKind": "read_academic",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "attempt",
+        "questionPromptVisibility": "attempt",
+        "document": {
+          "kind": "academic",
+          "title": "A garden on campus",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "A small garden behind the campus library used to be an empty parking area. Last spring, a group of students planted vegetables there. They chose plants that needed little water because the area receives limited rain. The students now meet every Sunday morning to care for the garden. Some of the vegetables go to the campus kitchen, and the rest are shared among volunteers. The project has also created a quiet place where students can take a break between classes."
+            }
+          ]
+        }
+      },
+      "timing": {
+        "scope": "inherit_module",
+        "durationSeconds": null,
+        "prepareSeconds": null,
+        "basis": "unknown",
+        "source": ""
+      }
+    },
+    {
+      "id": "g6",
+      "section": "reading",
+      "title": "Complete a word in the garden paragraph",
+      "passage": "Students who care for the campus garden are volun_____. They give their time freely and share vegetables with others.",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q3",
+          "type": "fill_blank",
+          "prompt": "Fill in the missing letters in the paragraph. Type only the missing letters.",
+          "options": [],
+          "answer": "teers",
+          "explanation": "The completed word is volunteers. The fixed prefix is volun, so only teers belongs in the five blank cells.",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 60,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q3",
+          "localNumber": 3,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "complete_words",
+      "presentation": {
+        "screen": "all_questions",
+        "passageVisibility": "attempt",
+        "questionPromptVisibility": "attempt"
+      },
+      "timing": {
+        "scope": "inherit_module",
+        "durationSeconds": null,
+        "prepareSeconds": null,
+        "basis": "unknown",
+        "source": ""
+      },
+      "inlineBlanks": {
+        "textField": "passage",
+        "offsetUnit": "utf16",
+        "answerMode": "missing_letters",
+        "textHash": "e9729fef297ff8145607c5e694a3ae558bda6bddb957ec1f3fab0b064687c4d3",
+        "anchors": [
+          {
+            "questionId": "q3",
+            "localNumber": 3,
+            "prefixStart": 44,
+            "prefixEnd": 49,
+            "start": 49,
+            "end": 54,
+            "missingLetterCount": 5,
+            "prefix": "volun",
+            "rawGap": "_____",
+            "source": "scripts/make-examples.mjs · 本项目自编演示 · q3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "g2",
+      "section": "listening",
+      "title": "A workshop announcement",
+      "passage": "",
+      "audio": "announcement.wav",
+      "image": null,
+      "questions": [
+        {
+          "id": "q4",
+          "type": "single_choice",
+          "prompt": "Why was the garden workshop moved to Sunday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The tools were not available."
+            },
+            {
+              "id": "B",
+              "text": "Rain was expected on Saturday."
+            },
+            {
+              "id": "C",
+              "text": "Students requested an earlier time."
+            }
+          ],
+          "answer": "B",
+          "explanation": "The announcement says the workshop moved because of rain.",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 60,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q4",
+          "localNumber": 1,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "listen_announcement",
+      "transcript": "Attention, students. The campus garden workshop has moved from Saturday to Sunday because of rain. It will still start at ten in the morning. Please bring a water bottle. All gardening tools will be provided.",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "review",
+        "questionPromptVisibility": "attempt"
+      },
+      "timing": {
+        "scope": "question",
+        "durationSeconds": 60,
+        "prepareSeconds": null,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    },
+    {
+      "id": "g3",
+      "section": "writing",
+      "title": "Build a sentence about studying",
+      "passage": "",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q5",
+          "type": "sentence_order",
+          "prompt": "Put the fragments in order to make a complete sentence. Use each fragment once.",
+          "options": [
+            {
+              "id": "A",
+              "text": "because it is quiet."
+            },
+            {
+              "id": "B",
+              "text": "in the library"
+            },
+            {
+              "id": "C",
+              "text": "I prefer studying"
+            }
+          ],
+          "answer": [
+            "C",
+            "B",
+            "A"
+          ],
+          "explanation": "",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 60,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q5",
+          "sentenceFrame": "_____ _____ _____",
+          "answerSlots": 3,
+          "localNumber": 1,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "build_sentence",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "attempt",
+        "questionPromptVisibility": "attempt"
+      },
+      "timing": {
+        "scope": "task",
+        "durationSeconds": 60,
+        "prepareSeconds": null,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    },
+    {
+      "id": "g7",
+      "section": "writing",
+      "title": "Write an email to Maya",
+      "passage": "",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q6",
+          "type": "email",
+          "prompt": "You borrowed a book from your classmate Maya, but you need it for two more days. Write an email to Maya. Explain why you need extra time, suggest a specific return time, and offer to help her if she needs the book sooner.\nTo: Maya\nSubject: Two extra days for your book",
+          "options": [],
+          "answer": null,
+          "explanation": "",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 420,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q6",
+          "localNumber": 2,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "write_email",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "attempt",
+        "questionPromptVisibility": "attempt",
+        "email": {
+          "to": "Maya",
+          "subject": "Two extra days for your book",
+          "body": "You borrowed a book from your classmate Maya, but you need it for two more days. Write an email to Maya. Explain why you need extra time, suggest a specific return time, and offer to help her if she needs the book sooner."
+        }
+      },
+      "timing": {
+        "scope": "task",
+        "durationSeconds": 420,
+        "prepareSeconds": null,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    },
+    {
+      "id": "g8",
+      "section": "writing",
+      "title": "Discuss study spaces",
+      "passage": "",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q7",
+          "type": "discussion",
+          "prompt": "Your professor is teaching a class about university life. Write a post responding to the professor. State your view and support it with a specific reason or example. You may acknowledge a useful feature of the other option.\nProfessor: Should universities spend more money on quiet individual study rooms or on shared group spaces?\nMaya: I would choose more quiet rooms. When I read a difficult chapter, nearby conversations make it hard to follow the argument.\nJordan: I would choose shared spaces. My group often needs a place to compare notes and explain problems to one another.",
+          "options": [],
+          "answer": null,
+          "explanation": "",
+          "audio": null,
+          "image": null,
+          "timeLimitSeconds": 600,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q7",
+          "localNumber": 3,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "academic_discussion",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "attempt",
+        "questionPromptVisibility": "attempt",
+        "discussion": {
+          "prompt": "Should universities spend more money on quiet individual study rooms or on shared group spaces?",
+          "posts": [
+            {
+              "speaker": "Maya",
+              "text": "I would choose more quiet rooms. When I read a difficult chapter, nearby conversations make it hard to follow the argument."
+            },
+            {
+              "speaker": "Jordan",
+              "text": "I would choose shared spaces. My group often needs a place to compare notes and explain problems to one another."
+            }
+          ],
+          "instructions": "Your professor is teaching a class about university life. Write a post responding to the professor. State your view and support it with a specific reason or example. You may acknowledge a useful feature of the other option."
+        }
+      },
+      "timing": {
+        "scope": "task",
+        "durationSeconds": 600,
+        "prepareSeconds": null,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    },
+    {
+      "id": "g4",
+      "section": "speaking",
+      "title": "A short interview",
+      "passage": "",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q8",
+          "type": "interview",
+          "prompt": "Listen to the interview question and answer aloud.",
+          "options": [],
+          "answer": null,
+          "explanation": "",
+          "audio": "interview.wav",
+          "image": null,
+          "timeLimitSeconds": 45,
+          "prepareSeconds": 15,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q8",
+          "localNumber": 1,
+          "ordinalInTask": 1,
+          "transcript": "Think about a place where you enjoy studying. What makes this place work well for you? Give a specific example."
+        }
+      ],
+      "taskKind": "interview",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "review",
+        "questionPromptVisibility": "review"
+      },
+      "timing": {
+        "scope": "question",
+        "durationSeconds": 45,
+        "prepareSeconds": 15,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    },
+    {
+      "id": "g5",
+      "section": "speaking",
+      "title": "Listen and repeat",
+      "passage": "",
+      "audio": null,
+      "image": null,
+      "questions": [
+        {
+          "id": "q9",
+          "type": "listen_repeat",
+          "prompt": "Listen to the sentence and repeat it as accurately as you can.",
+          "options": [],
+          "answer": "The library will stay open until nine this evening.",
+          "explanation": "",
+          "audio": "repeat.wav",
+          "image": null,
+          "timeLimitSeconds": 15,
+          "prepareSeconds": 0,
+          "source": "scripts/make-examples.mjs · 本项目自编演示 · q9",
+          "localNumber": 2,
+          "ordinalInTask": 1
+        }
+      ],
+      "taskKind": "listen_repeat",
+      "presentation": {
+        "screen": "one_question",
+        "passageVisibility": "review",
+        "questionPromptVisibility": "attempt"
+      },
+      "timing": {
+        "scope": "question",
+        "durationSeconds": 15,
+        "prepareSeconds": 0,
+        "basis": "user",
+        "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+      }
+    }
+  ],
+  "examContractVersion": 1,
+  "minReaderVersion": "0.3.0",
+  "examSets": [
+    {
+      "id": "campus-demo",
+      "title": "自编演示 · 校园日常",
+      "sections": [
+        {
+          "id": "reading",
+          "section": "reading",
+          "title": "Reading",
+          "modules": [
+            {
+              "id": "reading-demo",
+              "title": "Reading practice",
+              "sourceNumber": null,
+              "taskIds": [
+                "g1",
+                "g6"
+              ],
+              "timing": {
+                "scope": "module",
+                "durationSeconds": 300,
+                "prepareSeconds": null,
+                "basis": "user",
+                "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+              },
+              "navigation": {
+                "back": "module",
+                "review": "module",
+                "lockOnAdvance": true
+              },
+              "instructions": {
+                "text": "Read the campus passage and complete one word. This original demonstration allows five minutes for the whole Reading module. You may review its three answers before finishing.",
+                "audio": null,
+                "source": "scripts/make-examples.mjs · 本项目自编演示",
+                "basis": "user",
+                "verifiedContent": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "listening",
+          "section": "listening",
+          "title": "Listening",
+          "modules": [
+            {
+              "id": "listening-demo",
+              "title": "Listening practice",
+              "sourceNumber": null,
+              "taskIds": [
+                "g2"
+              ],
+              "timing": {
+                "scope": "question",
+                "durationSeconds": 60,
+                "prepareSeconds": null,
+                "basis": "user",
+                "source": "scripts/make-examples.mjs · 本项目自编演示 · 自定练习时限，非官方限时"
+              },
+              "navigation": {
+                "back": "none",
+                "review": "none",
+                "lockOnAdvance": true
+              },
+              "instructions": {
+                "text": "Listen to the original synthetic announcement, then answer the question. The one-minute demonstration clock begins when the response screen appears.",
+                "audio": null,
+                "source": "scripts/make-examples.mjs · 本项目自编演示",
+                "basis": "user",
+                "verifiedContent": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "writing",
+          "section": "writing",
+          "title": "Writing",
+          "modules": [
+            {
+              "id": "writing-demo",
+              "title": "Writing practice",
+              "sourceNumber": null,
+              "taskIds": [
+                "g3",
+                "g7",
+                "g8"
+              ],
+              "timing": {
+                "scope": "none",
+                "durationSeconds": null,
+                "prepareSeconds": null,
+                "basis": "unknown",
+                "source": ""
+              },
+              "navigation": {
+                "back": "task",
+                "review": "task",
+                "lockOnAdvance": true
+              },
+              "instructions": {
+                "text": "Build a sentence, write an email, and join an academic discussion. These demonstration tasks allow one, seven, and ten minutes respectively. Each task has its own clock.",
+                "audio": null,
+                "source": "scripts/make-examples.mjs · 本项目自编演示",
+                "basis": "user",
+                "verifiedContent": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "speaking",
+          "section": "speaking",
+          "title": "Speaking",
+          "modules": [
+            {
+              "id": "speaking-demo",
+              "title": "Speaking practice",
+              "sourceNumber": null,
+              "taskIds": [
+                "g4",
+                "g5"
+              ],
+              "timing": {
+                "scope": "question",
+                "durationSeconds": null,
+                "prepareSeconds": null,
+                "basis": "unknown",
+                "source": ""
+              },
+              "navigation": {
+                "back": "none",
+                "review": "none",
+                "lockOnAdvance": true
+              },
+              "instructions": {
+                "text": "Check your microphone, then answer an interview question and repeat a short sentence. The interview allows fifteen seconds of preparation and forty-five seconds to respond; the repetition allows fifteen seconds with no preparation. These are demonstration settings.",
+                "audio": null,
+                "source": "scripts/make-examples.mjs · 本项目自编演示",
+                "basis": "user",
+                "verifiedContent": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

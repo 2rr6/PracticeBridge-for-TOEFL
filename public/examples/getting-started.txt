@@ -1,0 +1,91 @@
+@title 自编演示 · 校园日常
+@description 九道自编题、八个独立任务，体验四科机考作答、保存和重练。全部时限为演示设置，不是官方考试规则，也不用于官方成绩预测。 完整机考布局请导入含音频 ZIP；本 TXT 是可编辑的来源模板，须同时选择列出的三段 WAV。
+@rights 本项目自编演示材料，CC0-1.0。音频由 Windows 本地语音合成，非真人录音。非 ETS 或任何机构的题库。
+@section reading
+@group A garden on campus
+@passage
+A small garden behind the campus library used to be an empty parking area. Last spring, a group of students planted vegetables there. They chose plants that needed little water because the area receives limited rain. The students now meet every Sunday morning to care for the garden. Some of the vegetables go to the campus kitchen, and the rest are shared among volunteers. The project has also created a quiet place where students can take a break between classes.
+@question single_choice
+Why did the students choose plants that needed little water?
+@option A | The campus kitchen requested those plants.
+@option B | There is limited rain in the area.
+@option C | The students only visited once a month.
+@option D | The garden had too much shade.
+@answer B
+@explanation The passage directly links the choice of plants to limited rainfall.
+@time 120
+@end
+@question single_choice
+Which activity is NOT mentioned as a use of the garden?
+@option A | Growing vegetables for the campus kitchen.
+@option B | Providing a place to rest between classes.
+@option C | Holding evening music performances.
+@option D | Sharing vegetables among volunteers.
+@answer C
+@explanation Music performances are not mentioned in the passage.
+@time 120
+@end
+@group Complete a word in the garden paragraph
+@passage
+Students who care for the campus garden are volun_____. They give their time freely and share vegetables with others.
+@question fill_blank
+Fill in the missing letters in the paragraph. Type only the missing letters.
+@answer teers
+@explanation The completed word is volunteers. The fixed prefix is volun, so only teers belongs in the five blank cells.
+@time 60
+@end
+@section listening
+@group A workshop announcement
+@passage
+Attention, students. The campus garden workshop has moved from Saturday to Sunday because of rain. It will still start at ten in the morning. Please bring a water bottle. All gardening tools will be provided.
+@groupAudio announcement.wav
+@question single_choice
+Why was the garden workshop moved to Sunday?
+@option A | The tools were not available.
+@option B | Rain was expected on Saturday.
+@option C | Students requested an earlier time.
+@answer B
+@explanation The announcement says the workshop moved because of rain.
+@time 60
+@end
+@section writing
+@group Build a sentence about studying
+@question sentence_order
+Put the fragments in order to make a complete sentence. Use each fragment once.
+@option A | because it is quiet.
+@option B | in the library
+@option C | I prefer studying
+@answer C | B | A
+@time 60
+@end
+@group Write an email to Maya
+@question email
+You borrowed a book from your classmate Maya, but you need it for two more days. Write an email to Maya. Explain why you need extra time, suggest a specific return time, and offer to help her if she needs the book sooner.
+To: Maya
+Subject: Two extra days for your book
+@time 420
+@end
+@group Discuss study spaces
+@question discussion
+Your professor is teaching a class about university life. Write a post responding to the professor. State your view and support it with a specific reason or example. You may acknowledge a useful feature of the other option.
+Professor: Should universities spend more money on quiet individual study rooms or on shared group spaces?
+Maya: I would choose more quiet rooms. When I read a difficult chapter, nearby conversations make it hard to follow the argument.
+Jordan: I would choose shared spaces. My group often needs a place to compare notes and explain problems to one another.
+@time 600
+@end
+@section speaking
+@group A short interview
+@question interview
+Think about a place where you enjoy studying. What makes this place work well for you? Give a specific example.
+@audio interview.wav
+@prepare 15
+@time 45
+@end
+@group Listen and repeat
+@question listen_repeat
+Listen to the sentence and repeat it as accurately as you can.
+@answer The library will stay open until nine this evening.
+@audio repeat.wav
+@prepare 0
+@time 15
+@end

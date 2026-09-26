@@ -1,0 +1,794 @@
+{
+  "schemaVersion": 2,
+  "version": "0.5.1",
+  "commit": "657f5da7b9f62f45718d0557123421d06a3edeb0",
+  "dirtyAtStart": false,
+  "dirtyAtEnd": false,
+  "profile": "full",
+  "startedAt": "2026-09-25T23:18:56.350Z",
+  "finishedAt": "2026-09-25T23:26:09.554Z",
+  "ok": true,
+  "phases": {
+    "total": 40,
+    "passed": 36,
+    "failed": 0,
+    "skipped": 4
+  },
+  "checks": {
+    "passed": 780,
+    "failed": 0,
+    "skipped": 6
+  },
+  "counting": "Node TAP cases, Python verbose unittest outcomes and standalone PASS markers; phase failures are counted independently",
+  "tools": {
+    "node": "v22.22.3",
+    "python": "Python 3.12.10",
+    "platform": "win32",
+    "arch": "x64",
+    "git": "git version 2.54.0.windows.1",
+    "electron": "44.3.0",
+    "@electron/packager": "20.3.0",
+    "playwright": "1.63.0"
+  },
+  "artifacts": [],
+  "historicalUiTests": [
+    "tests/ui-smoke.mjs",
+    "tests/ui-races.mjs",
+    "tests/ui-question-types.mjs"
+  ],
+  "results": [
+    {
+      "name": "syntax",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:18:56.499Z",
+      "finishedAt": "2026-09-25T23:19:02.642Z",
+      "durationMs": 6143,
+      "command": [
+        "node",
+        "scripts/check.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/syntax.txt",
+      "logSha256": "3a511ddca0ad254766d6c3b6beaba6270d2bd81a961b75cd84e8f3c0152d926b",
+      "artifactDirectories": [],
+      "executedCommandSha256": "c4b377034307855b868175fee3c2faf166c971a955d192982324c5d818893dc9",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "readme-facts",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:19:02.642Z",
+      "finishedAt": "2026-09-25T23:19:02.780Z",
+      "durationMs": 138,
+      "command": [
+        "node",
+        "scripts/verify-readme.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/readme-facts.txt",
+      "logSha256": "9da0739cb2395c0e1a4e69bdd2f7e942b9432d406835aae729162f6adaf3837b",
+      "artifactDirectories": [],
+      "executedCommandSha256": "fc8e20f011e3ba59450db77707fb2f36f8ee3eed27b18b757db849f637e18264",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "unit",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:19:02.780Z",
+      "finishedAt": "2026-09-25T23:19:44.684Z",
+      "durationMs": 41904,
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/archive-intake.test.mjs",
+        "tests/archive-properties.test.mjs",
+        "tests/archive-restore-race.test.mjs",
+        "tests/archive-v05.test.mjs",
+        "tests/asr-adapter.test.mjs",
+        "tests/asr-api.test.mjs",
+        "tests/asr-check-integration-v05.test.mjs",
+        "tests/asr-mapping.test.mjs",
+        "tests/assistant-memory-policy.test.mjs",
+        "tests/codex.test.mjs",
+        "tests/core.test.mjs",
+        "tests/document-layout-v05.test.mjs",
+        "tests/document-source-map.test.mjs",
+        "tests/exam-audio.test.mjs",
+        "tests/exam-chat.test.mjs",
+        "tests/exam-document.test.mjs",
+        "tests/exam-full-test.test.mjs",
+        "tests/exam-overlay.test.mjs",
+        "tests/exam-plan.test.mjs",
+        "tests/exam-resume.test.mjs",
+        "tests/exam-session-http.test.mjs",
+        "tests/exam-session.test.mjs",
+        "tests/exam-time-policy-v2.test.mjs",
+        "tests/exam-timing-http.test.mjs",
+        "tests/exam-timing-policy.test.mjs",
+        "tests/feedback-queue.test.mjs",
+        "tests/importer.test.mjs",
+        "tests/local-api-policy.test.mjs",
+        "tests/material-candidates.test.mjs",
+        "tests/material-compiler.test.mjs",
+        "tests/material-execution-backup.test.mjs",
+        "tests/material-execution-ledger.test.mjs",
+        "tests/material-http.test.mjs",
+        "tests/material-job-admission.test.mjs",
+        "tests/material-job-source.test.mjs",
+        "tests/material-jobs-integration-v05.test.mjs",
+        "tests/material-jobs-restore-http.test.mjs",
+        "tests/material-jobs-v05.test.mjs",
+        "tests/material-media-chain.test.mjs",
+        "tests/material-models.test.mjs",
+        "tests/material-ocr.test.mjs",
+        "tests/material-processing.test.mjs",
+        "tests/material-restore-accounting.test.mjs",
+        "tests/material-tool-policy.test.mjs",
+        "tests/material-worker-host.test.mjs",
+        "tests/materials.test.mjs",
+        "tests/media-derivatives.test.mjs",
+        "tests/media-mapping.test.mjs",
+        "tests/migration-v05.test.mjs",
+        "tests/model-jobs-transport.test.mjs",
+        "tests/models.test.mjs",
+        "tests/ocr-candidate-integration.test.mjs",
+        "tests/ocr-candidates.test.mjs",
+        "tests/ocr-core-selection.test.mjs",
+        "tests/ocr-launch.test.mjs",
+        "tests/ocr-policy.test.mjs",
+        "tests/ocr-service-reset.test.mjs",
+        "tests/package-v2-schema.test.mjs",
+        "tests/processing-cas-closure.test.mjs",
+        "tests/readme-contract.test.mjs",
+        "tests/release-boundary.test.mjs",
+        "tests/runtime-ocr-inventory.test.mjs",
+        "tests/secret-store.test.mjs",
+        "tests/sentence-frame.test.mjs",
+        "tests/task-grammar.test.mjs",
+        "tests/template-models.test.mjs",
+        "tests/tst-document.test.mjs",
+        "tests/v05-invariants-properties.test.mjs",
+        "tests/workspace-connection.test.mjs",
+        "tests/workspace-epoch-http.test.mjs",
+        "tests/workspace-epoch.test.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/unit.txt",
+      "logSha256": "9d31706cf5afc870e3248c6ab170b493bbececf00ecf1375bddc5283145612ae",
+      "artifactDirectories": [],
+      "executedCommandSha256": "77d83e7de9d2339b0d18ed75915e7112bc4a24815cefa221dc31dce28c6720e0",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "asr-python-unit",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:19:44.684Z",
+      "finishedAt": "2026-09-25T23:19:44.921Z",
+      "durationMs": 237,
+      "command": [
+        "python",
+        "-I",
+        "-B",
+        "tests/asr-model-preflight.py"
+      ],
+      "log": "test-results/verification-1790378336466/asr-python-unit.txt",
+      "logSha256": "f53c238b1b4dc1ddec9a7069ffe51d90dedf8d40ecc960028d1bd3bd7bc597f5",
+      "artifactDirectories": [],
+      "executedCommandSha256": "d635092fde71df665d5e1c01b11456d4914bfe02abbb6d593ae608f9e8ac207b",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-workflow",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:19:44.922Z",
+      "finishedAt": "2026-09-25T23:20:05.973Z",
+      "durationMs": 21051,
+      "command": [
+        "node",
+        "tests/exam-workflow-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-workflow.txt",
+      "logSha256": "f3676a34e8607d8782af9838e696ae7007f87835a3cb0080af83c461c96497bb",
+      "artifactDirectories": [
+        "test-results/exam-workflow-ui-E54dta"
+      ],
+      "executedCommandSha256": "635781ecb976cfae7fb871f90abb2d2b17e50ea5405f3ad05990459f5815ae96",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-interactions",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:05.973Z",
+      "finishedAt": "2026-09-25T23:20:17.008Z",
+      "durationMs": 11035,
+      "command": [
+        "node",
+        "tests/exam-interactions-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-interactions.txt",
+      "logSha256": "8c99bdda55030d8fa7e1a239acc0d211bf6d7415208d02dbcb23479473975b21",
+      "artifactDirectories": [],
+      "executedCommandSha256": "546a24aab5ce46505af721e011d1f56f443b06922c450a8c53093f9852da4a31",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-resume",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:17.008Z",
+      "finishedAt": "2026-09-25T23:20:20.152Z",
+      "durationMs": 3144,
+      "command": [
+        "node",
+        "tests/exam-resume-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-resume.txt",
+      "logSha256": "987056266ebc696d1e9ac66240a0547b169910a7e736733c28fc0f15360fd5a7",
+      "artifactDirectories": [
+        "test-results/exam-resume-ui-6vpnLo"
+      ],
+      "executedCommandSha256": "e185887e3aaa7b162e91e5ad256176cd618e1882f2ea13b4d80131c60221ce29",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-followup",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:20.153Z",
+      "finishedAt": "2026-09-25T23:20:24.604Z",
+      "durationMs": 4451,
+      "command": [
+        "node",
+        "tests/exam-followup-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-followup.txt",
+      "logSha256": "e5b2f396581aa558c365bbbc72b33e32e8ab4c07017ea35b249054e8221cdf78",
+      "artifactDirectories": [
+        "test-results/exam-followup-ui-K0JOeZ"
+      ],
+      "executedCommandSha256": "7bab3983f169e327603bf19f0b04417038e258f23cdb7ea679b70576e22d70b5",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-mode-flow",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:24.604Z",
+      "finishedAt": "2026-09-25T23:20:45.588Z",
+      "durationMs": 20984,
+      "command": [
+        "node",
+        "tests/exam-mode-flow-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-mode-flow.txt",
+      "logSha256": "3bd1365f51f08652631563d27260d5ca62418595a6bc456a0a71f10ba4b405bd",
+      "artifactDirectories": [
+        "test-results/exam-mode-flow-2oWUmV"
+      ],
+      "executedCommandSha256": "6f9ddaffe49caa70940a2d3786add899ddd3b1e6e79bad60d428a2cd91ec2454",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-full-test",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:45.588Z",
+      "finishedAt": "2026-09-25T23:20:48.550Z",
+      "durationMs": 2962,
+      "command": [
+        "node",
+        "tests/exam-full-test-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-full-test.txt",
+      "logSha256": "4a29849b27962f75d16abcd1aa2371d727028b331dcae6f15873b0b342590765",
+      "artifactDirectories": [
+        "test-results/exam-full-test-ui-C2KMHm"
+      ],
+      "executedCommandSha256": "c289b755b6b5aada724460b1199b86aff5cd0d1fc6a90c9de2e4130f7e255601",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-repeat-scope",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:48.551Z",
+      "finishedAt": "2026-09-25T23:20:59.563Z",
+      "durationMs": 11012,
+      "command": [
+        "node",
+        "tests/exam-repeat-scope-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-repeat-scope.txt",
+      "logSha256": "d81ff1c14be92624516c8320813529d209a847f7295e97752d25a4d7ee7cf67b",
+      "artifactDirectories": [
+        "test-results/exam-repeat-scope-X5jb1V"
+      ],
+      "executedCommandSha256": "04e4fd225d165878098faad6b69af41520e43c2ec5fc954534cb1632d7078ec9",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-timing-interruption",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:20:59.563Z",
+      "finishedAt": "2026-09-25T23:21:02.493Z",
+      "durationMs": 2930,
+      "command": [
+        "node",
+        "tests/exam-timing-interruption-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-timing-interruption.txt",
+      "logSha256": "146f8d444bb33d45d198acca522b238187033fbd90ab70a1ce3d89cbce5205f5",
+      "artifactDirectories": [
+        "test-results/exam-timing-interruption-BZvkMi"
+      ],
+      "executedCommandSha256": "64be3e183386ac412268110b0ab285a41b9f5414fbc93addaafa15baef170536",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-recording",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:21:02.494Z",
+      "finishedAt": "2026-09-25T23:21:12.423Z",
+      "durationMs": 9929,
+      "command": [
+        "node",
+        "tests/exam-recording-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-recording.txt",
+      "logSha256": "9de15322bf6749d455fd2a1f2c94845b66f7a262a912fbf8ab78a21e0ef105f0",
+      "artifactDirectories": [
+        "test-results/exam-recording-ui"
+      ],
+      "executedCommandSha256": "3cd3e3bcf9b49abe93a29f7161c9ac9174f44f1e584477e53550ec275af3dee8",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-audio-deadline",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:21:12.423Z",
+      "finishedAt": "2026-09-25T23:22:50.681Z",
+      "durationMs": 98258,
+      "command": [
+        "node",
+        "tests/exam-audio-deadline-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-audio-deadline.txt",
+      "logSha256": "8a57097e662796889e9c453430399a7c014516f15642a1744987808a27096433",
+      "artifactDirectories": [
+        "test-results/exam-audio-deadline-browser-AKWhgE"
+      ],
+      "executedCommandSha256": "0cd6d542316a61d1bd258833b30ef09dc4f951a3832e41d7825ca6658c548cf2",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-readiness",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:22:50.681Z",
+      "finishedAt": "2026-09-25T23:22:59.298Z",
+      "durationMs": 8617,
+      "command": [
+        "node",
+        "tests/exam-readiness-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-readiness.txt",
+      "logSha256": "9694ebfb87465d1a053ddd86a15fe6425b2bf322a54d317a96214a49c992d662",
+      "artifactDirectories": [
+        "test-results/exam-readiness-ui-PUKna9"
+      ],
+      "executedCommandSha256": "eaa1ac83bdb7ea1ff0cd05f9e543629f24e8095896b15b13a655859892a8aea3",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "exam-writing",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:22:59.298Z",
+      "finishedAt": "2026-09-25T23:23:01.526Z",
+      "durationMs": 2228,
+      "command": [
+        "node",
+        "tests/exam-writing-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/exam-writing.txt",
+      "logSha256": "369868168fd3dd02ba795da4517c46f6d450e7ea3d17644080408f410696ead6",
+      "artifactDirectories": [
+        "test-results/exam-writing-ui-kb4zjB"
+      ],
+      "executedCommandSha256": "881e3d99e3de619f2a082b8cc180b351f384be9d7fcad406da2134e06402c2db",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "ordinary-document",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:01.526Z",
+      "finishedAt": "2026-09-25T23:23:05.534Z",
+      "durationMs": 4008,
+      "command": [
+        "node",
+        "tests/worksheet-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/ordinary-document.txt",
+      "logSha256": "f662d9a315ed95c015dee40041a183b91fb740305371e0b5f859f44658aa6452",
+      "artifactDirectories": [
+        "test-results/worksheet-1790378582251"
+      ],
+      "executedCommandSha256": "0fb21ac2e9548dbd02d0236f5ea90a528aa32425285da75d0a5f9320d10ac98f",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "view-lifecycle",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:05.534Z",
+      "finishedAt": "2026-09-25T23:23:08.552Z",
+      "durationMs": 3018,
+      "command": [
+        "node",
+        "tests/ui-view-lifecycle.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/view-lifecycle.txt",
+      "logSha256": "6428a0843df1fc6023546b3449f6e808064ac49b5f9b4df4f1d99e8541cf659f",
+      "artifactDirectories": [
+        "test-results/views-vLb9il"
+      ],
+      "executedCommandSha256": "b2705d25757337c4eb7a39592c7a5a1bcf4a4711efdcda2c0292aad240dfba15",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "material-workflow",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:08.552Z",
+      "finishedAt": "2026-09-25T23:23:11.990Z",
+      "durationMs": 3438,
+      "command": [
+        "node",
+        "tests/material-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/material-workflow.txt",
+      "logSha256": "cbcfaf84609cc746a1e3fd7447c7e6c525fb2fecc8acb3cbdbc1d73b317a3c56",
+      "artifactDirectories": [
+        "test-results/materials-ui-1790378589330"
+      ],
+      "executedCommandSha256": "17bf3d669b2d5c6e0b90edf6e095722a62e4161a4a84cf026fcbe173bfa5da09",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "material-layout",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:11.991Z",
+      "finishedAt": "2026-09-25T23:23:13.818Z",
+      "durationMs": 1827,
+      "command": [
+        "node",
+        "tests/ui-material-layout.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/material-layout.txt",
+      "logSha256": "c72a98bbb52f3fe12c8015f207d7f93c8b8a380d048c60c4f0a80ae4290687ea",
+      "artifactDirectories": [
+        "test-results/material-layout-1dHbNF"
+      ],
+      "executedCommandSha256": "6f1bfdac150193315335e2ac8f587f3e6526f90f919ea61937f5305a57ecc56b",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "material-media",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:13.818Z",
+      "finishedAt": "2026-09-25T23:23:15.161Z",
+      "durationMs": 1343,
+      "command": [
+        "node",
+        "tests/material-media-v05-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/material-media.txt",
+      "logSha256": "e1662f1e8749c260e660bb30a363fb834ee283d12a07b4ac7960357119f74c2d",
+      "artifactDirectories": [],
+      "executedCommandSha256": "62ca282430e1d2ec6d6f6518f6e42776796818ce3a7fd4c45706e95f177764bb",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "native-task-matrix",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:15.161Z",
+      "finishedAt": "2026-09-25T23:23:33.453Z",
+      "durationMs": 18292,
+      "command": [
+        "node",
+        "tests/native-matrix-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/native-task-matrix.txt",
+      "logSha256": "cfa17fdedcfb5f02a7b040ddd1962c9be705e4e4efa8a2324f162c8c500ded7c",
+      "artifactDirectories": [
+        "test-results/native-matrix-ui/run-WZZuvJ"
+      ],
+      "executedCommandSha256": "fc5e207b699e372b9494ba9452253a3ce1bfe0f0a08a5c756633bf43659d5531",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "material-jobs-and-local-evidence",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:33.454Z",
+      "finishedAt": "2026-09-25T23:23:45.343Z",
+      "durationMs": 11889,
+      "command": [
+        "node",
+        "tests/material-jobs-v05-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/material-jobs-and-local-evidence.txt",
+      "logSha256": "e93f09752e1a21f8770e43be27f8fdacf85ad4cffb24632798b81d247519eb1f",
+      "artifactDirectories": [],
+      "executedCommandSha256": "ff0342644d6cbd96820463600e6aad2a4429dbb71ebeade9e03c1c4e2e3be633",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "candidate-review",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:45.343Z",
+      "finishedAt": "2026-09-25T23:23:48.080Z",
+      "durationMs": 2737,
+      "command": [
+        "node",
+        "tests/material-candidates-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/candidate-review.txt",
+      "logSha256": "b8d38f2b70df6ffcc5b760c1e43a056c2627a5c1188dd667d5829cf8b85f2f55",
+      "artifactDirectories": [],
+      "executedCommandSha256": "47fd24392d9ee88439d8168ed6f771247053b35b4675776a8dd8816c500cec0f",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "candidate-draft-conflicts",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:48.080Z",
+      "finishedAt": "2026-09-25T23:23:51.238Z",
+      "durationMs": 3158,
+      "command": [
+        "node",
+        "tests/material-candidate-drafts-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/candidate-draft-conflicts.txt",
+      "logSha256": "afc65d18e0b547179e576a81ae1389024c9784f0fbc274fe99e3da4978dc6cf8",
+      "artifactDirectories": [],
+      "executedCommandSha256": "858533e8bd884ac9a1ab74141074f976c01e2fd404a5b59f38bade882dfc2ae6",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "source-review-component",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:51.238Z",
+      "finishedAt": "2026-09-25T23:23:52.729Z",
+      "durationMs": 1491,
+      "command": [
+        "node",
+        "tests/document-source-review-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/source-review-component.txt",
+      "logSha256": "85317742278b5e25f9fc0092d5aee630a249830ceb1e6fcaa1dafb3c7332a54e",
+      "artifactDirectories": [],
+      "executedCommandSha256": "7e4d8d7b11894122ef3a7d017b30c67e4c847a92b1154e9590595a667b8be5c1",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "credentials-settings",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:52.729Z",
+      "finishedAt": "2026-09-25T23:23:55.052Z",
+      "durationMs": 2323,
+      "command": [
+        "node",
+        "tests/credentials-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/credentials-settings.txt",
+      "logSha256": "f44fe228afe0ad309a503744e1b8c8bd7b81b377d44aa79bbd412958bc79466b",
+      "artifactDirectories": [
+        "test-results/credentials-ui-GK5PH1"
+      ],
+      "executedCommandSha256": "f1809a362e0983eae8810c8ce23c3207272a4db27f0fbccb84904750a76cd81a",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "asr-settings-and-comparison",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:55.052Z",
+      "finishedAt": "2026-09-25T23:23:58.150Z",
+      "durationMs": 3098,
+      "command": [
+        "node",
+        "tests/asr-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/asr-settings-and-comparison.txt",
+      "logSha256": "112dbb7c7832f9e35121aafa518682de97c7be63c22d8614241dab3001f6c18f",
+      "artifactDirectories": [
+        "test-results/asr/ui/e5efae1c-bef3-4f12-9187-9bb85043920d"
+      ],
+      "executedCommandSha256": "f34af0dcb1024f802f997d897fe75b5185183d4f34571474ff885095d58ad648",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "asr-unsaved-settings",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:23:58.150Z",
+      "finishedAt": "2026-09-25T23:24:00.256Z",
+      "durationMs": 2106,
+      "command": [
+        "node",
+        "tests/asr-settings-dirty-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/asr-unsaved-settings.txt",
+      "logSha256": "2b194e9611f0202905f2359aa6581d6ffda67869b790c93a7301597419723b01",
+      "artifactDirectories": [
+        "test-results/asr/fix1-ui/746c0831-d2fa-4677-b643-a2390ba089eb"
+      ],
+      "executedCommandSha256": "f85ec094d9af8007ddbe75f4d8b18ec87471eda772c82b9304d2fc6287206a07",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "ocr-settings",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:00.256Z",
+      "finishedAt": "2026-09-25T23:24:02.382Z",
+      "durationMs": 2126,
+      "command": [
+        "node",
+        "tests/ocr-settings-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/ocr-settings.txt",
+      "logSha256": "7bc74e0238dfb94b7d4fda95c63e22e73e03bca43955025412345c302ab2adc7",
+      "artifactDirectories": [
+        "test-results/ocr-ui/49e0d3ef-c66a-4136-a42c-88063139ceab"
+      ],
+      "executedCommandSha256": "a48ab3d93ca82972fe161c6fc82d5f28f53be9c6632068c319a26fae278d5dbf",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "ocr-author-component",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:02.382Z",
+      "finishedAt": "2026-09-25T23:24:05.506Z",
+      "durationMs": 3124,
+      "command": [
+        "node",
+        "tests/material-ocr-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/ocr-author-component.txt",
+      "logSha256": "c273f44a291579e1e3f4d4eb96c0faf771cf8c2fa2572069bfc9a10c114be5a7",
+      "artifactDirectories": [
+        "test-results/material-ocr-ui/a0b076b8-1fda-430c-97d4-1af031a02244"
+      ],
+      "executedCommandSha256": "0ca3c788f6f699549219dea745f6ea177f9735859214784b826d7e8772ea2b89",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "confirmed-assistant-preferences",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:05.507Z",
+      "finishedAt": "2026-09-25T23:24:08.403Z",
+      "durationMs": 2896,
+      "command": [
+        "node",
+        "tests/assistant-memory-browser.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/confirmed-assistant-preferences.txt",
+      "logSha256": "f348c30869d6a0f037eba5866a4cf62cbf954636bad30f465bd1ffae61d8fc2a",
+      "artifactDirectories": [],
+      "executedCommandSha256": "2cbddb7775860f220c419f7d2f24fa1b4464e8ba9ccba59efa66993156cdd26c",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "workspace-restore-pages",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:08.403Z",
+      "finishedAt": "2026-09-25T23:24:17.265Z",
+      "durationMs": 8862,
+      "command": [
+        "node",
+        "tests/workspace-epoch-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/workspace-restore-pages.txt",
+      "logSha256": "0e5f90769ba7133d5b39eefac3a4b948f3b7d19e62ebeae9a94eea03cc83f836",
+      "artifactDirectories": [],
+      "executedCommandSha256": "962a670787f15f6312db56e83867f5eab350093aefdeb8f3df56fd2f3b83e6e4",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "recording-restore-finalize",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:17.265Z",
+      "finishedAt": "2026-09-25T23:24:28.013Z",
+      "durationMs": 10748,
+      "command": [
+        "node",
+        "tests/exam-restore-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/recording-restore-finalize.txt",
+      "logSha256": "ff46ad07af2e0b8fee2dacad06a6a1b64c6999f694bedb94b0dfea95d1d5c130",
+      "artifactDirectories": [],
+      "executedCommandSha256": "78376901539eb7f9478e891a624bf2e057cd72f0cb510eb00cdd4d8fd33a1eb0",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "real-ocr-material-chain",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:24:28.013Z",
+      "finishedAt": "2026-09-25T23:26:06.947Z",
+      "durationMs": 98934,
+      "command": [
+        "node",
+        "tests/material-ocr-chain-ui.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/real-ocr-material-chain.txt",
+      "logSha256": "11347ce2b4b324da09fca01ef016aafcdcc9007e8886ef8f571321e8929be17e",
+      "artifactDirectories": [
+        "test-results/material-ocr-chain-ui/run-UPlZnQ"
+      ],
+      "executedCommandSha256": "e97d0d14730fbd8a1d8a3e167322ba5cdcbf4fa8b1392c24426b85e5950052e6",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "windows-credentials-runtime",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-09-25T23:26:06.947Z",
+      "finishedAt": "2026-09-25T23:26:09.389Z",
+      "durationMs": 2442,
+      "command": [
+        "node",
+        "tests/credentials-electron.mjs"
+      ],
+      "log": "test-results/verification-1790378336466/windows-credentials-runtime.txt",
+      "logSha256": "aba87d842a2a0c8e020531437c0ffae07444b8de48685da37fb3b9c44abba88e",
+      "artifactDirectories": [
+        "test-results/credentials-runtime-1790378767041"
+      ],
+      "executedCommandSha256": "305a11fc8019e031dc43eb64ea1e52700fb03fe4715f01ed7f6313f381cbcdd2",
+      "commandDisplayOnly": true
+    },
+    {
+      "name": "human-microphone",
+      "status": "skipped",
+      "reason": "No human microphone session was performed; synthetic audio does not establish microphone or pronunciation quality."
+    },
+    {
+      "name": "real-windows-ime",
+      "status": "skipped",
+      "reason": "Scripted composition events do not establish behavior of a real Windows input method session."
+    },
+    {
+      "name": "real-provider",
+      "status": "skipped",
+      "reason": "No real remote provider or paid account call was performed."
+    },
+    {
+      "name": "windows-electron",
+      "status": "skipped",
+      "reason": "Run the separate windows-smoke profile against the final application."
+    }
+  ],
+  "pathPrivacy": "Shared copy: command runners are labels, project arguments are relative, and external absolute or escaping relative locations are omitted. Exact command digests and original local reports retain the execution evidence."
+}
