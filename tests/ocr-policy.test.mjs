@@ -67,7 +67,9 @@ for(const mode of ['timeout','cancel','memory','output'])test(`owned OCR process
   const dir=await fs.mkdtemp(path.join(tmpRoot,'pb-ocr-process-'));let ownedPid;
   try{
     const script=path.join(dir,'bounded-fixture.mjs');await fs.writeFile(script,`process.stdin.resume();process.stdin.on('end',()=>{${mode==='memory'?"globalThis.fixture=Buffer.alloc(100*1024*1024,1);":mode==='output'?"process.stdout.write('x'.repeat(4096));":''}setInterval(()=>{},1000);});`);
-    const controller=new AbortController(),budget={...request().budget,timeoutMs:mode==='timeout'?700:10000,maxMemoryBytes:mode==='memory'?64*1024*1024:512*1024*1024,maxOutputBytes:mode==='output'?1024:1048576};
+    // The memory case is the first to wait for the PowerShell monitor, whose cold start
+    // on a busy Windows CI runner can take several seconds.
+    const controller=new AbortController(),budget={...request().budget,timeoutMs:mode==='timeout'?700:mode==='memory'?60000:10000,maxMemoryBytes:mode==='memory'?64*1024*1024:512*1024*1024,maxOutputBytes:mode==='output'?1024:1048576};
     const task=runOcrProcess({config:{budget},childPath:script,signal:controller.signal,spawnProcess:(executable,args,options)=>{const child=spawn(executable,args,options);if(args.includes(script)){child.once('spawn',()=>{ownedPid=child.pid;});}return child;}});
     const cancelTimer=mode==='cancel'?setTimeout(()=>controller.abort(),500):null;
     try{await assert.rejects(task,e=>e.code===({timeout:'OCR_TIMEOUT',cancel:'OCR_CANCELLED',memory:'OCR_MEMORY_LIMIT',output:'OCR_OUTPUT_LIMIT'})[mode]);}finally{clearTimeout(cancelTimer);}
