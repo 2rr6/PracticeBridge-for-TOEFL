@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PracticeBridge for TOEFL · 把托福练习材料变成机考练习的免费离线软件</title>
+<meta name="description" content="PracticeBridge for TOEFL 是一款免费、开源、离线运行的 Windows 软件：把你手上的 2026 新版托福练习 PDF、Word、网页文字和扫描件整理成题库，在仿机考界面里按科目计时练习。">
+<link rel="canonical" href="https://2rr6.github.io/PracticeBridge-for-TOEFL/">
+<link rel="alternate" hreflang="zh-CN" href="https://2rr6.github.io/PracticeBridge-for-TOEFL/">
+<link rel="alternate" hreflang="en" href="https://2rr6.github.io/PracticeBridge-for-TOEFL/en.html">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PracticeBridge for TOEFL">
+<meta property="og:description" content="免费、开源、离线的 Windows 软件：把 2026 新版托福练习材料整理成机考练习。">
+<meta property="og:image" content="https://2rr6.github.io/PracticeBridge-for-TOEFL/screenshots/overview.png">
+<meta property="og:url" content="https://2rr6.github.io/PracticeBridge-for-TOEFL/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PracticeBridge for TOEFL",
+  "alternateName": "PracticeBridge 托福练习工作台",
+  "description": "Free, open-source, offline Windows app that turns your own TOEFL iBT practice material (January 2026 format) — PDFs, Word files, web text and scans — into a question bank you practice in an exam-style interface with timers.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "inLanguage": ["zh-CN", "en"],
+  "url": "https://2rr6.github.io/PracticeBridge-for-TOEFL/",
+  "downloadUrl": "https://github.com/2rr6/PracticeBridge-for-TOEFL/releases/latest",
+  "codeRepository": "https://github.com/2rr6/PracticeBridge-for-TOEFL",
+  "screenshot": "https://2rr6.github.io/PracticeBridge-for-TOEFL/screenshots/practice.png",
+  "author": { "@type": "Person", "name": "2rr6", "url": "https://github.com/2rr6" },
+  "featureList": [
+    "Imports official ETS practice tests (student and teacher editions), full mock tests and single-task practice sets",
+    "Reads scanned PDFs with optional local English OCR",
+    "Exam-style interface for Reading, Listening, Writing and Speaking with 12 task types and timers",
+    "PRACTICE and full TEST modes, attempt history, review and retry",
+    "Optional AI feedback and material organization with your own model and API key",
+    "All data stays on your computer"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "怎么把托福练习 PDF 变成机考形式的练习？", "acceptedAnswer": { "@type": "Answer", "text": "下载 PracticeBridge for TOEFL（免费 Windows 便携版），点“添加材料”放入 PDF，保存后选择“只在本机处理 → 本地检查并整理”，软件会识别题目、选项和答案，确认后加入题库，就能在仿机考界面按科目计时练习。" } },
+    { "@type": "Question", "name": "有没有免费的 2026 新版托福练习软件？", "acceptedAnswer": { "@type": "Answer", "text": "PracticeBridge for TOEFL 是免费开源（MIT）的 Windows 软件，面向 2026 年 1 月起的新版托福，不需要注册账号，导入和练习都离线完成。它不自带官方题目，需要你导入自己的练习材料；软件附带一套自编示例题用于试用。" } },
+    { "@type": "Question", "name": "扫描版的托福练习册能用吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。在“模型与数据”里安装并启用英语 OCR 后，整理材料时会自动识别扫描页。本机拿不准的答案会留空，不会乱猜；连接能看图的 AI 后点“用 AI 看图校对扫描页”，大部分留空的答案可以补全。在项目的模拟扫描测试中，两种方式给出的答案都没有出现错误。" } },
+    { "@type": "Question", "name": "它和 ETS 官方有关系吗？", "acceptedAnswer": { "@type": "Answer", "text": "没有。PracticeBridge for TOEFL 是独立项目，与 ETS 没有关联，也未获 ETS 认可或授权；TOEFL 是 ETS 的注册商标。软件不提供官方分数换算。" } }
+  ]
+}
+</script>
+<style>
+:root{--g:#1c362d;--l:#d9edb0;--t:#233b32;--m:#5f6f5c;--b:#e1e7db;--bg:#f5f6f3}
+*{box-sizing:border-box}body{margin:0;font:16px/1.75 "Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--t);background:var(--bg)}
+header{background:var(--g);color:#e6ece7}header .wrap{display:flex;align-items:center;gap:12px;padding:18px 20px}header img{width:36px;height:36px}header strong{font-size:18px}header nav{margin-left:auto;display:flex;gap:18px;font-size:14px}header a{color:#d9edb0;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.hero{padding:48px 0 28px}.hero h1{font-size:34px;line-height:1.3;margin:0 0 14px}.hero p{color:var(--m);font-size:18px;margin:0 0 22px;max-width:760px}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;background:#264e38;color:#fff;text-decoration:none;font-weight:600;margin:0 10px 10px 0}.btn.ghost{background:#fff;color:#264e38;border:1px solid var(--b)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}.facts li{background:#e8eedf;border-radius:20px;padding:4px 12px;font-size:14px;color:#3e5b40}
+img.shot{width:100%;border:1px solid var(--b);border-radius:10px;background:#fff}
+section{padding:26px 0}h2{font-size:24px;margin:0 0 14px}h3{font-size:18px;margin:18px 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card{background:#fff;border:1px solid var(--b);border-radius:10px;padding:18px}.card h3{margin-top:0}.card p{margin:0;color:var(--m);font-size:15px}
+ol li{margin:6px 0}details{background:#fff;border:1px solid var(--b);border-radius:10px;padding:12px 16px;margin:10px 0}summary{font-weight:600;cursor:pointer}
+@media(max-width:640px){header .wrap{flex-wrap:wrap}header nav{gap:14px}header nav a[href^="#"]{display:none}.hero h1{font-size:26px}.hero p{font-size:16px}}
+footer{padding:30px 0 50px;color:var(--m);font-size:14px;border-top:1px solid var(--b);margin-top:30px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="icon.svg" alt=""><strong>PracticeBridge for TOEFL</strong><nav><a href="#how">使用步骤</a><a href="#faq">常见问题</a><a href="en.html" hreflang="en">English</a><a href="https://github.com/2rr6/PracticeBridge-for-TOEFL">GitHub</a></nav></div></header>
+<main class="wrap">
+<div class="hero">
+<h1>把托福练习材料，变成可以在机考界面里作答的题库</h1>
+<p>PracticeBridge for TOEFL 是一款面向 2026 年 1 月起新版托福的本地练习软件。你把 PDF、Word、网页文字或扫描件放进来，它会识别出题目、选项、答案和音频；确认后就能按科目计时练习，每次作答都保存在自己的电脑上。</p>
+<a class="btn" href="https://github.com/2rr6/PracticeBridge-for-TOEFL/releases/latest">下载 Windows 版（免费）</a><a class="btn ghost" href="https://github.com/2rr6/PracticeBridge-for-TOEFL#readme">详细说明</a>
+<ul class="facts"><li>免费</li><li>开源（MIT）</li><li>Windows 10/11 便携版</li><li>无需注册</li><li>导入和练习离线完成</li><li>AI 可选，用自己的模型</li></ul>
+</div>
+<img class="shot" src="screenshots/overview.png" alt="PracticeBridge for TOEFL 概览页：继续练习、四科题数与正确率、待复习错题">
+<section>
+<h2>能做什么</h2>
+<div class="grid">
+<div class="card"><h3>导入常见托福材料</h3><p>ETS 官方练习卷（学生版和教师版）、整套模拟题、单一题型练习集（Complete the Words、Build a Sentence、Listen and Repeat、写邮件、学术讨论等）、网页文字。</p></div>
+<div class="card"><h3>扫描件自动识别</h3><p>安装本机英语 OCR 后，扫描版 PDF 的每一页都会自动识别；拿不准的答案留空不乱猜，可以再让看图 AI 对照原图校对补全。</p></div>
+<div class="card"><h3>仿机考练习</h3><p>阅读、听力、写作、口语四科，12 类题型，每个阶段都有倒计时。PRACTICE 按科目练习，TEST 连续考完四科。</p></div>
+<div class="card"><h3>记录与复习</h3><p>每次作答都保存，错题可以标记复习和重练，学习分析可按科目、题型、日期筛选。</p></div>
+<div class="card"><h3>AI 可选</h3><p>连接自己的模型后，可以整理难读的材料、获取写作和口语的文字反馈、做题时提问。每次联网前都会说明发送内容。</p></div>
+<div class="card"><h3>数据在自己电脑上</h3><p>材料、题库、作答记录和录音都保存在软件旁边的 data 文件夹，可以一键导出完整备份。</p></div>
+</div>
+</section>
+<section id="how">
+<h2>使用步骤</h2>
+<ol>
+<li>从 <a href="https://github.com/2rr6/PracticeBridge-for-TOEFL/releases/latest">Releases 页面</a> 下载 ZIP，右键“全部解压缩”，运行文件夹里的 <code>PracticeBridge.exe</code>。第一次如果出现“Windows 已保护你的电脑”，点“更多信息 → 仍要运行”。</li>
+<li>点“添加材料”，放入你的 PDF、Word 或文字，点“保存原件到材料库”。</li>
+<li>点开“只在本机处理”，点“本地检查并整理”。</li>
+<li>在校对页检查题目和答案，点“选择全部可用题 → 加入所选可用部分”。</li>
+<li>到“我的题库”，选择科目开始练习。</li>
+</ol>
+<img class="shot" src="screenshots/practice.png" alt="仿机考练习界面：左侧文章，右侧题目和选项，顶部倒计时">
+</section>
+<section id="faq">
+<h2>常见问题</h2>
+<details open><summary>怎么把托福练习 PDF 变成机考形式的练习？</summary><p>下载 PracticeBridge for TOEFL，点“添加材料”放入 PDF，保存后选择“只在本机处理 → 本地检查并整理”。软件会识别题目、选项和答案，你确认后加入题库，就能在仿机考界面按科目计时练习。</p></details>
+<details><summary>有没有免费的 2026 新版托福练习软件？</summary><p>PracticeBridge for TOEFL 免费开源，面向 2026 年 1 月起的新版托福，不需要注册账号，导入和练习都离线完成。它不自带官方题目，需要导入你自己的练习材料；软件附带一套自编示例题用于试用。</p></details>
+<details><summary>扫描版的托福练习册能用吗？</summary><p>可以。在“模型与数据”里安装并启用英语 OCR 后，整理材料时会自动识别扫描页。本机拿不准的答案会留空，不会乱猜；连接能看图的 AI 后点“用 AI 看图校对扫描页”，大部分留空的答案可以补全。在项目的模拟扫描测试中，两种方式给出的答案都没有出现错误。</p></details>
+<details><summary>需要付费或联网吗？</summary><p>软件免费。导入和练习完全离线；只有在你主动使用 AI 或下载 OCR 数据时才联网。AI 费用由你自己的模型服务商账户支付。</p></details>
+<details><summary>它和 ETS 官方有关系吗？</summary><p>没有。本项目与 ETS 没有关联，也未获 ETS 认可或授权；不提供官方分数换算。</p></details>
+</section>
+</main>
+<footer class="wrap">TOEFL® 是 ETS 的注册商标。PracticeBridge for TOEFL 是独立项目，与 ETS 没有关联，也未获 ETS 认可或授权；名称中的 TOEFL 仅用于说明本软件面向的考试。代码采用 MIT 许可。· <a href="https://github.com/2rr6/PracticeBridge-for-TOEFL">GitHub</a></footer>
+</body>
+</html>

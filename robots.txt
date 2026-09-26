@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://2rr6.github.io/PracticeBridge-for-TOEFL/sitemap.xml
